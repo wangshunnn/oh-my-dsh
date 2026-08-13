@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/wangshunnn/oh-my-dsh/registry/schema.json",
+  "title": "oh-my-dsh registry",
+  "type": "object",
+  "required": ["schemaVersion", "generatedAt", "source", "stats", "plugins"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "source": {
+      "type": "object",
+      "required": ["provider", "query", "url", "reportedTotal"],
+      "properties": {
+        "provider": { "const": "github" },
+        "query": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "reportedTotal": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "stats": {
+      "type": "object",
+      "required": ["included", "byKind", "byStatus"],
+      "properties": {
+        "included": { "type": "integer", "minimum": 0 },
+        "byKind": { "$ref": "#/$defs/countMap" },
+        "byStatus": { "$ref": "#/$defs/countMap" }
+      },
+      "additionalProperties": false
+    },
+    "plugins": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/plugin" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "countMap": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "plugin": {
+      "type": "object",
+      "required": [
+        "id", "name", "owner", "repository", "url", "description", "kind",
+        "categories", "topics", "license", "metrics", "repositoryState",
+        "package", "verification", "install"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "name": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "minLength": 1 },
+        "repository": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" },
+        "description": { "type": ["string", "null"] },
+        "kind": {
+          "enum": ["plugin", "bundle", "skin", "client", "application", "collection", "resource", "unknown"]
+        },
+        "categories": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "topics": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "language": { "type": ["string", "null"] },
+        "license": {
+          "type": "object",
+          "required": ["spdx", "status"],
+          "properties": {
+            "spdx": { "type": ["string", "null"] },
+            "status": { "enum": ["detected", "unknown"] }
+          },
+          "additionalProperties": false
+        },
+        "metrics": {
+          "type": "object",
+          "required": ["stars", "forks", "openIssues"],
+          "properties": {
+            "stars": { "type": "integer", "minimum": 0 },
+            "forks": { "type": "integer", "minimum": 0 },
+            "openIssues": { "type": "integer", "minimum": 0 }
+          },
+          "additionalProperties": false
+        },
+        "repositoryState": { "type": "object" },
+        "package": { "type": "object" },
+        "verification": { "type": "object" },
+        "install": { "type": "object" },
+        "curation": { "type": "object" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
