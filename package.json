@@ -1,0 +1,16 @@
+{
+  "name": "oh-my-dsh",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Curated and machine-readable plugin directory for DeepSeek Harness",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "update": "node scripts/update-registry.mjs",
+    "validate": "node scripts/validate-registry.mjs",
+    "test": "node --test",
+    "check": "npm run test && npm run validate"
+  }
+}
