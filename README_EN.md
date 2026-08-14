@@ -1,8 +1,12 @@
-<p align="right">
-  <a href="./README.md">简体中文</a> · <strong>English</strong>
+<p align="center">
+  <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
 </p>
 
-# oh-my-dsh
+<h1 align="center">oh-my-dsh</h1>
+
+<p align="center">
+  <sub><a href="./README.md">简体中文</a> · English</sub>
+</p>
 
 > 🐋 A community plugin index for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): automated discovery, evidence-based status, and curated collections.
 
