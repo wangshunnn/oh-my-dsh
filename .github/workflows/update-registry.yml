@@ -20,12 +20,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: npm
+      - run: npm ci
       - name: Update from GitHub
         run: npm run update
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: npm test
-      - run: npm run validate
+      - run: npm run check
       - name: Commit generated registry
         run: |
           if git diff --quiet; then
@@ -34,6 +35,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md registry/plugins.json docs/catalog.md docs/collections.md
+          git add README.md README_EN.md registry/plugins.json docs/catalog.md docs/collections.md
           git commit -m "chore(registry): refresh DSH plugin catalog"
           git push

@@ -1,3 +1,7 @@
+<p align="right">
+  <strong>简体中文</strong> · <a href="./README_EN.md">English</a>
+</p>
+
 # oh-my-dsh
 
 > 🐋 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 社区插件索引：自动发现、证据分级、场景精选。
@@ -94,14 +98,15 @@ npx @deepseek-ai/dsh plugin --profile web add github:owner/repository
 - [`registry/overrides.json`](./registry/overrides.json)：分类修正、镜像去重与说明。
 - [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每日自动刷新。
 
-本地刷新需要 Node.js 20+，建议提供 GitHub Token：
+本地刷新需要 Node.js 20+。请先安装依赖，并建议提供 GitHub Token：
 
 ```sh
+npm install
 GITHUB_TOKEN=... npm run update
 npm run check
 ```
 
-更新脚本会自动生成 README 首页索引、完整目录和 JSON Registry；校验器会阻止重复仓库、失效精选链接、过期 README 和缺少证据的安装命令进入主分支。
+更新脚本会自动生成中英文 README 首页索引、完整目录和 JSON Registry；校验器会阻止重复仓库、失效精选链接、过期 README 和缺少证据的安装命令进入主分支。
 
 ## 收录与贡献
 

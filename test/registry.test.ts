@@ -8,7 +8,7 @@ import {
   detectManifest,
   replaceGeneratedSection,
   verificationStatus,
-} from '../scripts/lib/registry.mjs'
+} from '../scripts/lib/registry.ts'
 
 const repository = {
   name: 'dsh-at-file',

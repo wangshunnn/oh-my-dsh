@@ -8,9 +8,15 @@
     "node": ">=20"
   },
   "scripts": {
-    "update": "node scripts/update-registry.mjs",
-    "validate": "node scripts/validate-registry.mjs",
-    "test": "node --test",
-    "check": "npm run test && npm run validate"
+    "update": "node --import tsx scripts/update-registry.ts",
+    "validate": "node --import tsx scripts/validate-registry.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run test && npm run typecheck && npm run validate"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
   }
 }

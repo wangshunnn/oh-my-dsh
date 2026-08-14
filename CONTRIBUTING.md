@@ -40,8 +40,8 @@ where practical, and avoid promising that untested combinations work together.
 Run:
 
 ```sh
-npm test
-npm run validate
+npm install
+npm run check
 ```
 
 If your change affects discovery or generated metadata, also run `npm run

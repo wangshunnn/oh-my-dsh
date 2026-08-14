@@ -1,24 +1,35 @@
 import { access, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { buildReadmePluginIndex } from './lib/registry.mjs'
+import {
+  buildEnglishReadmePluginIndex,
+  buildReadmePluginIndex,
+} from './lib/registry.ts'
+import type {
+  PluginCollection,
+  PluginRegistry,
+  PluginKind,
+  VerificationStatus,
+} from './lib/registry.ts'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
-const failures = []
+const failures: string[] = []
 
-function assert(condition, message) {
+function assert(condition: unknown, message: string): void {
   if (!condition) failures.push(message)
 }
 
-const registry = JSON.parse(await readFile(join(root, 'registry/plugins.json'), 'utf8'))
+const registry = JSON.parse(
+  await readFile(join(root, 'registry/plugins.json'), 'utf8'),
+) as PluginRegistry
 assert(registry.schemaVersion === 1, 'registry.schemaVersion must be 1')
 assert(!Number.isNaN(Date.parse(registry.generatedAt)), 'registry.generatedAt must be an ISO timestamp')
 assert(Array.isArray(registry.plugins), 'registry.plugins must be an array')
 assert(registry.stats.included === registry.plugins.length, 'stats.included does not match plugin count')
 
-const ids = new Set()
-const allowedKinds = new Set(['plugin', 'bundle', 'skin', 'client', 'application', 'collection', 'resource', 'unknown'])
-const allowedStatuses = new Set([
+const ids = new Set<string>()
+const allowedKinds = new Set<PluginKind>(['plugin', 'bundle', 'skin', 'client', 'application', 'collection', 'resource', 'unknown'])
+const allowedStatuses = new Set<VerificationStatus>([
   'manifest-detected',
   'legacy-manifest-detected',
   'structure-detected',
@@ -52,15 +63,15 @@ const calculatedStatusCounts = Object.fromEntries(
     const status = plugin.verification.status
     map.set(status, (map.get(status) ?? 0) + 1)
     return map
-  }, new Map()).entries()].sort(([a], [b]) => a.localeCompare(b)),
+  }, new Map<string, number>()).entries()].sort(([a], [b]) => a.localeCompare(b)),
 )
 assert(JSON.stringify(calculatedStatusCounts) === JSON.stringify(registry.stats.byStatus), 'stats.byStatus is stale')
 
-const collections = []
+const collections: PluginCollection[] = []
 for (const filename of ['better-web-ui.json', 'coding-essentials.json', 'research.json']) {
   const path = join(root, 'collections', filename)
   await access(path)
-  const collection = JSON.parse(await readFile(path, 'utf8'))
+  const collection = JSON.parse(await readFile(path, 'utf8')) as PluginCollection
   collections.push(collection)
   assert(collection.schemaVersion === 1, `${filename}: schemaVersion must be 1`)
   assert(Array.isArray(collection.plugins) && collection.plugins.length > 0, `${filename}: plugins must not be empty`)
@@ -70,16 +81,24 @@ for (const filename of ['better-web-ui.json', 'coding-essentials.json', 'researc
   }
 }
 
-const readme = await readFile(join(root, 'README.md'), 'utf8')
 const startMarker = '<!-- GENERATED:PLUGIN-INDEX:START -->'
 const endMarker = '<!-- GENERATED:PLUGIN-INDEX:END -->'
-const generatedStart = readme.indexOf(startMarker)
-const generatedEnd = readme.indexOf(endMarker)
-assert(generatedStart !== -1 && generatedEnd > generatedStart, 'README plugin index markers are missing or invalid')
-if (generatedStart !== -1 && generatedEnd > generatedStart) {
-  const actual = readme.slice(generatedStart + startMarker.length, generatedEnd).trim()
-  const expected = buildReadmePluginIndex(registry, collections).trim()
-  assert(actual === expected, 'README plugin index is stale; run npm run update')
+
+for (const [filename, expected] of [
+  ['README.md', buildReadmePluginIndex(registry, collections)],
+  ['README_EN.md', buildEnglishReadmePluginIndex(registry, collections)],
+] as const) {
+  const readme = await readFile(join(root, filename), 'utf8')
+  const generatedStart = readme.indexOf(startMarker)
+  const generatedEnd = readme.indexOf(endMarker)
+  assert(
+    generatedStart !== -1 && generatedEnd > generatedStart,
+    `${filename} plugin index markers are missing or invalid`,
+  )
+  if (generatedStart !== -1 && generatedEnd > generatedStart) {
+    const actual = readme.slice(generatedStart + startMarker.length, generatedEnd).trim()
+    assert(actual === expected.trim(), `${filename} plugin index is stale; run npm run update`)
+  }
 }
 
 if (failures.length > 0) {
