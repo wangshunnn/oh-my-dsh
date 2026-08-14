@@ -1,8 +1,12 @@
-<p align="right">
-  <strong>简体中文</strong> · <a href="./README_EN.md">English</a>
+<p align="center">
+  <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
 </p>
 
-# oh-my-dsh
+<h1 align="center">oh-my-dsh</h1>
+
+<p align="center">
+  <sub>简体中文 · <a href="./README_EN.md">English</a></sub>
+</p>
 
 > 🐋 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 社区插件索引：自动发现、证据分级、场景精选。
 
