@@ -9,7 +9,7 @@ Interface candidates for navigation, focused reading, review, and conversation s
 
 - [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) — 一个侧边栏的完整工作台，支持三方拓展注册新Tab页面，内置文件渲染编辑/终端/Git/子代理 _(manifest-detected)_
 - [dingyi222666/dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) — 为 dsh 提供新的「聚焦会话」精简会话视图，更轻松易于阅读，只关注最终产出结果。 _(manifest-detected)_
-- [hellodigua/dsh-share](https://github.com/hellodigua/dsh-share) — DSH 对话分享插件，一键分享你的对话。One-click conversation sharing for DSH. _(manifest-detected)_
+- [hellodigua/dsh-share](https://github.com/hellodigua/dsh-share) — DSH 对话分享插件，分享单轮或多轮对话，可导出为图片或 Markdown。Share DSH Q&As or selected conversation groups as PNG or Markdown. _(manifest-detected)_
 
 ## Coding essentials
 
