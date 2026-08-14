@@ -9,6 +9,7 @@
   },
   "scripts": {
     "update": "node --import tsx scripts/update-registry.ts",
+    "build:site": "node scripts/build-site.mjs",
     "validate": "node --import tsx scripts/validate-registry.ts",
     "test": "node --import tsx --test test/*.test.ts",
     "typecheck": "tsc --noEmit",
