@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
+  <a href="https://soonwang.me/oh-my-dsh/">
+    <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
+  </a>
 </p>
 
 <p align="center">
