@@ -5,6 +5,7 @@ import {
   REGISTRY_SCHEMA_VERSION,
   DISCOVERY_QUERY,
   buildCatalog,
+  buildEnglishReadmePluginIndex,
   buildReadmePluginIndex,
   classifyCategories,
   classifyKind,
@@ -17,7 +18,17 @@ import {
   mapWithConcurrency,
   replaceGeneratedSection,
   verificationStatus,
-} from './lib/registry.mjs'
+} from './lib/registry.ts'
+import type {
+  GitHubContentResponse,
+  GitHubRepository,
+  GitHubSearchResponse,
+  PackageJson,
+  PluginCollection,
+  PluginRegistry,
+  RegistryOverrides,
+  RegistryPlugin,
+} from './lib/registry.ts'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const token = getGitHubToken()
@@ -27,10 +38,15 @@ if (!token) {
   process.stderr.write('warning: no GitHub token found; unauthenticated rate limits may interrupt discovery\n')
 }
 
-const overrides = JSON.parse(await readFile(join(root, 'registry/overrides.json'), 'utf8'))
+const overrides = JSON.parse(
+  await readFile(join(root, 'registry/overrides.json'), 'utf8'),
+) as RegistryOverrides
 
-async function discoverRepositories() {
-  const repositories = []
+async function discoverRepositories(): Promise<{
+  repositories: GitHubRepository[]
+  reportedTotal: number
+}> {
+  const repositories: GitHubRepository[] = []
   let reportedTotal = 0
   for (let page = 1; page <= 10; page += 1) {
     const parameters = new URLSearchParams({
@@ -40,7 +56,8 @@ async function discoverRepositories() {
       sort: 'stars',
       order: 'desc',
     })
-    const response = await githubRequest(`/search/repositories?${parameters}`, token)
+    const response = await githubRequest<GitHubSearchResponse>(`/search/repositories?${parameters}`, token)
+    if (!response) throw new Error('GitHub repository search unexpectedly returned 404')
     reportedTotal = response.total_count
     repositories.push(...response.items)
     if (repositories.length >= Math.min(reportedTotal, 1000) || response.items.length === 0) break
@@ -51,17 +68,17 @@ async function discoverRepositories() {
   return { repositories: uniqueRepositories, reportedTotal }
 }
 
-function excluded(repository) {
+function excluded(repository: GitHubRepository): boolean {
   return overrides.owners?.[repository.owner.login]?.exclude === true
     || overrides.repositories?.[repository.full_name]?.exclude === true
 }
 
-async function inspect(repository) {
+async function inspect(repository: GitHubRepository): Promise<RegistryPlugin> {
   const override = overrides.repositories?.[repository.full_name] ?? {}
-  let packageJson = null
+  let packageJson: PackageJson | null = null
   if (!repository.archived && repository.size > 0) {
     const ref = encodeURIComponent(repository.default_branch)
-    const content = await githubRequest(
+    const content = await githubRequest<GitHubContentResponse>(
       `/repos/${repository.full_name}/contents/package.json?ref=${ref}`,
       token,
     )
@@ -78,7 +95,7 @@ async function inspect(repository) {
     owner: repository.owner.login,
     repository: repository.name,
     url: repository.html_url,
-    description: repository.description,
+    description: repository.description ?? null,
     kind: classifyKind(repository, packageJson, override),
     categories: classifyCategories(repository, packageJson, override),
     topics: [...new Set(repository.topics ?? [])].sort(),
@@ -139,7 +156,7 @@ process.stdout.write(`Discovered ${reportedTotal} repositories; inspecting ${can
 const plugins = await mapWithConcurrency(candidates, 8, inspect)
 plugins.sort((a, b) => b.metrics.stars - a.metrics.stars || a.id.localeCompare(b.id))
 
-const registry = {
+const registry: PluginRegistry = {
   schemaVersion: REGISTRY_SCHEMA_VERSION,
   generatedAt: scanTimestamp,
   source: {
@@ -156,11 +173,13 @@ const registry = {
   plugins,
 }
 
-const collectionFiles = (await Promise.all([
+const collectionFiles: PluginCollection[] = (await Promise.all([
   'better-web-ui.json',
   'coding-essentials.json',
   'research.json',
-].map(async filename => JSON.parse(await readFile(join(root, 'collections', filename), 'utf8')))))
+].map(async filename => JSON.parse(
+  await readFile(join(root, 'collections', filename), 'utf8'),
+) as PluginCollection)))
 
 const pluginIds = new Set(plugins.map(plugin => plugin.id))
 const missingCollectionEntries = collectionFiles.flatMap(collection =>
@@ -178,6 +197,12 @@ const renderedReadme = replaceGeneratedSection(
   'PLUGIN-INDEX',
   buildReadmePluginIndex(registry, collectionFiles),
 )
+const englishReadme = await readFile(join(root, 'README_EN.md'), 'utf8')
+const renderedEnglishReadme = replaceGeneratedSection(
+  englishReadme,
+  'PLUGIN-INDEX',
+  buildEnglishReadmePluginIndex(registry, collectionFiles),
+)
 
 await Promise.all([
   mkdir(join(root, 'docs'), { recursive: true }),
@@ -188,6 +213,7 @@ await Promise.all([
   writeFile(join(root, 'docs/catalog.md'), buildCatalog(registry)),
   writeFile(join(root, 'docs/collections.md'), collectionMarkdown(collectionFiles, registry)),
   writeFile(join(root, 'README.md'), renderedReadme),
+  writeFile(join(root, 'README_EN.md'), renderedEnglishReadme),
 ])
 
 process.stdout.write(
