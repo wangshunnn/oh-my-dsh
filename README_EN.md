@@ -2,8 +2,6 @@
   <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
 </p>
 
-<h1 align="center">oh-my-dsh</h1>
-
 <p align="center">
   <sub><a href="./README.md">简体中文</a> · English</sub>
 </p>
@@ -99,7 +97,7 @@ We will not use “verified compatible” until automated builds or runtime test
 - [`docs/catalog.md`](./docs/catalog.md): the generated full plugin catalog.
 - [`collections/`](./collections): manually curated, use-case-based collections.
 - [`registry/overrides.json`](./registry/overrides.json): category corrections, mirror deduplication, and notes.
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): the daily refresh workflow.
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): the refresh workflow that runs every 8 hours.
 
 Local refreshes require Node.js 20+. Install dependencies and, preferably, provide a GitHub token:
 
@@ -120,7 +118,7 @@ Plugin authors only need to add the `dsh-plugin` topic to the canonical public r
 - [x] GitHub-wide discovery and canonical repository deduplication
 - [x] Evidence-based Bundle, legacy, placeholder, and other statuses
 - [x] Homepage indexes, full catalog, and machine-readable registry
-- [x] Daily refresh and consistency validation
+- [x] Refresh every 8 hours with consistency validation
 - [ ] Build compatibility matrix tied to exact DSH revisions
 - [ ] Permission and installation-script risk signals
 - [ ] Composable and reproducible Starter Packs

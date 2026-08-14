@@ -2,8 +2,6 @@
   <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
 </p>
 
-<h1 align="center">oh-my-dsh</h1>
-
 <p align="center">
   <sub>简体中文 · <a href="./README_EN.md">English</a></sub>
 </p>
@@ -100,7 +98,7 @@ npx @deepseek-ai/dsh plugin --profile web add github:owner/repository
 - [`docs/catalog.md`](./docs/catalog.md)：自动生成的全量插件目录。
 - [`collections/`](./collections)：人工策划的场景化精选。
 - [`registry/overrides.json`](./registry/overrides.json)：分类修正、镜像去重与说明。
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每日自动刷新。
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每 8 小时自动刷新。
 
 本地刷新需要 Node.js 20+。请先安装依赖，并建议提供 GitHub Token：
 
@@ -121,7 +119,7 @@ npm run check
 - [x] GitHub 全量发现与 canonical repository 去重
 - [x] Bundle / legacy / placeholder 等证据分级
 - [x] 首页索引、全量目录与机器可读 Registry
-- [x] 每日自动刷新和一致性校验
+- [x] 每 8 小时自动刷新和一致性校验
 - [ ] 针对准确 DSH revision 的构建兼容矩阵
 - [ ] 权限与安装脚本风险信号
 - [ ] 可组合、可复现的 Starter Packs
