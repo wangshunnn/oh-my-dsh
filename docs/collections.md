@@ -7,8 +7,8 @@
 
 Interface candidates for navigation, focused reading, review, and conversation sharing. These are alternatives and additions, not a tested compatibility bundle.
 
-- [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) — 一个侧边栏的完整工作台，支持三方拓展注册新Tab页面，内置文件渲染编辑/终端/Git/子代理 _(structure-detected)_
-- [dingyi222666/dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) — 提供新的「聚焦会话」精简会话视图，更轻松易于阅读，只关注最终产出结果。 _(manifest-detected)_
+- [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) — 一个侧边栏的完整工作台，支持三方拓展注册新Tab页面，内置文件渲染编辑/终端/Git/子代理 _(manifest-detected)_
+- [dingyi222666/dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) — 为 dsh 提供新的「聚焦会话」精简会话视图，更轻松易于阅读，只关注最终产出结果。 _(manifest-detected)_
 - [CanglongCl/dsh-web-review](https://github.com/CanglongCl/dsh-web-review) — DeepSeek Harness Web GUI 的网页预览与元素批注插件，让 AI 根据可视化反馈直接修改前端源码。 _(unverified)_
 - [hellodigua/dsh-share](https://github.com/hellodigua/dsh-share) — dsh对话分享插件，一键分享你的对话 _(manifest-detected)_
 
