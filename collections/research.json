@@ -5,7 +5,6 @@
   "description": "Discovery, literature, and document-oriented candidates for building a research workflow. Review external API and credential requirements before use.",
   "plugins": [
     "omdsh-dev/dsh-deep-research",
-    "lzszq/dsh-scholar",
-    "Fisfzy/zotero-harvest"
+    "lzszq/dsh-scholar"
   ]
 }

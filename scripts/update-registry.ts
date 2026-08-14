@@ -153,7 +153,8 @@ const { repositories: discovered, reportedTotal } = await discoverRepositories()
 const candidates = discovered.filter(repository => !excluded(repository))
 process.stdout.write(`Discovered ${reportedTotal} repositories; inspecting ${candidates.length} canonical candidates...\n`)
 
-const plugins = await mapWithConcurrency(candidates, 8, inspect)
+const inspected = await mapWithConcurrency(candidates, 8, inspect)
+const plugins = inspected.filter(plugin => plugin.verification.status === 'manifest-detected')
 plugins.sort((a, b) => b.metrics.stars - a.metrics.stars || a.id.localeCompare(b.id))
 
 const registry: PluginRegistry = {

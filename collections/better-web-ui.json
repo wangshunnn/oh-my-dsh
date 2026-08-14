@@ -6,7 +6,6 @@
   "plugins": [
     "omdsh-dev/DSH-better-sidebar",
     "dingyi222666/dsh-focus-chat",
-    "CanglongCl/dsh-web-review",
     "hellodigua/dsh-share"
   ]
 }

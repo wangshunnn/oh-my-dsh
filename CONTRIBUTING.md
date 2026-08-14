@@ -9,12 +9,14 @@ discovered automatically:
 
 1. Publish the canonical repository publicly.
 2. Add the `dsh-plugin` GitHub topic.
-3. Add a clear README, license, and installation instructions.
-4. For a current DSH bundle, declare `dsh.bundle.patch` in `package.json`.
+3. Declare `dsh.bundle.patch` in the root `package.json`.
+4. Add a clear README, license, and installation instructions.
 
-The registry deliberately does not treat a topic as proof of compatibility.
-Empty repositories are listed as placeholders, and repositories without a
-recognized manifest remain unverified.
+The topic only makes a repository a discovery candidate. The public registry
+only includes projects with a detected current Bundle manifest. Topic-only,
+legacy, placeholder, archived, and otherwise unverified repositories are not
+published. A detected manifest is still not proof of runtime compatibility or
+security.
 
 ## Correct metadata
 

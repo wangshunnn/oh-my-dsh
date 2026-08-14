@@ -11,6 +11,7 @@ import type {
   PluginKind,
   VerificationStatus,
 } from './lib/registry.ts'
+import type { RegistryOverrides } from './lib/registry.ts'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
 const failures: string[] = []
@@ -51,10 +52,20 @@ for (const [index, plugin] of registry.plugins.entries()) {
   assert(Number.isInteger(plugin.metrics?.stars) && plugin.metrics.stars >= 0, `${label}: invalid star count`)
 
   const manifestDetected = plugin.verification?.status === 'manifest-detected'
+  assert(manifestDetected, `${label}: public registry only accepts current Bundle manifests`)
   assert(plugin.install?.available === manifestDetected, `${label}: install availability exceeds evidence`)
   if (plugin.install?.available) {
     assert(plugin.package?.manifest === 'dsh.bundle', `${label}: installable entry lacks dsh.bundle evidence`)
     assert(plugin.install.source === `github:${plugin.id}`, `${label}: invalid install source`)
+  }
+}
+
+const overrides = JSON.parse(
+  await readFile(join(root, 'registry/overrides.json'), 'utf8'),
+) as RegistryOverrides
+for (const [id, override] of Object.entries(overrides.repositories ?? {})) {
+  if (override.exclude === true) {
+    assert(!ids.has(id), `${id}: excluded repository is present in the generated registry`)
   }
 }
 

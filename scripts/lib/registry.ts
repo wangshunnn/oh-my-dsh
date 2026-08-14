@@ -341,8 +341,8 @@ export function buildCatalog(registry: PluginRegistry): string {
     '>',
     `> Source: [GitHub topic search](${registry.source.url}) · Updated: ${registry.generatedAt}`,
     '',
-    'Discovery does not imply compatibility or security review. See the',
-    '[status definitions](../README.md#status-vocabulary) before installing anything.',
+    'Every included project has a detected current `dsh.bundle.patch` manifest.',
+    'This is a structural installation check, not compatibility or security review.',
     '',
     '## Snapshot',
     '',
@@ -375,7 +375,6 @@ export function buildReadmePluginIndex(
 ): string {
   const byId = new Map(registry.plugins.map(plugin => [plugin.id, plugin]))
   const currentBundles = registry.stats.byStatus['manifest-detected'] ?? 0
-  const placeholders = registry.stats.byStatus.placeholder ?? 0
   const installable = registry.plugins
     .filter(plugin => plugin.install.available && plugin.license.status === 'detected')
     .slice(0, 12)
@@ -383,11 +382,11 @@ export function buildReadmePluginIndex(
   const lines = [
     '## 插件目录',
     '',
-    `**已索引 ${registry.stats.included} 个仓库 · 检测到 ${currentBundles} 个当前 Bundle 清单 · 识别出 ${placeholders} 个占位仓库**`,
+    `**收录 ${currentBundles} 个检测到当前 Bundle 清单的项目**`,
     '',
     '| 入口 | 适合你在找什么 |',
     '| --- | --- |',
-    '| **[浏览全部插件 →](./docs/catalog.md)** | 按类型、分类、状态、Stars 和许可证浏览全量目录 |',
+    '| **[浏览全部插件 →](./docs/catalog.md)** | 按类型、分类、Stars 和许可证浏览可安装目录 |',
     '| **[查看场景精选 →](./docs/collections.md)** | Coding、Research、Web UI 等开箱方向 |',
     '| **[使用 JSON Registry →](./registry/plugins.json)** | 给 CLI、网站或 Agent 使用的结构化元数据和安装命令 |',
     '',
@@ -409,7 +408,7 @@ export function buildReadmePluginIndex(
 
   lines.push(
     '',
-    '### 热门可安装候选',
+    '### 热门可安装插件',
     '',
     '> 从检测到 `dsh.bundle.patch` 且许可证明确的项目中，按 GitHub Stars 排序。',
     '> 热度不代表兼容性或安全背书。',
@@ -424,7 +423,7 @@ export function buildReadmePluginIndex(
     )
   }
 
-  lines.push('', `[**查看全部 ${registry.stats.included} 个索引仓库 →**](./docs/catalog.md)`, '')
+  lines.push('', `[**查看全部 ${registry.stats.included} 个当前 Bundle 插件 →**](./docs/catalog.md)`, '')
   return lines.join('\n')
 }
 
@@ -434,7 +433,6 @@ export function buildEnglishReadmePluginIndex(
 ): string {
   const byId = new Map(registry.plugins.map(plugin => [plugin.id, plugin]))
   const currentBundles = registry.stats.byStatus['manifest-detected'] ?? 0
-  const placeholders = registry.stats.byStatus.placeholder ?? 0
   const installable = registry.plugins
     .filter(plugin => plugin.install.available && plugin.license.status === 'detected')
     .slice(0, 12)
@@ -442,11 +440,11 @@ export function buildEnglishReadmePluginIndex(
   const lines = [
     '## Plugin directory',
     '',
-    `**${registry.stats.included} repositories indexed · ${currentBundles} current Bundle manifests detected · ${placeholders} placeholder repositories identified**`,
+    `**${currentBundles} projects with a current Bundle manifest detected**`,
     '',
     '| Entry point | Best for |',
     '| --- | --- |',
-    '| **[Browse all plugins →](./docs/catalog.md)** | Explore the complete catalog by kind, category, status, Stars, and license |',
+    '| **[Browse all plugins →](./docs/catalog.md)** | Explore installable entries by kind, category, Stars, and license |',
     '| **[Explore collections →](./docs/collections.md)** | Start with curated Coding, Research, and Web UI workflows |',
     '| **[Use the JSON registry →](./registry/plugins.json)** | Consume structured metadata and install commands from a CLI, website, or Agent |',
     '',
@@ -468,7 +466,7 @@ export function buildEnglishReadmePluginIndex(
 
   lines.push(
     '',
-    '### Popular installable candidates',
+    '### Popular installable plugins',
     '',
     '> Ranked by GitHub Stars among projects with a detected `dsh.bundle.patch` and an explicit license.',
     '> Popularity is not a compatibility or security endorsement.',
@@ -483,7 +481,7 @@ export function buildEnglishReadmePluginIndex(
     )
   }
 
-  lines.push('', `[**View all ${registry.stats.included} indexed repositories →**](./docs/catalog.md)`, '')
+  lines.push('', `[**View all ${registry.stats.included} current Bundle plugins →**](./docs/catalog.md)`, '')
   return lines.join('\n')
 }
 

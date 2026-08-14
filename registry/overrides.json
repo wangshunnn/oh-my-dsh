@@ -1,6 +1,10 @@
 {
   "version": 1,
   "repositories": {
+    "deepseek-ai/deepseek-harness": {
+      "exclude": true,
+      "note": "The DeepSeek Harness core repository is the host application, not a community plugin."
+    },
     "AdamPlatin123/awesome-dsh-plugins": {
       "kind": "collection",
       "categories": ["ecosystem"],
