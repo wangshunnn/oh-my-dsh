@@ -12,6 +12,9 @@ import type {
   PluginKind,
   VerificationMethod,
   VerificationStatus,
+  WorkspaceCandidateRegistry,
+  WorkspaceCandidateStatus,
+  WorkspaceReviewReason,
 } from './lib/registry.ts'
 import type { RegistryOverrides } from './lib/registry.ts'
 
@@ -62,6 +65,18 @@ for (const [index, plugin] of registry.plugins.entries()) {
   const manifestDetected = plugin.verification?.status === 'manifest-detected'
   assert(manifestDetected, `${label}: public registry only accepts current Bundle manifests`)
   assert(plugin.install?.available === manifestDetected, `${label}: install availability exceeds evidence`)
+  const workspaceManifest = plugin.verification.method === 'workspace-package-manifest'
+  assert(
+    workspaceManifest === (typeof plugin.package?.path === 'string'),
+    `${label}: workspace verification and package path disagree`,
+  )
+  if (plugin.package?.path !== null) {
+    try {
+      packageJsonContentPath(plugin.package.path)
+    } catch (error) {
+      assert(false, `${label}: ${(error as Error).message}`)
+    }
+  }
   if (plugin.install?.available) {
     assert(plugin.package?.manifest === 'dsh.bundle', `${label}: installable entry lacks dsh.bundle evidence`)
     const expectedSource = plugin.verification.method === 'workspace-package-manifest'
@@ -72,6 +87,58 @@ for (const [index, plugin] of registry.plugins.entries()) {
       plugin.install.command === `npx @deepseek-ai/dsh plugin --profile web add ${expectedSource}`,
       `${label}: invalid install command`,
     )
+  }
+}
+
+const candidateRegistry = JSON.parse(
+  await readFile(join(root, 'registry/candidates.json'), 'utf8'),
+) as WorkspaceCandidateRegistry
+assert(candidateRegistry.schemaVersion === 1, 'candidates.schemaVersion must be 1')
+assert(candidateRegistry.generatedAt === registry.generatedAt, 'candidate and plugin registries were not generated together')
+
+const allowedReviewReasons = new Set<WorkspaceReviewReason>([
+  'multiple-verified-packages',
+  'no-verified-package',
+  'tree-truncated',
+  'package-limit-exceeded',
+])
+const allowedCandidateStatuses = new Set<WorkspaceCandidateStatus>([
+  'verified',
+  'invalid-manifest',
+  'unpublished',
+  'repository-mismatch',
+])
+const reviewedRepositories = new Set<string>()
+for (const [index, review] of candidateRegistry.reviews.entries()) {
+  const label = `reviews[${index}] (${review.repository ?? 'missing repository'})`
+  assert(/^[^/]+\/[^/]+$/.test(review.repository), `${label}: invalid repository`)
+  assert(!reviewedRepositories.has(review.repository), `${label}: duplicate repository review`)
+  reviewedRepositories.add(review.repository)
+  assert(allowedReviewReasons.has(review.reason), `${label}: invalid reason ${review.reason}`)
+  assert(Array.isArray(review.candidates), `${label}: candidates must be an array`)
+  assert(
+    review.reason === 'tree-truncated' || review.reason === 'package-limit-exceeded'
+      ? review.candidates.length === 0
+      : review.candidates.length > 0,
+    `${label}: candidate count disagrees with review reason`,
+  )
+  const candidatePaths = new Set<string>()
+  for (const candidate of review.candidates) {
+    assert(!candidatePaths.has(candidate.packagePath), `${label}: duplicate package path ${candidate.packagePath}`)
+    candidatePaths.add(candidate.packagePath)
+    assert(allowedCandidateStatuses.has(candidate.status), `${label}: invalid candidate status ${candidate.status}`)
+    try {
+      packageJsonContentPath(candidate.packagePath)
+    } catch (error) {
+      assert(false, `${label}: ${(error as Error).message}`)
+    }
+  }
+  const verifiedCount = review.candidates.filter(candidate => candidate.status === 'verified').length
+  if (review.reason === 'multiple-verified-packages') {
+    assert(verifiedCount > 1, `${label}: multiple-package review lacks multiple verified packages`)
+  }
+  if (review.reason === 'no-verified-package') {
+    assert(verifiedCount === 0, `${label}: no-package review contains a verified package`)
   }
 }
 

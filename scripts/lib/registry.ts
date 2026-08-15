@@ -2,11 +2,14 @@ import { spawnSync } from 'node:child_process'
 
 export const REGISTRY_SCHEMA_VERSION = 1
 export const DISCOVERY_QUERY = 'topic:dsh-plugin'
+export const MAX_WORKSPACE_PACKAGE_MANIFESTS = 64
 
 export type ManifestKind = 'dsh.bundle' | 'dshx' | 'dsh-structure'
 export type PluginKind = 'plugin' | 'bundle' | 'skin' | 'client' | 'application' | 'collection' | 'resource' | 'unknown'
 export type VerificationStatus = 'manifest-detected' | 'legacy-manifest-detected' | 'structure-detected' | 'unverified' | 'placeholder' | 'archived'
 export type VerificationMethod = 'root-package-manifest' | 'workspace-package-manifest' | 'github-metadata'
+export type WorkspaceCandidateStatus = 'verified' | 'invalid-manifest' | 'unpublished' | 'repository-mismatch'
+export type WorkspaceReviewReason = 'multiple-verified-packages' | 'no-verified-package' | 'tree-truncated' | 'package-limit-exceeded'
 
 export interface PackageJson {
   name?: string
@@ -61,6 +64,40 @@ export interface GitHubContentResponse {
   content?: string
 }
 
+export interface GitHubTreeResponse {
+  truncated: boolean
+  tree: Array<{
+    path: string
+    type: string
+  }>
+}
+
+export interface NpmPackageMetadata {
+  name?: string
+  repository?: string | {
+    url?: string
+    directory?: string
+  }
+}
+
+export interface WorkspacePackageCandidate {
+  packagePath: string
+  packageName: string | null
+  status: WorkspaceCandidateStatus
+}
+
+export interface WorkspaceReview {
+  repository: string
+  reason: WorkspaceReviewReason
+  candidates: WorkspacePackageCandidate[]
+}
+
+export interface WorkspaceCandidateRegistry {
+  schemaVersion: number
+  generatedAt: string
+  reviews: WorkspaceReview[]
+}
+
 export interface RepositoryOverride {
   exclude?: boolean
   kind?: PluginKind
@@ -110,6 +147,7 @@ export interface RegistryPlugin {
     version: string | null
     private: boolean | null
     manifest: ManifestKind | null
+    path: string | null
   }
   verification: {
     status: VerificationStatus
@@ -279,6 +317,16 @@ export function verificationMethod(
 
 const NPM_PACKAGE_NAME = /^(?:@[a-z0-9][a-z0-9._~-]*\/)?[a-z0-9][a-z0-9._~-]*$/
 
+export function isPublicPackageManifest(
+  packageJson: PackageJson | null,
+): packageJson is PackageJson & { name: string } {
+  const packageName = packageJson?.name
+  return packageJson?.private !== true
+    && typeof packageName === 'string'
+    && packageName.length <= 214
+    && NPM_PACKAGE_NAME.test(packageName)
+}
+
 export function installationSource(
   repositoryFullName: string,
   packageJson: PackageJson | null,
@@ -286,16 +334,86 @@ export function installationSource(
 ): string {
   if (packagePath === undefined) return `github:${repositoryFullName}`
 
-  const packageName = packageJson?.name
-  if (
-    !packageName
-    || packageName.length > 214
-    || !NPM_PACKAGE_NAME.test(packageName)
-    || packageJson?.private === true
-  ) {
+  if (!isPublicPackageManifest(packageJson)) {
     throw new Error(`${repositoryFullName}: workspace manifest must declare a valid public package.name`)
   }
-  return packageName
+  return packageJson.name
+}
+
+const IGNORED_WORKSPACE_SEGMENTS = new Set([
+  '.git',
+  '.yarn',
+  'node_modules',
+  'vendor',
+])
+
+export function workspacePackagePaths(
+  response: GitHubTreeResponse,
+  limit = MAX_WORKSPACE_PACKAGE_MANIFESTS,
+): { paths: string[]; reason: 'tree-truncated' | 'package-limit-exceeded' | null } {
+  if (response.truncated) return { paths: [], reason: 'tree-truncated' }
+
+  const paths = response.tree
+    .filter(entry => entry.type === 'blob' && entry.path.endsWith('/package.json'))
+    .map(entry => entry.path.slice(0, -'/package.json'.length))
+    .filter(packagePath => {
+      const segments = packagePath.split('/')
+      return !segments.some(segment => IGNORED_WORKSPACE_SEGMENTS.has(segment.toLowerCase()))
+    })
+    .sort((a, b) => a.localeCompare(b))
+
+  if (paths.length > limit) return { paths: [], reason: 'package-limit-exceeded' }
+  return { paths, reason: null }
+}
+
+export function normalizeGitHubRepository(value: unknown): string | null {
+  const repository = typeof value === 'string'
+    ? value
+    : value && typeof value === 'object' && 'url' in value
+      ? (value as { url?: unknown }).url
+      : null
+  if (typeof repository !== 'string') return null
+
+  let normalized = repository.trim()
+    .replace(/^git\+/, '')
+    .replace(/^github:/, '')
+    .replace(/^git@github\.com:/, '')
+
+  if (/^(?:https?|git|ssh):\/\//.test(normalized)) {
+    try {
+      const url = new URL(normalized)
+      if (url.hostname.toLowerCase() !== 'github.com') return null
+      normalized = url.pathname
+    } catch {
+      return null
+    }
+  }
+
+  normalized = normalized.replace(/^\/+|\/+$/g, '').replace(/\.git$/i, '')
+  return /^[^/]+\/[^/]+$/.test(normalized) ? normalized.toLowerCase() : null
+}
+
+export function verifyWorkspacePackage(
+  repositoryFullName: string,
+  packageJson: PackageJson | null,
+  metadata: NpmPackageMetadata | null,
+): WorkspaceCandidateStatus {
+  if (!isPublicPackageManifest(packageJson)) return 'invalid-manifest'
+  if (!metadata || metadata.name !== packageJson.name) return 'unpublished'
+  return normalizeGitHubRepository(metadata.repository) === repositoryFullName.toLowerCase()
+    ? 'verified'
+    : 'repository-mismatch'
+}
+
+export function selectWorkspaceCandidate<T extends { status: WorkspaceCandidateStatus }>(
+  candidates: readonly T[],
+): { selected: T | null; reason: 'multiple-verified-packages' | 'no-verified-package' | null } {
+  const verified = candidates.filter(candidate => candidate.status === 'verified')
+  if (verified.length === 1) return { selected: verified[0], reason: null }
+  return {
+    selected: null,
+    reason: verified.length > 1 ? 'multiple-verified-packages' : 'no-verified-package',
+  }
 }
 
 export function getGitHubToken(): string {

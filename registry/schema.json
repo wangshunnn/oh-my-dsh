@@ -79,7 +79,19 @@
           "additionalProperties": false
         },
         "repositoryState": { "type": "object" },
-        "package": { "type": "object" },
+        "package": {
+          "type": "object",
+          "required": ["detected", "name", "version", "private", "manifest", "path"],
+          "properties": {
+            "detected": { "type": "boolean" },
+            "name": { "type": ["string", "null"] },
+            "version": { "type": ["string", "null"] },
+            "private": { "type": ["boolean", "null"] },
+            "manifest": { "enum": ["dsh.bundle", "dshx", "dsh-structure", null] },
+            "path": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        },
         "verification": {
           "type": "object",
           "required": ["method"],

@@ -10,7 +10,7 @@
 
 > 🐋 A community plugin directory for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): topic discovery, Bundle-manifest admission.
 
-**oh-my-dsh** only displays projects with a current root-level `dsh.bundle.patch` manifest, helping you search, filter, and install DSH plugins.
+**oh-my-dsh** only displays projects with a detected current `dsh.bundle.patch` and an unambiguous installation source. It supports root packages and npm-owned monorepo workspaces, helping you search, filter, and install DSH plugins.
 
 **[Open the live directory](https://soonwang.me/oh-my-dsh/)** · **[Browse all plugins](./docs/catalog.md)** · **[Explore collections](./docs/collections.md)** · **[Use the JSON registry](./registry/plugins.json)** · **[Submit a plugin](./CONTRIBUTING.md)**
 
@@ -19,7 +19,7 @@
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## Plugin directory
 
-**650 projects with a current Bundle manifest detected**
+**685 projects with a current Bundle manifest detected**
 
 | Entry point | Best for |
 | --- | --- |
@@ -42,20 +42,20 @@
 
 | Plugin | Description | Stars | License |
 | --- | --- | ---: | --- |
-| [strukto-ai/mirage](https://github.com/strukto-ai/mirage) | The World's First Unified Virtual Filesystem For AI Agents | 3433 | Apache-2.0 |
-| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 1549 | MIT |
-| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | 解决DSH 官方尚无终端 TUI 痛点的补位之作，献给偏爱cli的各位极客：Claude Code 风格全屏交互终端插件——像素鲸鱼顶栏、实时工作状态行、思考流式展开、双击… | 1059 | MIT |
-| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1013 | MIT |
-| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 一个侧边栏的完整工作台，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理 | 925 | MIT |
+| [tt-a1i/archify](https://github.com/tt-a1i/archify) | Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and… | 12768 | MIT |
+| [strukto-ai/mirage](https://github.com/strukto-ai/mirage) | The World's First Unified Virtual Filesystem For AI Agents | 3434 | Apache-2.0 |
+| [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | Plugin and skin collection for DeepSeek Harness (DSH) Web UI - task board, git graph, r… | 2299 | Apache-2.0 |
+| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 1572 | MIT |
+| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | 解决DSH 官方尚无终端 TUI 痛点的补位之作，献给偏爱cli的各位极客：Claude Code 风格全屏交互终端插件——像素鲸鱼顶栏、实时工作状态行、思考流式展开、双击… | 1069 | MIT |
+| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1014 | MIT |
+| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 一个侧边栏的完整工作台，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理 | 939 | MIT |
 | [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | Open-source CMA-compatible agent runtime for any model, with MCP tools, sandboxed sessi… | 581 | Apache-2.0 |
 | [adoresever/graph-memory](https://github.com/adoresever/graph-memory) | Openclaw记忆插件Knowledge Graph + Memory；Knowledge Graph Context Engine for OpenClaw — extr… | 513 | MIT |
 | [mnemon-dev/mnemon](https://github.com/mnemon-dev/mnemon) | LLM-supervised persistent memory for AI agents — graph-based recall, cross-session know… | 443 | Apache-2.0 |
 | [superdesigndev/treg](https://github.com/superdesigndev/treg) | OpenRouter for agent tools. Join community here: https://discord.gg/6mQYYfFMAn | 412 | NOASSERTION |
 | [superdesigndev/superdesign-skill](https://github.com/superdesigndev/superdesign-skill) | The design skill for Claude Code, Cursor and any coding agent. Stop shipping AI-slop UI… | 411 | MIT |
-| [Anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) | 让纯文本模型更好地做视觉任务的DeepSeek Harness插件：带意图的图片问答、长截图 OCR、UI 还原等 | 386 | MIT |
-| [Nagi-ovo/dsh-ads](https://github.com/Nagi-ovo/dsh-ads) | 把 DSH 变成 2005 年门户网站 | 372 | BSD-3-Clause |
 
-[**View all 650 current Bundle plugins →**](./docs/catalog.md)
+[**View all 685 current Bundle plugins →**](./docs/catalog.md)
 <!-- GENERATED:PLUGIN-INDEX:END -->
 
 ## Why oh-my-dsh?
@@ -67,7 +67,7 @@ DeepSeek Harness follows an “everything is a plugin” architecture and recomm
 - has passed a security review; or
 - provides a clear open-source license.
 
-The topic is therefore used only to discover candidates. A project enters the public directory only when its root package declares the current `dsh.bundle.patch`; all other repositories stay out. Structural admission is still not compatibility or security certification.
+The topic is therefore used only to discover candidates. A root package can pass structural admission by declaring the current `dsh.bundle.patch`. A monorepo workspace must also be published to npm with repository metadata pointing back to the discovered GitHub repository. Multiple valid workspaces and insufficient evidence go to a review queue instead of being guessed. Structural admission is still not compatibility or security certification.
 
 ## Installing plugins
 
@@ -77,6 +77,12 @@ Every public directory entry includes a suggested installation command:
 npx @deepseek-ai/dsh plugin --profile web add github:owner/repository
 ```
 
+Monorepo workspaces use their verified npm package name, for example:
+
+```sh
+npx @deepseek-ai/dsh plugin --profile web add @scope/package
+```
+
 > [!CAUTION]
 > `manifest-detected` only means that a `dsh.bundle.patch` declaration was found. It is not a compatibility or security certification. Review source code, licenses, installation scripts, and requested permissions before installing a third-party plugin. DeepSeek Harness is still in Developer Preview and may introduce breaking changes.
 
@@ -84,7 +90,7 @@ npx @deepseek-ai/dsh plugin --profile web add github:owner/repository
 
 | Status | Meaning |
 | --- | --- |
-| `manifest-detected` | The root `package.json` declares `dsh.bundle.patch`; this is a structural check only. |
+| `manifest-detected` | A root or verified workspace `package.json` declares `dsh.bundle.patch`; this is a structural check only. |
 
 Legacy `dshx` formats, related structure without a current manifest, topic-only repositories, placeholders, and archived repositories do not enter the public directory.
 
@@ -93,6 +99,7 @@ We will not use “verified compatible” until automated builds or runtime test
 ## Data and maintenance
 
 - [`registry/plugins.json`](./registry/plugins.json): the machine-readable current Bundle registry.
+- [`registry/candidates.json`](./registry/candidates.json): monorepo workspace candidates that require review.
 - [`docs/catalog.md`](./docs/catalog.md): the generated installable plugin catalog.
 - [`collections/`](./collections): manually curated, use-case-based collections.
 - [`registry/overrides.json`](./registry/overrides.json): category corrections, mirror deduplication, and notes.
@@ -106,11 +113,11 @@ GITHUB_TOKEN=... npm run update
 npm run check
 ```
 
-The updater regenerates both README indexes, the full catalog, and the JSON registry. Validation prevents duplicate repositories, broken collection references, stale README sections, and install commands without sufficient evidence from reaching the default branch.
+The updater regenerates both README indexes, the full catalog, the public registry, and the workspace review queue. Validation prevents duplicate repositories, broken collection references, stale README sections, and install commands without sufficient evidence from reaching the default branch.
 
 ## Inclusion and contributions
 
-Plugin authors must add the `dsh-plugin` topic to the canonical public repository and declare `dsh.bundle.patch` in the root `package.json` to enter the public directory. For classification corrections, collection suggestions, and verification improvements, see [CONTRIBUTING.md](./CONTRIBUTING.md). See [SECURITY.md](./SECURITY.md) for the security boundary.
+Plugin authors must add the `dsh-plugin` topic to the canonical public repository and declare `dsh.bundle.patch` in either the root package or a public npm workspace. Multi-package repositories can use an override to select the aggregate package shown in the public directory. For classification corrections, collection suggestions, and verification improvements, see [CONTRIBUTING.md](./CONTRIBUTING.md). See [SECURITY.md](./SECURITY.md) for the security boundary.
 
 ## Roadmap
 
