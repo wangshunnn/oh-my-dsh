@@ -9,7 +9,8 @@ discovered automatically:
 
 1. Publish the canonical repository publicly.
 2. Add the `dsh-plugin` GitHub topic.
-3. Declare `dsh.bundle.patch` in the root `package.json`.
+3. Declare `dsh.bundle.patch` in the root `package.json`, or document the
+   published workspace package as described below.
 4. Add a clear README, license, and installation instructions.
 
 The topic only makes a repository a discovery candidate. The public registry
@@ -25,11 +26,18 @@ GitHub, including:
 
 - canonical/duplicate relationships;
 - kind and category corrections;
-- exclusion of false positives; and
+- exclusion of false positives;
+- published workspace package directories; and
 - concise curator notes.
 
 Keep overrides minimal and explain non-obvious decisions in the `note` field.
 Do not use an override to claim runtime compatibility.
+
+For a monorepo whose published DSH package is not at the repository root, set
+`packagePath` to its directory relative to the repository root. The path must be
+normalized and must contain a public `package.json` with a valid package `name`
+and a current `dsh.bundle.patch`. The generated install source uses that package
+name rather than the repository URL.
 
 ## Propose a collection
 

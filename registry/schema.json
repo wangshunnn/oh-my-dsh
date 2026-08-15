@@ -80,7 +80,15 @@
         },
         "repositoryState": { "type": "object" },
         "package": { "type": "object" },
-        "verification": { "type": "object" },
+        "verification": {
+          "type": "object",
+          "required": ["method"],
+          "properties": {
+            "method": {
+              "enum": ["root-package-manifest", "workspace-package-manifest", "github-metadata"]
+            }
+          }
+        },
         "install": { "type": "object" },
         "curation": { "type": "object" }
       },

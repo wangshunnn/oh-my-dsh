@@ -18,6 +18,10 @@
       "kind": "collection",
       "categories": ["ecosystem"]
     },
+    "strukto-ai/mirage": {
+      "packagePath": "typescript/packages/dsh",
+      "note": "Monorepo; the DSH bundle is published as @struktoai/mirage-dsh."
+    },
     "whiteguo233/OpenBiliClaw": {
       "kind": "application",
       "categories": ["content-discovery"],
