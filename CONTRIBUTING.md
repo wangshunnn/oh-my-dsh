@@ -9,8 +9,8 @@ discovered automatically:
 
 1. Publish the canonical repository publicly.
 2. Add the `dsh-plugin` GitHub topic.
-3. Declare `dsh.bundle.patch` in the root `package.json`, or document the
-   published workspace package as described below.
+3. Declare `dsh.bundle.patch` in the root `package.json`, or publish a workspace
+   package that meets the automatic discovery rules described below.
 4. Add a clear README, license, and installation instructions.
 
 The topic only makes a repository a discovery candidate. The public registry
@@ -33,11 +33,22 @@ GitHub, including:
 Keep overrides minimal and explain non-obvious decisions in the `note` field.
 Do not use an override to claim runtime compatibility.
 
-For a monorepo whose published DSH package is not at the repository root, set
-`packagePath` to its directory relative to the repository root. The path must be
-normalized and must contain a public `package.json` with a valid package `name`
-and a current `dsh.bundle.patch`. The generated install source uses that package
-name rather than the repository URL.
+When the root does not contain a current Bundle manifest, discovery scans a
+bounded Git tree for workspace `package.json` files. A workspace is selected
+automatically only when exactly one package:
+
+- declares a current `dsh.bundle.patch`;
+- is public and published to npm; and
+- has npm repository metadata pointing back to the discovered GitHub repository.
+
+Truncated trees, oversized workspaces, unpublished packages, repository
+mismatches, and repositories with multiple verified packages are not guessed.
+They are written to `registry/candidates.json` for review.
+
+For a repository with multiple valid packages, set `packagePath` to the intended
+package directory relative to the repository root. The same npm checks apply to
+overrides. The generated install source uses the published package name rather
+than the repository URL.
 
 ## Propose a collection
 

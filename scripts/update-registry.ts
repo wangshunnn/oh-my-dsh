@@ -16,21 +16,30 @@ import {
   getGitHubToken,
   githubRequest,
   installationSource,
+  isPublicPackageManifest,
   mapWithConcurrency,
   packageJsonContentPath,
   replaceGeneratedSection,
+  selectWorkspaceCandidate,
+  verifyWorkspacePackage,
   verificationMethod,
   verificationStatus,
+  workspacePackagePaths,
 } from './lib/registry.ts'
 import type {
   GitHubContentResponse,
   GitHubRepository,
   GitHubSearchResponse,
+  GitHubTreeResponse,
+  NpmPackageMetadata,
   PackageJson,
   PluginCollection,
   PluginRegistry,
   RegistryOverrides,
   RegistryPlugin,
+  WorkspaceCandidateRegistry,
+  WorkspacePackageCandidate,
+  WorkspaceReview,
 } from './lib/registry.ts'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
@@ -76,27 +85,136 @@ function excluded(repository: GitHubRepository): boolean {
     || overrides.repositories?.[repository.full_name]?.exclude === true
 }
 
-async function inspect(repository: GitHubRepository): Promise<RegistryPlugin> {
+async function readPackageJson(
+  repository: GitHubRepository,
+  packagePath?: string,
+): Promise<PackageJson | null> {
+  const ref = encodeURIComponent(repository.default_branch)
+  const contentPath = packageJsonContentPath(packagePath)
+  const content = await githubRequest<GitHubContentResponse>(
+    `/repos/${repository.full_name}/contents/${contentPath}?ref=${ref}`,
+    token,
+  )
+  return decodePackageJson(content)
+}
+
+async function readNpmMetadata(packageName: string): Promise<NpmPackageMetadata | null> {
+  const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}`, {
+    headers: { Accept: 'application/json', 'User-Agent': 'oh-my-dsh-registry' },
+  })
+  if (response.status === 404) return null
+  if (!response.ok) {
+    const detail = (await response.text()).slice(0, 500)
+    throw new Error(`npm registry ${response.status} for ${packageName}: ${detail}`)
+  }
+  return await response.json() as NpmPackageMetadata
+}
+
+async function inspectWorkspace(
+  repository: GitHubRepository,
+): Promise<{
+  packageJson: PackageJson | null
+  packagePath?: string
+  review?: WorkspaceReview
+}> {
+  const ref = encodeURIComponent(repository.default_branch)
+  const tree = await githubRequest<GitHubTreeResponse>(
+    `/repos/${repository.full_name}/git/trees/${ref}?recursive=1`,
+    token,
+  )
+  if (!tree) return { packageJson: null }
+
+  const packageScan = workspacePackagePaths(tree)
+  if (packageScan.reason) {
+    return {
+      packageJson: null,
+      review: {
+        repository: repository.full_name,
+        reason: packageScan.reason,
+        candidates: [],
+      },
+    }
+  }
+
+  const manifests = await mapWithConcurrency(packageScan.paths, 4, async packagePath => ({
+    packagePath,
+    packageJson: await readPackageJson(repository, packagePath),
+  }))
+  const bundleManifests = manifests.filter(({ packageJson }) => detectManifest(packageJson) === 'dsh.bundle')
+  if (bundleManifests.length === 0) return { packageJson: null }
+
+  const candidates = await mapWithConcurrency(bundleManifests, 4, async ({ packagePath, packageJson }) => {
+    const metadata = isPublicPackageManifest(packageJson)
+      ? await readNpmMetadata(packageJson.name)
+      : null
+    return {
+      packagePath,
+      packageName: packageJson?.name ?? null,
+      packageJson,
+      status: verifyWorkspacePackage(repository.full_name, packageJson, metadata),
+    }
+  })
+  const selection = selectWorkspaceCandidate(candidates)
+  if (selection.selected) {
+    return {
+      packageJson: selection.selected.packageJson,
+      packagePath: selection.selected.packagePath,
+    }
+  }
+
+  return {
+    packageJson: null,
+    review: {
+      repository: repository.full_name,
+      reason: selection.reason!,
+      candidates: candidates.map(({ packagePath, packageName, status }): WorkspacePackageCandidate => ({
+        packagePath,
+        packageName,
+        status,
+      })),
+    },
+  }
+}
+
+async function inspect(repository: GitHubRepository): Promise<{
+  plugin: RegistryPlugin
+  review?: WorkspaceReview
+}> {
   const override = overrides.repositories?.[repository.full_name] ?? {}
   let packageJson: PackageJson | null = null
+  let packagePath: string | undefined
+  let review: WorkspaceReview | undefined
   if (!repository.archived && repository.size > 0) {
-    const ref = encodeURIComponent(repository.default_branch)
-    const contentPath = packageJsonContentPath(override.packagePath)
-    const content = await githubRequest<GitHubContentResponse>(
-      `/repos/${repository.full_name}/contents/${contentPath}?ref=${ref}`,
-      token,
-    )
-    packageJson = decodePackageJson(content)
+    packagePath = override.packagePath
+    packageJson = await readPackageJson(repository, packagePath)
+
+    if (packagePath !== undefined) {
+      if (detectManifest(packageJson) !== 'dsh.bundle') {
+        throw new Error(`${repository.full_name}: configured workspace package has no current dsh.bundle manifest`)
+      }
+      const metadata = isPublicPackageManifest(packageJson)
+        ? await readNpmMetadata(packageJson.name)
+        : null
+      const status = verifyWorkspacePackage(repository.full_name, packageJson, metadata)
+      if (status !== 'verified') {
+        throw new Error(`${repository.full_name}: configured workspace package failed npm verification (${status})`)
+      }
+    } else if (packagePath === undefined && detectManifest(packageJson) !== 'dsh.bundle') {
+      const workspace = await inspectWorkspace(repository)
+      packageJson = workspace.packageJson ?? packageJson
+      packagePath = workspace.packagePath
+      review = workspace.review
+    }
   }
 
   const manifest = detectManifest(packageJson)
   const status = verificationStatus(repository, packageJson)
   const installSource = status === 'manifest-detected'
-    ? installationSource(repository.full_name, packageJson, override.packagePath)
+    ? installationSource(repository.full_name, packageJson, packagePath)
     : null
   const installAvailable = installSource !== null
 
-  return {
+  const plugin: RegistryPlugin = {
     id: repository.full_name,
     name: repository.name,
     owner: repository.owner.login,
@@ -131,11 +249,12 @@ async function inspect(repository: GitHubRepository): Promise<RegistryPlugin> {
       version: packageJson?.version ?? null,
       private: packageJson?.private ?? null,
       manifest,
+      path: packagePath ?? null,
     },
     verification: {
       status,
       checkedAt: scanTimestamp,
-      method: verificationMethod(manifest, override.packagePath),
+      method: verificationMethod(manifest, packagePath),
       harnessRevision: null,
       runtimeTested: false,
     },
@@ -154,6 +273,7 @@ async function inspect(repository: GitHubRepository): Promise<RegistryPlugin> {
       },
     } : {}),
   }
+  return { plugin, review }
 }
 
 const { repositories: discovered, reportedTotal } = await discoverRepositories()
@@ -161,8 +281,18 @@ const candidates = discovered.filter(repository => !excluded(repository))
 process.stdout.write(`Discovered ${reportedTotal} repositories; inspecting ${candidates.length} canonical candidates...\n`)
 
 const inspected = await mapWithConcurrency(candidates, 8, inspect)
-const plugins = inspected.filter(plugin => plugin.verification.status === 'manifest-detected')
+const plugins = inspected
+  .map(result => result.plugin)
+  .filter(plugin => plugin.verification.status === 'manifest-detected')
 plugins.sort((a, b) => b.metrics.stars - a.metrics.stars || a.id.localeCompare(b.id))
+
+const candidateRegistry: WorkspaceCandidateRegistry = {
+  schemaVersion: 1,
+  generatedAt: scanTimestamp,
+  reviews: inspected
+    .flatMap(result => result.review ? [result.review] : [])
+    .sort((a, b) => a.repository.localeCompare(b.repository)),
+}
 
 const registry: PluginRegistry = {
   schemaVersion: REGISTRY_SCHEMA_VERSION,
@@ -218,6 +348,7 @@ await Promise.all([
 ])
 await Promise.all([
   writeFile(join(root, 'registry/plugins.json'), `${JSON.stringify(registry, null, 2)}\n`),
+  writeFile(join(root, 'registry/candidates.json'), `${JSON.stringify(candidateRegistry, null, 2)}\n`),
   writeFile(join(root, 'docs/catalog.md'), buildCatalog(registry)),
   writeFile(join(root, 'docs/collections.md'), collectionMarkdown(collectionFiles, registry)),
   writeFile(join(root, 'README.md'), renderedReadme),
@@ -225,5 +356,5 @@ await Promise.all([
 ])
 
 process.stdout.write(
-  `Wrote ${plugins.length} entries (${registry.stats.byStatus['manifest-detected'] ?? 0} current bundle manifests detected).\n`,
+  `Wrote ${plugins.length} entries (${registry.stats.byStatus['manifest-detected'] ?? 0} current bundle manifests detected) and ${candidateRegistry.reviews.length} workspace reviews.\n`,
 )

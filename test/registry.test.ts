@@ -7,10 +7,14 @@ import {
   decodePackageJson,
   detectManifest,
   installationSource,
+  normalizeGitHubRepository,
   packageJsonContentPath,
   replaceGeneratedSection,
+  selectWorkspaceCandidate,
+  verifyWorkspacePackage,
   verificationMethod,
   verificationStatus,
+  workspacePackagePaths,
 } from '../scripts/lib/registry.ts'
 
 const repository = {
@@ -87,6 +91,84 @@ test('uses published package names to install workspace manifests', () => {
     () => installationSource('owner/monorepo', { ...packageJson, name: 'unsafe package' }, 'packages/plugin'),
     /valid public package\.name/,
   )
+})
+
+test('finds bounded workspace manifests without guessing from incomplete trees', () => {
+  const tree = {
+    truncated: false,
+    tree: [
+      { type: 'blob', path: 'package.json' },
+      { type: 'blob', path: 'packages/plugin/package.json' },
+      { type: 'blob', path: 'examples/demo/package.json' },
+      { type: 'blob', path: 'node_modules/ignored/package.json' },
+      { type: 'tree', path: 'packages/not-a-file/package.json' },
+    ],
+  }
+  assert.deepEqual(workspacePackagePaths(tree), {
+    paths: ['examples/demo', 'packages/plugin'],
+    reason: null,
+  })
+  assert.deepEqual(workspacePackagePaths({ ...tree, truncated: true }), {
+    paths: [],
+    reason: 'tree-truncated',
+  })
+  assert.deepEqual(workspacePackagePaths(tree, 1), {
+    paths: [],
+    reason: 'package-limit-exceeded',
+  })
+})
+
+test('verifies workspace publication belongs to the discovered repository', () => {
+  const packageJson = {
+    name: '@example/dsh-plugin',
+    dsh: { bundle: { patch: './cordis.patch.yml' } },
+  }
+  assert.equal(
+    normalizeGitHubRepository('git+https://github.com/Example/Monorepo.git'),
+    'example/monorepo',
+  )
+  assert.equal(
+    normalizeGitHubRepository({ url: 'git@github.com:Example/Monorepo.git' }),
+    'example/monorepo',
+  )
+  assert.equal(normalizeGitHubRepository('https://gitlab.com/example/monorepo'), null)
+  assert.equal(
+    verifyWorkspacePackage('example/monorepo', packageJson, {
+      name: '@example/dsh-plugin',
+      repository: { url: 'git+ssh://git@github.com/example/monorepo.git' },
+    }),
+    'verified',
+  )
+  assert.equal(verifyWorkspacePackage('example/monorepo', packageJson, null), 'unpublished')
+  assert.equal(
+    verifyWorkspacePackage('example/monorepo', packageJson, {
+      name: '@example/dsh-plugin',
+      repository: 'https://github.com/other/repository.git',
+    }),
+    'repository-mismatch',
+  )
+  assert.equal(
+    verifyWorkspacePackage('example/monorepo', { ...packageJson, private: true }, null),
+    'invalid-manifest',
+  )
+})
+
+test('auto-selects only one verified workspace package', () => {
+  const verified = { packagePath: 'packages/verified', status: 'verified' as const }
+  const unpublished = { packagePath: 'packages/unpublished', status: 'unpublished' as const }
+
+  assert.deepEqual(selectWorkspaceCandidate([verified, unpublished]), {
+    selected: verified,
+    reason: null,
+  })
+  assert.deepEqual(selectWorkspaceCandidate([unpublished]), {
+    selected: null,
+    reason: 'no-verified-package',
+  })
+  assert.deepEqual(selectWorkspaceCandidate([verified, { ...verified, packagePath: 'packages/other' }]), {
+    selected: null,
+    reason: 'multiple-verified-packages',
+  })
 })
 
 test('replaces generated README sections without touching surrounding content', () => {
