@@ -15,8 +15,11 @@ import {
   detectManifest,
   getGitHubToken,
   githubRequest,
+  installationSource,
   mapWithConcurrency,
+  packageJsonContentPath,
   replaceGeneratedSection,
+  verificationMethod,
   verificationStatus,
 } from './lib/registry.ts'
 import type {
@@ -78,8 +81,9 @@ async function inspect(repository: GitHubRepository): Promise<RegistryPlugin> {
   let packageJson: PackageJson | null = null
   if (!repository.archived && repository.size > 0) {
     const ref = encodeURIComponent(repository.default_branch)
+    const contentPath = packageJsonContentPath(override.packagePath)
     const content = await githubRequest<GitHubContentResponse>(
-      `/repos/${repository.full_name}/contents/package.json?ref=${ref}`,
+      `/repos/${repository.full_name}/contents/${contentPath}?ref=${ref}`,
       token,
     )
     packageJson = decodePackageJson(content)
@@ -87,7 +91,10 @@ async function inspect(repository: GitHubRepository): Promise<RegistryPlugin> {
 
   const manifest = detectManifest(packageJson)
   const status = verificationStatus(repository, packageJson)
-  const installAvailable = status === 'manifest-detected'
+  const installSource = status === 'manifest-detected'
+    ? installationSource(repository.full_name, packageJson, override.packagePath)
+    : null
+  const installAvailable = installSource !== null
 
   return {
     id: repository.full_name,
@@ -128,16 +135,16 @@ async function inspect(repository: GitHubRepository): Promise<RegistryPlugin> {
     verification: {
       status,
       checkedAt: scanTimestamp,
-      method: manifest ? 'root-package-manifest' : 'github-metadata',
+      method: verificationMethod(manifest, override.packagePath),
       harnessRevision: null,
       runtimeTested: false,
     },
     install: {
       available: installAvailable,
       profile: installAvailable ? 'web' : null,
-      source: installAvailable ? `github:${repository.full_name}` : null,
+      source: installSource,
       command: installAvailable
-        ? `npx @deepseek-ai/dsh plugin --profile web add github:${repository.full_name}`
+        ? `npx @deepseek-ai/dsh plugin --profile web add ${installSource}`
         : null,
     },
     ...(Object.keys(override).length > 0 ? {

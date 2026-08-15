@@ -4,11 +4,13 @@ import { fileURLToPath } from 'node:url'
 import {
   buildEnglishReadmePluginIndex,
   buildReadmePluginIndex,
+  packageJsonContentPath,
 } from './lib/registry.ts'
 import type {
   PluginCollection,
   PluginRegistry,
   PluginKind,
+  VerificationMethod,
   VerificationStatus,
 } from './lib/registry.ts'
 import type { RegistryOverrides } from './lib/registry.ts'
@@ -38,6 +40,11 @@ const allowedStatuses = new Set<VerificationStatus>([
   'placeholder',
   'archived',
 ])
+const allowedMethods = new Set<VerificationMethod>([
+  'root-package-manifest',
+  'workspace-package-manifest',
+  'github-metadata',
+])
 
 for (const [index, plugin] of registry.plugins.entries()) {
   const label = `plugins[${index}] (${plugin.id ?? 'missing id'})`
@@ -48,6 +55,7 @@ for (const [index, plugin] of registry.plugins.entries()) {
   assert(allowedKinds.has(plugin.kind), `${label}: invalid kind ${plugin.kind}`)
   assert(Array.isArray(plugin.categories) && plugin.categories.length > 0, `${label}: missing categories`)
   assert(allowedStatuses.has(plugin.verification?.status), `${label}: invalid verification status`)
+  assert(allowedMethods.has(plugin.verification?.method), `${label}: invalid verification method`)
   assert(plugin.topics?.includes('dsh-plugin'), `${label}: discovery topic missing`)
   assert(Number.isInteger(plugin.metrics?.stars) && plugin.metrics.stars >= 0, `${label}: invalid star count`)
 
@@ -56,7 +64,14 @@ for (const [index, plugin] of registry.plugins.entries()) {
   assert(plugin.install?.available === manifestDetected, `${label}: install availability exceeds evidence`)
   if (plugin.install?.available) {
     assert(plugin.package?.manifest === 'dsh.bundle', `${label}: installable entry lacks dsh.bundle evidence`)
-    assert(plugin.install.source === `github:${plugin.id}`, `${label}: invalid install source`)
+    const expectedSource = plugin.verification.method === 'workspace-package-manifest'
+      ? plugin.package.name
+      : `github:${plugin.id}`
+    assert(plugin.install.source === expectedSource, `${label}: invalid install source`)
+    assert(
+      plugin.install.command === `npx @deepseek-ai/dsh plugin --profile web add ${expectedSource}`,
+      `${label}: invalid install command`,
+    )
   }
 }
 
@@ -66,6 +81,13 @@ const overrides = JSON.parse(
 for (const [id, override] of Object.entries(overrides.repositories ?? {})) {
   if (override.exclude === true) {
     assert(!ids.has(id), `${id}: excluded repository is present in the generated registry`)
+  }
+  if (override.packagePath !== undefined) {
+    try {
+      packageJsonContentPath(override.packagePath)
+    } catch (error) {
+      assert(false, `${id}: ${(error as Error).message}`)
+    }
   }
 }
 

@@ -6,6 +6,7 @@ export const DISCOVERY_QUERY = 'topic:dsh-plugin'
 export type ManifestKind = 'dsh.bundle' | 'dshx' | 'dsh-structure'
 export type PluginKind = 'plugin' | 'bundle' | 'skin' | 'client' | 'application' | 'collection' | 'resource' | 'unknown'
 export type VerificationStatus = 'manifest-detected' | 'legacy-manifest-detected' | 'structure-detected' | 'unverified' | 'placeholder' | 'archived'
+export type VerificationMethod = 'root-package-manifest' | 'workspace-package-manifest' | 'github-metadata'
 
 export interface PackageJson {
   name?: string
@@ -64,6 +65,7 @@ export interface RepositoryOverride {
   exclude?: boolean
   kind?: PluginKind
   categories?: string[]
+  packagePath?: string
   note?: string | null
   canonical?: boolean
 }
@@ -112,7 +114,7 @@ export interface RegistryPlugin {
   verification: {
     status: VerificationStatus
     checkedAt: string
-    method: 'root-package-manifest' | 'github-metadata'
+    method: VerificationMethod
     harnessRevision: string | null
     runtimeTested: boolean
   }
@@ -244,6 +246,56 @@ export function verificationStatus(
   if (manifest === 'dshx') return 'legacy-manifest-detected'
   if (manifest === 'dsh-structure') return 'structure-detected'
   return 'unverified'
+}
+
+export function packageJsonContentPath(packagePath?: unknown): string {
+  if (packagePath === undefined) return 'package.json'
+  if (typeof packagePath !== 'string') {
+    throw new Error('packagePath must be a string')
+  }
+
+  const segments = packagePath.split('/')
+  if (
+    packagePath.trim() !== packagePath
+    || packagePath.startsWith('/')
+    || packagePath.endsWith('/')
+    || packagePath.includes('\\')
+    || /[\u0000-\u001f\u007f]/.test(packagePath)
+    || segments.some(segment => segment === '' || segment === '.' || segment === '..')
+  ) {
+    throw new Error(`packagePath must be a normalized relative directory: ${JSON.stringify(packagePath)}`)
+  }
+
+  return [...segments, 'package.json'].map(encodeURIComponent).join('/')
+}
+
+export function verificationMethod(
+  manifest: ManifestKind | null,
+  packagePath?: string,
+): VerificationMethod {
+  if (!manifest) return 'github-metadata'
+  return packagePath === undefined ? 'root-package-manifest' : 'workspace-package-manifest'
+}
+
+const NPM_PACKAGE_NAME = /^(?:@[a-z0-9][a-z0-9._~-]*\/)?[a-z0-9][a-z0-9._~-]*$/
+
+export function installationSource(
+  repositoryFullName: string,
+  packageJson: PackageJson | null,
+  packagePath?: string,
+): string {
+  if (packagePath === undefined) return `github:${repositoryFullName}`
+
+  const packageName = packageJson?.name
+  if (
+    !packageName
+    || packageName.length > 214
+    || !NPM_PACKAGE_NAME.test(packageName)
+    || packageJson?.private === true
+  ) {
+    throw new Error(`${repositoryFullName}: workspace manifest must declare a valid public package.name`)
+  }
+  return packageName
 }
 
 export function getGitHubToken(): string {
