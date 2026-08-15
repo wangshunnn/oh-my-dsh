@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T10:02:14.265Z",
+  "generatedAt": "2026-08-15T16:43:53.241Z",
   "reviews": [
     {
       "repository": "147228/dsh-xiaoyao-skins",
@@ -53,11 +53,6 @@
           "status": "repository-mismatch"
         }
       ]
-    },
-    {
-      "repository": "anywhere-labs/deepseek-harness-desktop",
-      "reason": "package-limit-exceeded",
-      "candidates": []
     },
     {
       "repository": "ayuanwong/deepseek-harness-ux",
@@ -161,7 +156,7 @@
         {
           "packagePath": "packages/dsh-usage-dashboard",
           "packageName": "@captain1275/dsh-usage-dashboard",
-          "status": "unpublished"
+          "status": "verified"
         },
         {
           "packagePath": "packages/dsh-web-ui-all",
@@ -258,6 +253,17 @@
       ]
     },
     {
+      "repository": "chaojixinren/dsh-reviewer-bot",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "bundle",
+          "packageName": "@dshrb/bundle",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
       "repository": "chenw2759-wq/dsh-IDE",
       "reason": "no-verified-package",
       "candidates": [
@@ -332,6 +338,48 @@
       ]
     },
     {
+      "repository": "Devin-AXIS/deepseek-design",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/deepseek-idesign",
+          "packageName": "deepseek-idesign",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/deepseek-ippt",
+          "packageName": "deepseek-ippt",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "source/plugins/deepseek-idesign",
+          "packageName": "deepseek-idesign",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "source/plugins/deepseek-ippt",
+          "packageName": "deepseek-ippt",
+          "status": "repository-mismatch"
+        }
+      ]
+    },
+    {
+      "repository": "Devin-AXIS/iPolloWork",
+      "reason": "multiple-verified-packages",
+      "candidates": [
+        {
+          "packagePath": "external-plugins/deepseek-harness/design-studio",
+          "packageName": "deepseek-idesign",
+          "status": "verified"
+        },
+        {
+          "packagePath": "external-plugins/deepseek-harness/ppt-studio",
+          "packageName": "deepseek-ippt",
+          "status": "verified"
+        }
+      ]
+    },
+    {
       "repository": "dingkaihu63/dsh-robotic-harness",
       "reason": "no-verified-package",
       "candidates": [
@@ -380,18 +428,13 @@
       ]
     },
     {
-      "repository": "fan969690/dsh-desktop-tools",
+      "repository": "GCS-ZHN/mcp-sentinel",
       "reason": "no-verified-package",
       "candidates": [
         {
-          "packagePath": "agent-store",
-          "packageName": "dsh-agent-store",
+          "packagePath": "packages/deepseek-harness",
+          "packageName": "@gcszhn/mcp-sentinel-deepseek-harness-plugin",
           "status": "unpublished"
-        },
-        {
-          "packagePath": "plugin-store",
-          "packageName": "dsh-plugin-store",
-          "status": "repository-mismatch"
         }
       ]
     },
@@ -402,17 +445,6 @@
         {
           "packagePath": "packages/bundle",
           "packageName": "@graycode/dsh",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
-      "repository": "GuoMonth/dsh-multi-tenant",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/multi-tenant",
-          "packageName": "dsh-multi-tenant",
           "status": "unpublished"
         }
       ]
@@ -429,12 +461,17 @@
       ]
     },
     {
-      "repository": "isomoes/ikanban",
+      "repository": "Jesse-njx/dsh-cowork",
       "reason": "no-verified-package",
       "candidates": [
         {
-          "packagePath": "packages/ikanban",
-          "packageName": "@isomoes/dsh-ikanban",
+          "packagePath": "packages/chatnode-wechat",
+          "packageName": "@dsh-cowork/chatnode-wechat",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh",
+          "packageName": "@dsh-cowork/plugin",
           "status": "unpublished"
         }
       ]
@@ -466,6 +503,17 @@
         {
           "packagePath": "plugins/session-navigator",
           "packageName": "@just-genius/dsh-session-navigator",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "justinhuangai/deepagent",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "deepagent/dsh-plugins/deepagent-ui-conversation",
+          "packageName": "@deepagent/dsh-plugin-ui-conversation",
           "status": "unpublished"
         }
       ]
@@ -592,17 +640,6 @@
       ]
     },
     {
-      "repository": "MoneShadow/DeepSeek-Harness-linux-",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "plugins/dsh-plugin-vision",
-          "packageName": "dsh-plugin-vision",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
       "repository": "nexu-io/open-design",
       "reason": "no-verified-package",
       "candidates": [
@@ -610,6 +647,197 @@
           "packagePath": "packages/dsh-runtime",
           "packageName": "@open-design/dsh-runtime",
           "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "ningbainb/deepseek-harness-desktop",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/dsh-aionui-panel",
+          "packageName": "@linxin666/dsh-client-ui-aionui-panel",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-git-graph",
+          "packageName": "@linxin666/dsh-client-ui-git-graph",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-liangshen",
+          "packageName": "@linxin666/dsh-liangshen",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-live-stats",
+          "packageName": "@linxin666/dsh-live-stats",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-mode-switcher",
+          "packageName": "@linxin666/dsh-client-ui-mode-switcher",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh-pet",
+          "packageName": "@linxin666/dsh-pet",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-remote-web-ui",
+          "packageName": "@linxin666/dsh-remote-web-ui",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins",
+          "packageName": "@linxin666/dsh-skins",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/blue-fantasy",
+          "packageName": "@linxin666/dsh-client-ui-skin-blue-fantasy",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/dragon-heir",
+          "packageName": "@linxin666/dsh-client-ui-skin-dragon-heir",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/harbor",
+          "packageName": "@linxin666/dsh-client-ui-skin-harbor",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/miku",
+          "packageName": "@linxin666/dsh-client-ui-skin-miku",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/minecraft",
+          "packageName": "@linxin666/dsh-client-ui-skin-minecraft",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/qq2006",
+          "packageName": "@linxin666/dsh-client-ui-skin-qq2006",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/qq98",
+          "packageName": "@linxin666/dsh-client-ui-skin-qq98",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/ths",
+          "packageName": "@linxin666/dsh-client-ui-skin-ths",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/trading",
+          "packageName": "@linxin666/dsh-client-ui-skin-trading",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/whale-song",
+          "packageName": "@linxin666/dsh-client-ui-skin-whale-song",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-skins/skins/xp",
+          "packageName": "@linxin666/dsh-client-ui-skin-xp",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-ssh",
+          "packageName": "@linxin666/dsh-ssh",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-task-board",
+          "packageName": "@linxin666/dsh-client-ui-task-board",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-tool-describe-image",
+          "packageName": "@linxin666/dsh-tool-describe-image",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-web-ui-all",
+          "packageName": "@linxin666/dsh-web-ui-all",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-web-ui-settings",
+          "packageName": "@linxin666/dsh-client-ui-web-ui-settings",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/blue-fantasy",
+          "packageName": "@linxin666/dsh-client-ui-skin-blue-fantasy",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/dragon-heir",
+          "packageName": "@linxin666/dsh-client-ui-skin-dragon-heir",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/harbor",
+          "packageName": "@linxin666/dsh-client-ui-skin-harbor",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/miku",
+          "packageName": "@linxin666/dsh-client-ui-skin-miku",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/minecraft",
+          "packageName": "@linxin666/dsh-client-ui-skin-minecraft",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/qq2006",
+          "packageName": "@linxin666/dsh-client-ui-skin-qq2006",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/qq98",
+          "packageName": "@linxin666/dsh-client-ui-skin-qq98",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/skin-center",
+          "packageName": "@linxin666/dsh-client-ui-skin-center",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/ths",
+          "packageName": "@linxin666/dsh-client-ui-skin-ths",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/trading",
+          "packageName": "@linxin666/dsh-client-ui-skin-trading",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/whale-song",
+          "packageName": "@linxin666/dsh-client-ui-skin-whale-song",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/skins/xp",
+          "packageName": "@linxin666/dsh-client-ui-skin-xp",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "scripts/plugin-template",
+          "packageName": "@linxin666/dsh-client-ui-__NAME__",
+          "status": "invalid-manifest"
         }
       ]
     },
@@ -713,22 +941,6 @@
           "packagePath": "plugins/dsh-browser-desktop",
           "packageName": "@runzhliu/dsh-browser-desktop",
           "status": "unpublished"
-        }
-      ]
-    },
-    {
-      "repository": "skylar-fei/dsh-wechat-maid",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/dsh-pet-maid",
-          "packageName": "@deepseek-ai/dsh-pet-maid",
-          "status": "invalid-manifest"
-        },
-        {
-          "packagePath": "packages/dsh-weixin",
-          "packageName": "@deepseek-ai/dsh-weixin",
-          "status": "invalid-manifest"
         }
       ]
     },
@@ -882,6 +1094,27 @@
       ]
     },
     {
+      "repository": "Suxeca/dsh-plugin",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/dsh-client-ui-session-switcher",
+          "packageName": "@suxeca/dsh-client-ui-session-switcher",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-lab-kit",
+          "packageName": "@deepseek-ai/dsh-lab-kit",
+          "status": "invalid-manifest"
+        },
+        {
+          "packagePath": "packages/dsh-plugin-manager",
+          "packageName": "@suxeca/dsh-plugin-manager",
+          "status": "repository-mismatch"
+        }
+      ]
+    },
+    {
       "repository": "taxueseek/argo",
       "reason": "no-verified-package",
       "candidates": [
@@ -970,6 +1203,11 @@
           "status": "invalid-manifest"
         },
         {
+          "packagePath": "packages/plugin-deus",
+          "packageName": "@dsh-suite/plugin-deus",
+          "status": "repository-mismatch"
+        },
+        {
           "packagePath": "packages/plugins/plugin-manager",
           "packageName": "@dsh-suite/plugin-manager",
           "status": "verified"
@@ -1033,6 +1271,11 @@
           "status": "repository-mismatch"
         },
         {
+          "packagePath": "packages/browser-settings",
+          "packageName": "@yeesy369/dsh-browser-settings",
+          "status": "repository-mismatch"
+        },
+        {
           "packagePath": "packages/tool-browser",
           "packageName": "@yeesy369/dsh-tool-browser",
           "status": "repository-mismatch"
@@ -1041,17 +1284,6 @@
           "packagePath": "packages/web-permission",
           "packageName": "@yeesy369/dsh-web-permission",
           "status": "repository-mismatch"
-        }
-      ]
-    },
-    {
-      "repository": "yha9806/dsh-subagent-admission",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/dsh-subagent-admission",
-          "packageName": "dsh-subagent-admission",
-          "status": "unpublished"
         }
       ]
     },
@@ -1096,6 +1328,17 @@
           "packagePath": "gitbash-tool",
           "packageName": "@dsh-external/dsh-tool-gitbash",
           "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
+      "repository": "zhu168/dsh-save-money",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugin",
+          "packageName": "dsh-save-money",
+          "status": "unpublished"
         }
       ]
     },
