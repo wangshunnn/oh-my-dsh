@@ -15,6 +15,4 @@ const collectionDirectory = resolve(root, "collections");
 const collectionFiles = (await readdir(collectionDirectory)).filter((file) => file.endsWith(".json")).sort();
 const collections = await Promise.all(collectionFiles.map(async (file) => JSON.parse(await readFile(resolve(collectionDirectory, file), "utf8"))));
 await writeFile(resolve(dataOutput, "collections.json"), `${JSON.stringify(collections)}\n`);
-await writeFile(resolve(output, ".nojekyll"), "");
-
-console.log(`Built GitHub Pages site with ${collections.length} collections.`);
+console.log(`Built static site with ${collections.length} collections.`);

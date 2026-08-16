@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://soonwang.me/oh-my-dsh/">
+  <a href="https://oh-my-dsh.vercel.app/">
     <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
   </a>
 </p>
@@ -12,7 +12,7 @@
 
 **oh-my-dsh** only displays projects with a detected current `dsh.bundle.patch` and an unambiguous installation source. It supports root packages and npm-owned monorepo workspaces, helping you search, filter, and install DSH plugins.
 
-**[Open the live directory](https://soonwang.me/oh-my-dsh/)** · **[Browse all plugins](./docs/catalog.md)** · **[Explore collections](./docs/collections.md)** · **[Use the JSON registry](./registry/plugins.json)** · **[Submit a plugin](./CONTRIBUTING.md)**
+**[Open the live directory](https://oh-my-dsh.vercel.app/)** · **[Browse all plugins](./docs/catalog.md)** · **[Explore collections](./docs/collections.md)** · **[Use the JSON registry](./registry/plugins.json)** · **[Submit a plugin](./CONTRIBUTING.md)**
 
 <sub>Only structurally installable current Bundles enter the public directory; inclusion is still not compatibility or security certification.</sub>
 

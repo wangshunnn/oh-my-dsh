@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://soonwang.me/oh-my-dsh/">
+  <a href="https://oh-my-dsh.vercel.app/">
     <img src="./assets/oh-my-dsh-banner-v2.jpg" alt="All you need is oh-my-dsh" width="100%">
   </a>
 </p>
@@ -12,7 +12,7 @@
 
 **oh-my-dsh** 只展示检测到当前 `dsh.bundle.patch` 清单且安装来源明确的项目，支持根包和经过 npm 归属验证的 monorepo workspace，帮助你搜索、筛选并安装 DSH 插件。
 
-**[访问在线目录](https://soonwang.me/oh-my-dsh/)** · **[浏览全部插件](./docs/catalog.md)** · **[查看场景精选](./docs/collections.md)** · **[使用 JSON Registry](./registry/plugins.json)** · **[提交插件](./CONTRIBUTING.md)**
+**[访问在线目录](https://oh-my-dsh.vercel.app/)** · **[浏览全部插件](./docs/catalog.md)** · **[查看场景精选](./docs/collections.md)** · **[使用 JSON Registry](./registry/plugins.json)** · **[提交插件](./CONTRIBUTING.md)**
 
 <sub>只有结构可安装的当前 Bundle 才进入公共目录；收录仍不代表兼容性或安全认证。</sub>
 
