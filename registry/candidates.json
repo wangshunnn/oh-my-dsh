@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T01:59:40.352Z",
+  "generatedAt": "2026-08-16T08:49:37.703Z",
   "reviews": [
     {
       "repository": "147228/dsh-xiaoyao-skins",
@@ -253,17 +253,6 @@
       ]
     },
     {
-      "repository": "chaojixinren/dsh-reviewer-bot",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "bundle",
-          "packageName": "@dshrb/bundle",
-          "status": "invalid-manifest"
-        }
-      ]
-    },
-    {
       "repository": "chenw2759-wq/dsh-IDE",
       "reason": "no-verified-package",
       "candidates": [
@@ -470,38 +459,6 @@
       ]
     },
     {
-      "repository": "icodesign/orbis",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/orbis-remote-dsh",
-          "packageName": "@orbisapp/remote-dsh",
-          "status": "repository-mismatch"
-        }
-      ]
-    },
-    {
-      "repository": "jinguanghai/deepseek-harness-forge-plugins",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "plugins/forge-gates",
-          "packageName": "dsh-forge-gates",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "plugins/forge-memory",
-          "packageName": "dsh-forge-memory",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "plugins/forge-tcm",
-          "packageName": "dsh-forge-tcm",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
       "repository": "JustGenius-s/DSH-Plugs",
       "reason": "no-verified-package",
       "candidates": [
@@ -528,22 +485,6 @@
         {
           "packagePath": "plugins/session-navigator",
           "packageName": "@just-genius/dsh-session-navigator",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
-      "repository": "justinhuangai/deepagent",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "deepagent/dsh-plugins/deepagent-ui-conversation",
-          "packageName": "@deepagent/dsh-plugin-ui-conversation",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "deepagent/dsh-plugins/deepagent-ui-sidebar",
-          "packageName": "@deepagent/dsh-plugin-ui-sidebar",
           "status": "unpublished"
         }
       ]
@@ -596,6 +537,17 @@
       ]
     },
     {
+      "repository": "KCNyu/clawock",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "examples/dsh/plugin",
+          "packageName": "clawock-dsh",
+          "status": "repository-mismatch"
+        }
+      ]
+    },
+    {
       "repository": "KhanZou/Deepseek-Harness-as-Desktop",
       "reason": "no-verified-package",
       "candidates": [
@@ -644,17 +596,6 @@
           "packagePath": "packages/browser/bridge-browser",
           "packageName": "@deepseek-ai/dsh-bridge-browser",
           "status": "invalid-manifest"
-        }
-      ]
-    },
-    {
-      "repository": "MkaliezZ/dsh-agentfuse-plugin",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/dsh-agentfuse",
-          "packageName": "@deepseek-ai/dsh-agentfuse",
-          "status": "unpublished"
         }
       ]
     },
@@ -872,18 +813,18 @@
       ]
     },
     {
-      "repository": "omdsh-dev/dsh-hub-workshop",
+      "repository": "No-PRM/dsh-explorer",
       "reason": "no-verified-package",
       "candidates": [
         {
-          "packagePath": "tests/fixtures/profile-bundle-v1",
-          "packageName": "@omdsh/harness-profile-probe",
-          "status": "invalid-manifest"
+          "packagePath": "dsh-plugins/dsh-client-ui-explorer",
+          "packageName": "dsh-client-ui-explorer",
+          "status": "unpublished"
         },
         {
-          "packagePath": "tests/fixtures/profile-bundle-v2",
-          "packageName": "@omdsh/harness-profile-probe",
-          "status": "invalid-manifest"
+          "packagePath": "dsh-plugins/dsh-explorer",
+          "packageName": "dsh-explorer",
+          "status": "unpublished"
         }
       ]
     },
@@ -964,6 +905,17 @@
       ]
     },
     {
+      "repository": "reshuibuduo/TMCRA-Agent-Memory",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "integrations/deepseek-harness-local",
+          "packageName": "tmcra-deepseek-harness-local-memory",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "runzhliu/deepseek-harness-docker",
       "reason": "no-verified-package",
       "candidates": [
@@ -1003,122 +955,6 @@
         {
           "packagePath": "deeptop-bridge",
           "packageName": "deeptop-bridge",
-          "status": "invalid-manifest"
-        }
-      ]
-    },
-    {
-      "repository": "springbrand-lab/dsh-skin-universe",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/dsh-aionui-panel",
-          "packageName": "@linxin666/dsh-client-ui-aionui-panel",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-git-graph",
-          "packageName": "@linxin666/dsh-client-ui-git-graph",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-live-stats",
-          "packageName": "@linxin666/dsh-live-stats",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-pet",
-          "packageName": "@linxin666/dsh-pet",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-remote-web-ui",
-          "packageName": "@linxin666/dsh-remote-web-ui",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-skins",
-          "packageName": "@linxin666/dsh-skins",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-skins/skins/demon-slayer-night",
-          "packageName": "@springbrand/dsh-client-ui-skin-demon-slayer-night",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/dsh-skins/skins/first-love",
-          "packageName": "@springbrand/dsh-client-ui-skin-first-love",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/dsh-skins/skins/naruto-konoha",
-          "packageName": "@springbrand/dsh-client-ui-skin-naruto-konoha",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/dsh-skins/skins/pokemon-sunset",
-          "packageName": "@springbrand/dsh-client-ui-skin-pokemon-sunset",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/dsh-skins/skins/spider-verse",
-          "packageName": "@springbrand/dsh-client-ui-skin-spider-verse",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/dsh-ssh",
-          "packageName": "@linxin666/dsh-ssh",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-task-board",
-          "packageName": "@linxin666/dsh-client-ui-task-board",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-web-ui-all",
-          "packageName": "@linxin666/dsh-web-ui-all",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-web-ui-settings",
-          "packageName": "@linxin666/dsh-client-ui-web-ui-settings",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/skins/demon-slayer-night",
-          "packageName": "@springbrand/dsh-client-ui-skin-demon-slayer-night",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/skins/first-love",
-          "packageName": "@springbrand/dsh-client-ui-skin-first-love",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/skins/naruto-konoha",
-          "packageName": "@springbrand/dsh-client-ui-skin-naruto-konoha",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/skins/pokemon-sunset",
-          "packageName": "@springbrand/dsh-client-ui-skin-pokemon-sunset",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "packages/skins/skin-center",
-          "packageName": "@linxin666/dsh-client-ui-skin-center",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/skins/spider-verse",
-          "packageName": "@springbrand/dsh-client-ui-skin-spider-verse",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "scripts/plugin-template",
-          "packageName": "@linxin666/dsh-client-ui-__NAME__",
           "status": "invalid-manifest"
         }
       ]
@@ -1215,6 +1051,17 @@
       ]
     },
     {
+      "repository": "volcengine/OpenViking",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "examples/dsh-memory-plugin",
+          "packageName": "@openviking/dsh-memory-plugin",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "whitelonng/dshcode",
       "reason": "package-limit-exceeded",
       "candidates": []
@@ -1276,18 +1123,38 @@
       ]
     },
     {
-      "repository": "WTStarMark/QAQ",
+      "repository": "wsxwj123/dsh-plugins",
       "reason": "no-verified-package",
       "candidates": [
         {
-          "packagePath": "packages/dsh-qaq",
-          "packageName": "dsh-qaq",
+          "packagePath": "packages/dsh-composer-tools",
+          "packageName": "dsh-composer-tools",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh-session-manager",
+          "packageName": "dsh-session-manager",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/pet-bridge",
+          "packageName": "dsh-pet-bridge",
           "status": "invalid-manifest"
         },
         {
-          "packagePath": "qaq-test-plugins/dsh-broken-theme",
-          "packageName": "dsh-broken-theme",
-          "status": "invalid-manifest"
+          "packagePath": "packages/skin-gallery",
+          "packageName": "dsh-skin-gallery",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/theme-gallery",
+          "packageName": "dsh-theme-gallery",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/turn-scrubber",
+          "packageName": "dsh-turn-scrubber",
+          "status": "unpublished"
         }
       ]
     },
@@ -1362,6 +1229,17 @@
       ]
     },
     {
+      "repository": "yxccai/dsh-desktop",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "resources/market-plugin",
+          "packageName": "@sanqi-normal/dsh-webui-market-plugin",
+          "status": "repository-mismatch"
+        }
+      ]
+    },
+    {
       "repository": "ZASENJC/dsh-plugins-store",
       "reason": "no-verified-package",
       "candidates": [
@@ -1390,22 +1268,6 @@
         {
           "packagePath": "plugin",
           "packageName": "dsh-save-money",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
-      "repository": "ZichengGurrr/dsh-window",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "kit",
-          "packageName": "dsh-window-kit",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "plugin",
-          "packageName": "dsh-window",
           "status": "unpublished"
         }
       ]
