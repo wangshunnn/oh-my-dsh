@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-15T16:43:53.241Z",
+  "generatedAt": "2026-08-16T01:59:40.352Z",
   "reviews": [
     {
       "repository": "147228/dsh-xiaoyao-skins",
@@ -285,6 +285,17 @@
       ]
     },
     {
+      "repository": "chokwinlee/deepseek-harness-desktop",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "test/fixtures/sample-plugin",
+          "packageName": "dsh-desktop-fixture-plugin",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
       "repository": "crafter-station/petdex",
       "reason": "no-verified-package",
       "candidates": [
@@ -352,6 +363,11 @@
           "status": "repository-mismatch"
         },
         {
+          "packagePath": "packages/deepseek-ivideo",
+          "packageName": "deepseek-ivideo",
+          "status": "repository-mismatch"
+        },
+        {
           "packagePath": "source/plugins/deepseek-idesign",
           "packageName": "deepseek-idesign",
           "status": "repository-mismatch"
@@ -359,6 +375,11 @@
         {
           "packagePath": "source/plugins/deepseek-ippt",
           "packageName": "deepseek-ippt",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "source/plugins/deepseek-ivideo",
+          "packageName": "deepseek-ivideo",
           "status": "repository-mismatch"
         }
       ]
@@ -375,6 +396,11 @@
         {
           "packagePath": "external-plugins/deepseek-harness/ppt-studio",
           "packageName": "deepseek-ippt",
+          "status": "verified"
+        },
+        {
+          "packagePath": "external-plugins/deepseek-harness/video-studio",
+          "packageName": "deepseek-ivideo",
           "status": "verified"
         }
       ]
@@ -428,15 +454,9 @@
       ]
     },
     {
-      "repository": "GCS-ZHN/mcp-sentinel",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/deepseek-harness",
-          "packageName": "@gcszhn/mcp-sentinel-deepseek-harness-plugin",
-          "status": "unpublished"
-        }
-      ]
+      "repository": "fufankeji/deepseek-harness-studio",
+      "reason": "package-limit-exceeded",
+      "candidates": []
     },
     {
       "repository": "GrayCodeTeam/graycode-for-dsh",
@@ -461,17 +481,22 @@
       ]
     },
     {
-      "repository": "Jesse-njx/dsh-cowork",
+      "repository": "jinguanghai/deepseek-harness-forge-plugins",
       "reason": "no-verified-package",
       "candidates": [
         {
-          "packagePath": "packages/chatnode-wechat",
-          "packageName": "@dsh-cowork/chatnode-wechat",
+          "packagePath": "plugins/forge-gates",
+          "packageName": "dsh-forge-gates",
           "status": "unpublished"
         },
         {
-          "packagePath": "packages/dsh",
-          "packageName": "@dsh-cowork/plugin",
+          "packagePath": "plugins/forge-memory",
+          "packageName": "dsh-forge-memory",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "plugins/forge-tcm",
+          "packageName": "dsh-forge-tcm",
           "status": "unpublished"
         }
       ]
@@ -514,6 +539,11 @@
         {
           "packagePath": "deepagent/dsh-plugins/deepagent-ui-conversation",
           "packageName": "@deepagent/dsh-plugin-ui-conversation",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "deepagent/dsh-plugins/deepagent-ui-sidebar",
+          "packageName": "@deepagent/dsh-plugin-ui-sidebar",
           "status": "unpublished"
         }
       ]
@@ -1163,6 +1193,17 @@
       ]
     },
     {
+      "repository": "Vladimir-Human/humanizer-ru",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "dsh",
+          "packageName": "humanizer-ru-dsh",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "vlln/plugin-registry",
       "reason": "no-verified-package",
       "candidates": [
@@ -1288,6 +1329,17 @@
       ]
     },
     {
+      "repository": "yha9806/dsh-subagent-admission",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/dsh-subagent-admission",
+          "packageName": "dsh-subagent-admission",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "Yihong89/dsh-usage-plugin",
       "reason": "no-verified-package",
       "candidates": [
@@ -1354,6 +1406,22 @@
         {
           "packagePath": "plugin",
           "packageName": "dsh-window",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "zimodzh/dsh-plugin-dev-skills",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "examples/greet-tool",
+          "packageName": "dsh-greet-tool",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "examples/hello-plugin",
+          "packageName": "dsh-hello-plugin",
           "status": "unpublished"
         }
       ]
