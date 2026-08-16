@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T08:49:37.703Z",
+  "generatedAt": "2026-08-16T16:44:21.405Z",
   "reviews": [
     {
       "repository": "147228/dsh-xiaoyao-skins",
@@ -51,6 +51,62 @@
           "packagePath": "plugin/ui",
           "packageName": "@dsh-market/plugin",
           "status": "repository-mismatch"
+        }
+      ]
+    },
+    {
+      "repository": "ADWMC/helm-d",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/bootstrap",
+          "packageName": "@dsh-security/bootstrap",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/router",
+          "packageName": "@dsh-security/router",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/skill-ai-security",
+          "packageName": "@dsh-security/skill-ai-security",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/skill-android",
+          "packageName": "@dsh-security/skill-android",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/skill-evidence",
+          "packageName": "@dsh-security/skill-evidence",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/skill-malware",
+          "packageName": "@dsh-security/skill-malware",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/skill-native",
+          "packageName": "@dsh-security/skill-native",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/skill-protocol",
+          "packageName": "@dsh-security/skill-protocol",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/skill-web",
+          "packageName": "@dsh-security/skill-web",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/toolbox",
+          "packageName": "@dsh-security/toolbox",
+          "status": "unpublished"
         }
       ]
     },
@@ -226,17 +282,6 @@
       ]
     },
     {
-      "repository": "ccch1mneyyy/working-activity",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/activity/working-activity",
-          "packageName": "dsh-working-activity",
-          "status": "repository-mismatch"
-        }
-      ]
-    },
-    {
       "repository": "Ceelog/dsh-plugins",
       "reason": "multiple-verified-packages",
       "candidates": [
@@ -296,22 +341,6 @@
       ]
     },
     {
-      "repository": "crTnT/dsh-plugin-suite",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "dsh-plugin-center",
-          "packageName": "dsh-plugin-center",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "dsh-plugin-updater",
-          "packageName": "dsh-plugin-updater",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
       "repository": "DDDFXYqiming/Agent_Extensions",
       "reason": "no-verified-package",
       "candidates": [
@@ -326,9 +355,24 @@
           "status": "repository-mismatch"
         },
         {
+          "packagePath": "dsh-plugins/dsh-mode-boost",
+          "packageName": "@dsh-external/dsh-mode-boost",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-plugins/dsh-ocr1-memory",
+          "packageName": "@dsh-external/dsh-ocr1-memory",
+          "status": "invalid-manifest"
+        },
+        {
           "packagePath": "dsh-plugins/dsh-side-panel-patched",
           "packageName": "@dsh-external/dsh-side-panel",
           "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-plugins/dsh-super-injector",
+          "packageName": "@dsh-external/dsh-super-injector",
+          "status": "invalid-manifest"
         },
         {
           "packagePath": "dsh-plugins/dsh-vision-skill",
@@ -406,6 +450,17 @@
       ]
     },
     {
+      "repository": "DoloresCaritasAngelus/DSH-AUX",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "dsh-aux",
+          "packageName": "@dolorescaritasangelus/dsh-aux",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "Dominic789654/awesome-deepseek-harness",
       "reason": "no-verified-package",
       "candidates": [
@@ -455,6 +510,43 @@
           "packagePath": "packages/bundle",
           "packageName": "@graycode/dsh",
           "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "GuoMonth/dsh-multi-tenant",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/multi-tenant",
+          "packageName": "dsh-multi-tenant",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "Highjobop/dsh-gadgets",
+      "reason": "multiple-verified-packages",
+      "candidates": [
+        {
+          "packagePath": "dsh-gadgets",
+          "packageName": "dsh-gadgets",
+          "status": "verified"
+        },
+        {
+          "packagePath": "dsh-skin",
+          "packageName": "dsh-skin",
+          "status": "verified"
+        },
+        {
+          "packagePath": "dsh-task-alerts",
+          "packageName": "dsh-task-alerts",
+          "status": "verified"
+        },
+        {
+          "packagePath": "dsh-tidy",
+          "packageName": "dsh-tidy",
+          "status": "verified"
         }
       ]
     },
@@ -589,6 +681,17 @@
       "candidates": []
     },
     {
+      "repository": "LingyeSoul/dsh-tavern",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/plugin",
+          "packageName": "dsh-tavern",
+          "status": "repository-mismatch"
+        }
+      ]
+    },
+    {
       "repository": "Lum1104/dsh-browser",
       "reason": "no-verified-package",
       "candidates": [
@@ -596,17 +699,6 @@
           "packagePath": "packages/browser/bridge-browser",
           "packageName": "@deepseek-ai/dsh-bridge-browser",
           "status": "invalid-manifest"
-        }
-      ]
-    },
-    {
-      "repository": "modusensus/dsh-mneme",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "dsh-mneme",
-          "packageName": "@modusensus/dsh-mneme",
-          "status": "repository-mismatch"
         }
       ]
     },
@@ -629,6 +721,11 @@
           "packagePath": "packages/dsh-aionui-panel",
           "packageName": "@linxin666/dsh-client-ui-aionui-panel",
           "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-desktop-compat",
+          "packageName": "@linxin666/dsh-desktop-compat",
+          "status": "unpublished"
         },
         {
           "packagePath": "packages/dsh-git-graph",
@@ -845,17 +942,6 @@
       "candidates": []
     },
     {
-      "repository": "OneZero-Y/dsh-plugin-kit",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "template",
-          "packageName": "@your-scope/dsh-plugin-template",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
       "repository": "openguardrails/openguardrails",
       "reason": "no-verified-package",
       "candidates": [
@@ -927,6 +1013,17 @@
       ]
     },
     {
+      "repository": "seed-forge/harness-ai-kit",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugins/harness-ai-kit-plugin",
+          "packageName": "harness-ai-kit-plugin",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "Small-tailqwq/dsh-deep-whale",
       "reason": "no-verified-package",
       "candidates": [
@@ -949,6 +1046,17 @@
       ]
     },
     {
+      "repository": "songoao25/dsh-bottom-info-bar",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugin",
+          "packageName": "dsh-bottom-info-bar",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "Sparrived/DSH-Deeptop",
       "reason": "no-verified-package",
       "candidates": [
@@ -956,27 +1064,6 @@
           "packagePath": "deeptop-bridge",
           "packageName": "deeptop-bridge",
           "status": "invalid-manifest"
-        }
-      ]
-    },
-    {
-      "repository": "Suxeca/dsh-plugin",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/dsh-client-ui-session-switcher",
-          "packageName": "@suxeca/dsh-client-ui-session-switcher",
-          "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "packages/dsh-lab-kit",
-          "packageName": "@deepseek-ai/dsh-lab-kit",
-          "status": "invalid-manifest"
-        },
-        {
-          "packagePath": "packages/dsh-plugin-manager",
-          "packageName": "@suxeca/dsh-plugin-manager",
-          "status": "repository-mismatch"
         }
       ]
     },
@@ -1035,6 +1122,17 @@
         {
           "packagePath": "dsh",
           "packageName": "humanizer-ru-dsh",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "Vladimir-Human/ru-marketplace-mcp",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "dsh",
+          "packageName": "ru-marketplace-mcp-dsh",
           "status": "unpublished"
         }
       ]
@@ -1123,6 +1221,11 @@
       ]
     },
     {
+      "repository": "WJZ-P/deepseek-harness-desktop",
+      "reason": "package-limit-exceeded",
+      "candidates": []
+    },
+    {
       "repository": "wsxwj123/dsh-plugins",
       "reason": "no-verified-package",
       "candidates": [
@@ -1154,6 +1257,17 @@
         {
           "packagePath": "packages/turn-scrubber",
           "packageName": "dsh-turn-scrubber",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "xiaods/k8e",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugins/deepseek-harness/packages/dsh-k8e-sandbox-bundle",
+          "packageName": "@k8e/dsh-k8e-sandbox-bundle",
           "status": "unpublished"
         }
       ]
@@ -1196,28 +1310,6 @@
       ]
     },
     {
-      "repository": "yha9806/dsh-subagent-admission",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/dsh-subagent-admission",
-          "packageName": "dsh-subagent-admission",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
-      "repository": "Yihong89/dsh-usage-plugin",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/usage-report",
-          "packageName": "dsh-usage-plugin",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
       "repository": "yunxiiQwQ/dsh-maid-whale-webUI",
       "reason": "no-verified-package",
       "candidates": [
@@ -1240,34 +1332,28 @@
       ]
     },
     {
-      "repository": "ZASENJC/dsh-plugins-store",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/dsh-plugin-store",
-          "packageName": "dsh-plugin-store",
-          "status": "repository-mismatch"
-        }
-      ]
-    },
-    {
-      "repository": "zeroa234/dsh-preset-minimal-windows",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "gitbash-tool",
-          "packageName": "@dsh-external/dsh-tool-gitbash",
-          "status": "invalid-manifest"
-        }
-      ]
-    },
-    {
       "repository": "zhu168/dsh-save-money",
       "reason": "no-verified-package",
       "candidates": [
         {
           "packagePath": "plugin",
           "packageName": "dsh-save-money",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "ZichengGurrr/dsh-window",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "kit",
+          "packageName": "dsh-window-kit",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "plugin",
+          "packageName": "dsh-window",
           "status": "unpublished"
         }
       ]
