@@ -1,6 +1,20 @@
 {
   "schemaVersion": 1,
   "entries": {
+    "R_kgDOT50ZPg": {
+      "repository": "0326/dsh-plugin-market",
+      "headOid": "dc59e7fc3cdc211f6280884804e442aca913369d",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4a2gA": {
+      "repository": "040822/dsh-gzip",
+      "headOid": "e02d44d64f5249909eb3b3769679194d8ea4f770",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOT5R8oA": {
       "repository": "091022yyj/deepseek-harness-desktop",
       "headOid": "6db7c67fb9ac3d941b866d8f77df463f43ba408c",
@@ -12,6 +26,13 @@
         "candidates": []
       }
     },
+    "R_kgDOT4rh8Q": {
+      "repository": "0Ra1n416/DSH-GUI",
+      "headOid": "5bf522e12c774fb7ce76a9419dfee6fc0c9ddd17",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOT3pCJg": {
       "repository": "0reki/deepseek-harness-desktop",
       "headOid": "577508e2c76a31cce564b065dfc892ae3bcc6319",
@@ -22,6 +43,69 @@
         "reason": "package-limit-exceeded",
         "candidates": []
       }
+    },
+    "R_kgDOT332Nw": {
+      "repository": "0sour/dsh-plugins",
+      "headOid": "1b527bc4cee5e77039ac459fff940fde2437bc7e",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT1SS0w": {
+      "repository": "0xsline/awesome-deepseek-harness",
+      "headOid": "d5deea11ab1e1a8882e43b3b90772585ed51e1cf",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6MmlQ": {
+      "repository": "1056802185/dsh-prompt-manager",
+      "headOid": "d0b8955d887d056347819a05f86b89fef704b1fc",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5VZZg": {
+      "repository": "1105623876/dsh-bench",
+      "headOid": "e78ee9523a8e73a67a206b52d1cd070d90e0a0e4",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5JgxQ": {
+      "repository": "1149784810/jayhe-dsh-gamemaker",
+      "headOid": "072d6b293b04cdd528da1dfe7f1e3a09a762b299",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5Gqmg": {
+      "repository": "1149784810/jayhe-mdviewer",
+      "headOid": "c10fd305e86f06ad8e6030af779c12131cd2a2ce",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4dW9g": {
+      "repository": "131CDA1/dsh-scrape-webpage",
+      "headOid": "b1a9c822069fa401edc9f7b1aee46c1c7fc5f28e",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6PiIQ": {
+      "repository": "14185638/dsh-mcp-manager",
+      "headOid": "b0053ea0a8e6a17f7257cae9109967187c819230",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6PT-w": {
+      "repository": "14185638/dsh-sound-alerts",
+      "headOid": "fd5c0305896c8e4127d214b39abd633e5d451228",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
     },
     "R_kgDOT3oJBw": {
       "repository": "147228/dsh-xiaoyao-skins",
@@ -70,6 +154,168 @@
         ]
       }
     },
+    "R_kgDOT5BekA": {
+      "repository": "150410awe/consume-plugin",
+      "headOid": "f0ff285db61b55972e89a4e0f6cae18dbe6c777c",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4H0fA": {
+      "repository": "1514100951/dsh-notify-plugins",
+      "headOid": "280f3cef6ad1308c237bcca276a6fdf8d5475bfd",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4FnJQ": {
+      "repository": "1514100951/dsh-usage-footer",
+      "headOid": "74dd49ffe0163d05f6cddde124593ba162da05c1",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3j1tA": {
+      "repository": "15828148/dsh-portable-launcher",
+      "headOid": "da805db1f201d2dd731ca291f97862cd43c75d4a",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3h-kg": {
+      "repository": "1690834643/dsh-usage-dashboard",
+      "headOid": "a4e159c592fef02e5767868a4b99ee19d5a14848",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5Wfxg": {
+      "repository": "1gudao1/angelina-web-deco",
+      "headOid": "dd8ba7a1b7ecbeacb19de67ebcd4f8c5949569e2",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT47R_Q": {
+      "repository": "1lyygit/dsh-launcher",
+      "headOid": "11c164b087fabdb7014501de5c172d9a0b64955f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4CPNw": {
+      "repository": "1while1/dsh-whale-subagent",
+      "headOid": "40ffda66d9c6ead5dae39b7998df92db9dbe978b",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4XUPQ": {
+      "repository": "1x1-lab/dsh-auto-execute",
+      "headOid": "22f373185dd18f3c6aecdefdd023401d629b7378",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5TWfw": {
+      "repository": "1x1-lab/dsh-start",
+      "headOid": "a31132fbdbb63053de1f078585bc766ab95fb4e6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4qT8Q": {
+      "repository": "2008924/dsh-progress-viz",
+      "headOid": "736909845ac33cf5ac671e1a4b6beecc814d983f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "2008924/dsh-progress-viz",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugin",
+            "packageName": "dsh-progress-viz-plugin",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5d0mQ": {
+      "repository": "21hbguo/dsh-agent-board",
+      "headOid": "a9bb9777c86eb585b299b7772fdc530cee5f01e8",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5SpIA": {
+      "repository": "21hbguo/dsh-feishu-bridge-plugin",
+      "headOid": "94877250daeaa7d286693bd712d6ca85645d2903",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5vkBA": {
+      "repository": "21hbguo/dsh-session-batch-manager",
+      "headOid": "634919d659c5e1d4e13d99f8107bc5d20045dc38",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6utRA": {
+      "repository": "22-ai-00/dsh-enhanced",
+      "headOid": "2bb72f83762789f057046c69ecbbf3447d1180d3",
+      "packageJson": {
+        "name": "@dsh-enhanced/acp",
+        "description": "Use DeepSeek Harness as an Agent Client Protocol (ACP) stdio agent.",
+        "version": "0.0.4",
+        "dsh": {
+          "bundle": {
+            "patch": true
+          }
+        }
+      },
+      "packagePath": "plugins/acp",
+      "review": null
+    },
+    "R_kgDOT4ZIfA": {
+      "repository": "222wcnm/dsh-manager",
+      "headOid": "44ac04933cbc17871e73ec109cc42da468432a7f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "222wcnm/dsh-manager",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugin/dsh-lifecycle",
+            "packageName": "dsh-lifecycle",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT54qAA": {
+      "repository": "2421873411a-rgb/dsh-console",
+      "headOid": "d27df0b6bb918c2ef5932db9cb01fedd311326f1",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4IGMQ": {
+      "repository": "2472786266-spec/deepseek-hsrness-devkit",
+      "headOid": "92cdd3bf2533c106e4da581a429d63cf57678bc6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6P_Qw": {
+      "repository": "270027qw/deepseek-dsh-NX",
+      "headOid": "b0ff0cffc55c521eb0edec4b8906bd989f9ae808",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOT3jQyw": {
       "repository": "2BingLing/dsh-market",
       "headOid": "8ab09ab6200a9023e17129345fc3ce1d9b1bae28",
@@ -87,12 +333,134 @@
         ]
       }
     },
+    "R_kgDOT48p-w": {
+      "repository": "30degreesnorthlatitude/-",
+      "headOid": "d463775679ff84cd125b62a9bba0ce9bac2f7144",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3ho-w": {
+      "repository": "384961890-ui/pawin-brain-deepseek-harness",
+      "headOid": "a0319f6fab563309ad9912b75cb12f73909537a9",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5PECw": {
+      "repository": "394804078-pixel/dsh-liquid-glass",
+      "headOid": "a76d8d235f54d66c252a7c1d814777d6f6e67655",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4TFdA": {
+      "repository": "4060415/Deepseek-harness-routing-layer-",
+      "headOid": "6ef60cdcd24c3e43e25532dfe203412faa886233",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT51e9w": {
+      "repository": "42ch-dev/dsh-rust-sdk",
+      "headOid": "414aafc959f93cc766c0964ceeabe5c38a451464",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT56pYQ": {
+      "repository": "534119219/dsh-messaging",
+      "headOid": "f1c3399ef40e3f419161d153e997d6f30576a627",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "534119219/dsh-messaging",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/messaging-core",
+            "packageName": "messaging-core",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5xI8w": {
+      "repository": "54xkeee/dsh-anchored-standard-plus",
+      "headOid": "22658b9128e7e14b9d46dbd9f8b2d62fcd370400",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT58rcw": {
+      "repository": "576576/dsh-translate",
+      "headOid": "75071fcfd49dc9ccc407d806cb684628a5a86720",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4fbqw": {
+      "repository": "666489/dsh-nature-papers",
+      "headOid": "81b66083843843d4c3ca79fe2814e688e77220b6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT52mEw": {
+      "repository": "67-68/dsh-music-alert",
+      "headOid": "c240fa194db7743ee588bb43884d9d8edfaa929c",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4OrSw": {
+      "repository": "6kongbai/dsh-plugin-market",
+      "headOid": "2db26a93d9875abb6fdf9ec5d950bd80b4b156b3",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "6kongbai/dsh-plugin-market",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/plugin-market",
+            "packageName": "dsh-plugin-market",
+            "status": "repository-mismatch"
+          }
+        ]
+      }
+    },
+    "R_kgDOT6ErEQ": {
+      "repository": "791813037/dsh-story",
+      "headOid": "9cb7df15c8fc669f544e08aeb6a6a2c8d33f63a0",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "791813037/dsh-story",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/bundle",
+            "packageName": "dsh-story",
+            "status": "repository-mismatch"
+          }
+        ]
+      }
+    },
+    "R_kgDOT4eeqg": {
+      "repository": "83079Vermont/dsh-mineru-parse-plugin",
+      "headOid": "f15bc1accefaa07d76a3e66660e0a9b360d0a7e6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOS6bi9w": {
       "repository": "834063245-creator/HoloGram",
-      "headOid": "67f21ec22e4478f0bfcc30d6457f786e5727b8c7",
+      "headOid": "b2e9eb29f517f3e54abe3ae1ca0a86a0f6cb95eb",
       "packageJson": {
         "name": "@a834063245/hologram-dsh",
-        "version": "10.1.1",
+        "description": "HoloGram code-dependency graph engine + 3D viewer, packaged as a DeepSeek Harness bundle plugin. Engine binary is fetched from GitHub Releases on install (Windows x64).",
+        "version": "10.2.0",
         "dsh": {
           "bundle": {
             "patch": true
@@ -102,9 +470,373 @@
       "packagePath": "dsh-bundle",
       "review": null
     },
+    "R_kgDOT4kzDQ": {
+      "repository": "862930522/opencode-anchored-standard",
+      "headOid": "750c104685a0e0f638d0a86e8c3d125901504c91",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6MpOw": {
+      "repository": "863683348/dsh-project",
+      "headOid": "51ccea5206c73b4eb24d5d5dbea073d6042d5cc0",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT37nEw": {
+      "repository": "988hj7tczd-oss/harness-desktop",
+      "headOid": "c7fdc0b53873231913132464f89959da70ad68da",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "988hj7tczd-oss/harness-desktop",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugins/harness-memory",
+            "packageName": "harness-memory",
+            "status": "repository-mismatch"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5b0_A": {
+      "repository": "9Epuuuu/dsh-plugin-folder-tidy",
+      "headOid": "3c5c1338f7333bc11f0a02ce9fd15f5abd43bef3",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4X76g": {
+      "repository": "a1140314368/dsh-auto-mode",
+      "headOid": "d6f9c9ed7de1d8f5e839c729cf86963eb66c5607",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4c0Ww": {
+      "repository": "A8Chann/dsh_desktop",
+      "headOid": "24922120b45bc4c6dc852df7c4f10bbb8dfed6ec",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5uzNw": {
+      "repository": "AAA-STM32XinPianPiFaWangGe/DSH-Workshop",
+      "headOid": "056121599cd0775eedd215e85d9b34c3f9385ba0",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4LyaA": {
+      "repository": "AAAsangyu/dsh-unfocus-reminder",
+      "headOid": "bf104372fb300770df959a20d1311213ce9a1ecf",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4HFPA": {
+      "repository": "aaronlei/dsh-width-tiers",
+      "headOid": "26ecb4c25fa853121d1406ea33624de5d3d644f3",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6PGKA": {
+      "repository": "aashizpoudel/dsh-remote-trust",
+      "headOid": "a959c3486b2131f4b5c8710041c9dc1e61a1b358",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5BCqw": {
+      "repository": "AATINF/pdf-extractor-dsh-plugin",
+      "headOid": "cf125002efa4e4535dc726f9a2c77928390e47f2",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "AATINF/pdf-extractor-dsh-plugin",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "path-c-cordis-plugin",
+            "packageName": "pdf-extractor-dsh-plugin",
+            "status": "repository-mismatch"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5xoAQ": {
+      "repository": "abab996/dsh-autonomy",
+      "headOid": "f3bb33a144dc3b58393fe37f7e00dee67e27db75",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "abab996/dsh-autonomy",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/dsh-autonomy",
+            "packageName": "dsh-autonomy",
+            "status": "repository-mismatch"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5yQ5w": {
+      "repository": "abab996/dsh-plugin-dev",
+      "headOid": "c58159cdd95be89f844cf7487e746227c5b97b06",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6N6WA": {
+      "repository": "AbdullahElTiby/dsh-vision-bridge",
+      "headOid": "71d6154192cd5dcbebcbbee9bf4d5f8224a07c37",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5sWKw": {
+      "repository": "abstudio-cn/Harness-totp-authenticator",
+      "headOid": "ed5d63e1077611a012aa7bf0d733c289ed86000d",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4X_ow": {
+      "repository": "Abyss-Seeker/dsh-plugin-working-status",
+      "headOid": "125422f599e820190cfb2738e1809312eb5632b7",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6Q1GA": {
+      "repository": "ACEMaravilla/dsh-plugin-market",
+      "headOid": "20008d1cb4c74e3974f7ef0e7c18335ac9c40aeb",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5M-BQ": {
+      "repository": "Ackerman0/dsh-desktop",
+      "headOid": "1edfb7a96c82c3dba4ce6fe84e4a1155ef500fd3",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4PwQQ": {
+      "repository": "Ackow/dsh-desktop",
+      "headOid": "ecd52f8001df9274cff3a168649ddbbfa18ec849",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5V2oA": {
+      "repository": "Ackow/dshdesktop-client",
+      "headOid": "c670f564e0500f22da01cdc56814bdef1e26dff9",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3_AIw": {
+      "repository": "acosmi/dsh-plugin",
+      "headOid": "3412f579033144497a22903ef64255d835cb29bf",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "acosmi/dsh-plugin",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugins/dsh-browser-automation/packages/browser-standard",
+            "packageName": "@dsh-browser-automation/dsh-browser-standard",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "plugins/dsh-dream-reflection",
+            "packageName": "dsh-dream-reflection",
+            "status": "invalid-manifest"
+          },
+          {
+            "packagePath": "plugins/dsh-session-supervisor",
+            "packageName": "dsh-session-supervisor",
+            "status": "invalid-manifest"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5J6fQ": {
+      "repository": "Adachi-Hougetsu/dsh-api-tools",
+      "headOid": "bcb5a4d126371ed9181a843dab8ce111b409e547",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "Adachi-Hougetsu/dsh-api-tools",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "dsh-api-meter",
+            "packageName": "dsh-api-meter",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "dsh-refresh",
+            "packageName": "dsh-refresh",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "dsh-ui-api-meter",
+            "packageName": "dsh-ui-api-meter",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "dsh-ui-refresh",
+            "packageName": "dsh-ui-refresh",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOTuGL8g": {
+      "repository": "AdamPlatin123/awesome-dsh-plugins",
+      "headOid": "9d9138dde70010c27937ef958926b95110fef2bf",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3XiYA": {
+      "repository": "AdamPlatin123/dsh-tonghuashun",
+      "headOid": "9f55d394ffd653be9efd475c32b6f087932820b8",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5Ch1w": {
+      "repository": "ADAning/dsh-pixel-skin",
+      "headOid": "7cfce7ae3b533418163c70e2f57c4dc44aab3d3a",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4MPqQ": {
+      "repository": "adlternative/dsh-subagent-qoder-cloud",
+      "headOid": "398e3643d04242266240e33d5832b18b860940d1",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4fdYg": {
+      "repository": "ADWMC/helm-d",
+      "headOid": "6aace4dad24d0018e2995d9dda2b10357d68b6b8",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "ADWMC/helm-d",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/bootstrap",
+            "packageName": "@dsh-security/bootstrap",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/router",
+            "packageName": "@dsh-security/router",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/skill-ai-security",
+            "packageName": "@dsh-security/skill-ai-security",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/skill-android",
+            "packageName": "@dsh-security/skill-android",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/skill-evidence",
+            "packageName": "@dsh-security/skill-evidence",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/skill-malware",
+            "packageName": "@dsh-security/skill-malware",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/skill-native",
+            "packageName": "@dsh-security/skill-native",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/skill-protocol",
+            "packageName": "@dsh-security/skill-protocol",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/skill-web",
+            "packageName": "@dsh-security/skill-web",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/toolbox",
+            "packageName": "@dsh-security/toolbox",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT39nEg": {
+      "repository": "Aeanfx/dsh-plugin-dated-folders",
+      "headOid": "290c7ae5e87a757a05298f10e3e3ee1c51279af4",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4XjJA": {
+      "repository": "AEicn/dsh-desktop",
+      "headOid": "d86ff05582df7dd9513a54a9cbefe96489c4f92e",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5CCAw": {
+      "repository": "afa-cloud/desktop-gui-automation-cua",
+      "headOid": "c47faaff6b6103d73da5b4886f85bd4e06639989",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "afa-cloud/desktop-gui-automation-cua",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugin",
+            "packageName": "@afa-cloud/dsh-cua-desktop",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT4Zchg": {
+      "repository": "AFAP/plugin-bastion-bridge-qizhi",
+      "headOid": "5b2d7c8cdadf654a7efd348355418bff2a1cbe36",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6rNnQ": {
+      "repository": "afisht/dsh-plan-mode-enhanced",
+      "headOid": "371e644b5bb0ef2768e9917b3d4401282aec0694",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDORvPq7w": {
       "repository": "agentrq/agentrq",
-      "headOid": "1b312a0812bac83b34393fe99a649aeb6b315ce4",
+      "headOid": "a386dd5913f3290b1553cf2a1e53e0bd70211b7f",
       "packageJson": {
         "name": "@agentrq/dsh-plugin-agentrq",
         "description": "AgentRQ task manager for DeepSeek Harness: create, manage, and auto-pull AgentRQ tasks without leaving the harness",
@@ -118,9 +850,93 @@
       "packagePath": "plugins/deepseek-harness",
       "review": null
     },
+    "R_kgDOT5Lyow": {
+      "repository": "agi-fans/oh-my-dsh",
+      "headOid": "49b9a090e6c57e10b59fed4dacb718bdcd2879fc",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4LB6A": {
+      "repository": "ahren112/ds-image-skin",
+      "headOid": "53a69a55e660b6a735e567c73565c977168d880a",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4L3YQ": {
+      "repository": "Airrcat/dsh-yuzuha-prompts-manager",
+      "headOid": "bdc80994a405ba1e6999e80011369ae41e924feb",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT53w-Q": {
+      "repository": "aitingtingya/mv-superds",
+      "headOid": "31908c9b363fb16960406125898fa21daffb2f5c",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6TOcA": {
+      "repository": "ajhcs/Codex-Co-Engineer",
+      "headOid": "bd680a160829e59dc651f49dca9843c02912072c",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDORM28kQ": {
+      "repository": "alaliqing/claude-paper",
+      "headOid": "0af55d0daeae8e86571700fd1839feb6be9440a6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6DiZg": {
+      "repository": "alanzhao0128/dsh-desktop",
+      "headOid": "cb5076c76cad5710637b2c7569025f7cb8b5a075",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT22ZaQ": {
+      "repository": "Alex-Yanggg/awesome-DSH-plugin",
+      "headOid": "3b44fe8ffddbf19ccebd459829e5a8ae2cbb0fa6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6rCLA": {
+      "repository": "Alex-zry-2333/dsh-sae",
+      "headOid": "9f6e5cb6eb0bda61fa0d63e24a6cc123feed5898",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5DTAA": {
+      "repository": "alexcarterio/deepseek-whale-pet",
+      "headOid": "ba3c0986b1282f6b4c6a8372ce30acb1f2e2df6a",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5DDrQ": {
+      "repository": "alexcarterio/dsh-mobile-access",
+      "headOid": "71a935872d44d286ce9ab8e47febbf89ef8dc2c7",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOS2bF0g": {
+      "repository": "ali-meoo/meoo-cli",
+      "headOid": "236e653536d455cd05f58253f41fb03c9c229d41",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOIOrQzw": {
       "repository": "alib8b8/aflare",
-      "headOid": "74dbb5e4c559dad38baa5f1f71182d0ec83ad7c0",
+      "headOid": "26fa81ffc1ad6f74622e818be826b1627e0ba90c",
       "packageJson": {
         "name": "@alib8b8/dsh-plugin-aflare",
         "description": "DeepSeek Harness (DSH) Cordis plugin exposing aflare workflow tools",
@@ -134,9 +950,226 @@
       "packagePath": "integrations/dsh-plugin",
       "review": null
     },
+    "R_kgDOT5NUXA": {
+      "repository": "Alice-P197/cat-healing",
+      "headOid": "e5c0cdda730d192148838dfe522874ae157d3634",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOTUlFvQ": {
+      "repository": "Alisa0808/vox-director",
+      "headOid": "668ec3946fe0139bc985313b15c1a300fca42f94",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3lKxA": {
+      "repository": "AlliotTech/deepseek-harness-docker",
+      "headOid": "4fd64d1bfd5b29de832974b98ad0a382a3240062",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4BdZA": {
+      "repository": "Aloneswork/deepseek-harness-codex-bridge",
+      "headOid": "b17d6d9774f558fa724a9d04823a305c6554364a",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT30MIQ": {
+      "repository": "AlowEnsoul/dsh-rag-kb",
+      "headOid": "bdfc83238ffeb0bc58839e4c03476c51da558629",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4OPcQ": {
+      "repository": "AlphaGodzilla/ag-dsh-coding-plugins",
+      "headOid": "5c9a78f999f32cd9cb49bd95d2ca4ad167999b54",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "AlphaGodzilla/ag-dsh-coding-plugins",
+        "reason": "multiple-verified-packages",
+        "candidates": [
+          {
+            "packagePath": "packages/gen-commit-msg-zh",
+            "packageName": "@ag-dsh/dsh-gen-commit-msg-zh",
+            "status": "verified"
+          },
+          {
+            "packagePath": "packages/web-notify",
+            "packageName": "@ag-dsh/dsh-web-notify",
+            "status": "verified"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5yScg": {
+      "repository": "Alphazer01214/dsh-usage-dashboard",
+      "headOid": "f658e28f096ce5d1e89fa030f65f77aa6e0a3a47",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4iEgg": {
+      "repository": "Altairpaca/dshelm",
+      "headOid": "5df586d3f01999773b9f54d476874f2a0f3edc54",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "Altairpaca/dshelm",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/dsh",
+            "packageName": "@dshelm/dsh",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOSUOfoQ": {
+      "repository": "alvinunreal/openpets",
+      "headOid": "8a16df13b0d11ee6855331e2ed2d149d962df831",
+      "packageJson": {
+        "name": "@open-pets/dsh",
+        "version": "3.3.0",
+        "dsh": {
+          "bundle": {
+            "patch": true
+          }
+        }
+      },
+      "packagePath": "packages/dsh",
+      "review": null
+    },
+    "R_kgDOT5GmAw": {
+      "repository": "AlwaysSum/deepseek-harness-kit",
+      "headOid": "fe12930b0e16d4feb3ab95b738338ace1b9e707c",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "AlwaysSum/deepseek-harness-kit",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugins/dsh-better-sidebar",
+            "packageName": "dsh-better-sidebar",
+            "status": "repository-mismatch"
+          },
+          {
+            "packagePath": "plugins/dsh-pocket",
+            "packageName": "dsh-pocket",
+            "status": "repository-mismatch"
+          },
+          {
+            "packagePath": "plugins/lan-compat",
+            "packageName": "@dsh-kit/lan-compat",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "plugins/modlens",
+            "packageName": "@liustack/modlens",
+            "status": "repository-mismatch"
+          },
+          {
+            "packagePath": "plugins/plugin-file-explorer",
+            "packageName": "@dsh-kit/plugin-file-explorer",
+            "status": "invalid-manifest"
+          },
+          {
+            "packagePath": "plugins/plugin-i18n-zh",
+            "packageName": "@dsh-kit/plugin-i18n-zh",
+            "status": "invalid-manifest"
+          },
+          {
+            "packagePath": "plugins/plugin-theme-skin",
+            "packageName": "@dsh-kit/plugin-theme-skin",
+            "status": "invalid-manifest"
+          }
+        ]
+      }
+    },
+    "R_kgDOT58qVA": {
+      "repository": "ALwith-ai/alwith-dsh",
+      "headOid": "805992542e6a8e83d6282ecfe692512973790896",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT0m_Fg": {
+      "repository": "Alyosha28/deep_option",
+      "headOid": "5d4e6b09c2555ed44568148388955e8f581d793b",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5O9Sw": {
+      "repository": "amazing-fish/dsh-plugins",
+      "headOid": "baca6e7c76b2f75a9ed9d512f31107759beb3adc",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4HxQw": {
+      "repository": "Amouren7/dsh-model-switch",
+      "headOid": "5937d6cb018a228c51fe9ec6695b694f101c7dc0",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "MDEwOlJlcG9zaXRvcnkyNDk5OTU3NTA=": {
       "repository": "amruthpillai/reactive-resume",
-      "headOid": "9509b5bc2ec133a12cd49e725f3445d0c7eaf77a",
+      "headOid": "0c7c3ac4c4f399b90356d4cb40c8ce9f656b4260",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4rapA": {
+      "repository": "An0range/dsh-plugins",
+      "headOid": "cc781f68d2ad0d6f0c0a61458a6a809e851c9770",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "An0range/dsh-plugins",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/dsh-anno",
+            "packageName": "@lyc/dsh-anno",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/dsh-linsp",
+            "packageName": "@lyc/dsh-linsp",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/dsh-shot-helper",
+            "packageName": "@lyc/dsh-shot-helper",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "packages/dsh-table-zoom",
+            "packageName": "@lyc/dsh-table-zoom",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT50aLQ": {
+      "repository": "Andiii208/dsh-remote",
+      "headOid": "52fb12c67bb96b14485361350933cdcb684b5707",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4noXw": {
+      "repository": "Andy294753951/dsh-plugin-qwen-web-bridge",
+      "headOid": "047959d71204a6edcc9c4e6c18e1426d6482e3f1",
       "packageJson": null,
       "packagePath": null,
       "review": null
@@ -154,6 +1187,13 @@
         }
       },
       "packagePath": "packages/dsh-auto-approval",
+      "review": null
+    },
+    "R_kgDOT4a1jw": {
+      "repository": "AndyYJF/dsh-lan-web-auth",
+      "headOid": "ae737ca8324e0eece4878f86fac2692b1fa6336f",
+      "packageJson": null,
+      "packagePath": null,
       "review": null
     },
     "R_kgDOSqDW5Q": {
@@ -178,9 +1218,66 @@
       "packagePath": "integrations/dsh",
       "review": null
     },
+    "R_kgDOJfpC2A": {
+      "repository": "Anil-matcha/awesome-deepseek-harness",
+      "headOid": "25ee043b906656c9e757f21505c8c51e6e410537",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOTqEB_Q": {
+      "repository": "Anionex/agent-vision-toolkit",
+      "headOid": "e8c798180959abe28df301241c21a784dc4b562c",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4KF_A": {
+      "repository": "AnkoCD/dsh-server-deployment",
+      "headOid": "4a1b9bd16da3017e1b3e9149c4e129d8214d7f8f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT51GEA": {
+      "repository": "Anlushu/hkinsure",
+      "headOid": "ba94fa4641db6478b5acc1423398b282f9c98bc5",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5__EA": {
+      "repository": "AnnanRen/dsh-usage-suite",
+      "headOid": "4a2da03ad44a5e08f451ce870c6409bffe5a7af2",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "AnnanRen/dsh-usage-suite",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugins/dsh-codingbar",
+            "packageName": "dsh-codingbar",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "plugins/dsh-usage-zcode",
+            "packageName": "dsh-usage-zcode",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT35txg": {
+      "repository": "anweat/dsh-plugin-dev-guide",
+      "headOid": "5c852f3f211b028e91f272ec0fbdfa4ffbe7c4c1",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOT3jedQ": {
       "repository": "anywhere-labs/deepseek-harness-desktop",
-      "headOid": "60ba4254a4236dd74749da5ca4594ecda5c2ced2",
+      "headOid": "5edf5d87040506da5d096995be66039d6f110efa",
       "packageJson": {
         "name": "dsh-plugin-desktop",
         "description": "DSH Desktop: an Electron shell composed as a DeepSeek Harness Cordis plugin",
@@ -194,6 +1291,308 @@
       "packagePath": "dsh-plugin-desktop",
       "review": null
     },
+    "R_kgDOT6Hgwg": {
+      "repository": "aooyoo/dsh-web-search-ddg",
+      "headOid": "3b9d739eee558f3318036689526e105bcc156300",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6GcBA": {
+      "repository": "aoye516/pack-Agent",
+      "headOid": "4fc542f292701545d89be49239c58e2ed08d3dec",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6MDow": {
+      "repository": "april-jk/dsh-mobile-suite",
+      "headOid": "5a985774c9aecaea788a7bd36c2ed8b862e2e843",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3lPyw": {
+      "repository": "AprilWizard/dsh-multi-cot",
+      "headOid": "1a7ca2407db07cd8297829a0f539a0394e04a6fe",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4s6eA": {
+      "repository": "ArcanePivot/dsh-api-balance",
+      "headOid": "1a648da4a4e98e41456f4b468b3c0a17d16eba19",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOTr-oag": {
+      "repository": "ArcoCodes/bloome-finance-plugin",
+      "headOid": "981aa82cf82fbfffde6f1b45719099217df0a5dc",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "ArcoCodes/bloome-finance-plugin",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugins/bloome-finance-plugin",
+            "packageName": "bloome-finance-plugin",
+            "status": "invalid-manifest"
+          }
+        ]
+      }
+    },
+    "R_kgDOT5_pWA": {
+      "repository": "ARFCON/dsh-hub-DSH",
+      "headOid": "aee33ffd9bb915acf4e2e6e6cbb41d592c3d046b",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOSHobLw": {
+      "repository": "Ariestar/sivtr",
+      "headOid": "3885c10de15b49942601489e1ad652cc260b58b0",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6D7pw": {
+      "repository": "ariesy/dsh-vision",
+      "headOid": "d63ad4a189e9dbefe0b32aaf82c150b376759954",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3cOnw": {
+      "repository": "ArtificialNotImbecile/dsh-context-taxonomy",
+      "headOid": "79af981e0eee13df7ae4287ffa5d8e7e71999111",
+      "packageJson": {
+        "name": "@artificialnotimbecile/dsh-context-taxonomy",
+        "description": "Logical-call context taxonomy for the DeepSeek Harness Web profile",
+        "version": "0.1.0",
+        "dsh": {
+          "bundle": {
+            "patch": true
+          }
+        }
+      },
+      "packagePath": "packages/dsh-context-taxonomy",
+      "review": null
+    },
+    "R_kgDOT5B92A": {
+      "repository": "ArvinQi/dsh-mcp",
+      "headOid": "079e7b6d6435f39c93a597314eb8060dc74d6628",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3_dgw": {
+      "repository": "aryswisnu/dsh-composition-check",
+      "headOid": "292d76cad3f2d677fde2e019b53b1557901aa7b6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5xZUg": {
+      "repository": "AS17514/dsh-cc-suite",
+      "headOid": "78c9a5435a85aba076fbeb9ac00a8ac98808099b",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "AS17514/dsh-cc-suite",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "package",
+            "packageName": "dsh-cc-suite",
+            "status": "unpublished"
+          }
+        ]
+      }
+    },
+    "R_kgDOT4kjwg": {
+      "repository": "Asaiuta/reverse-workbench-skill",
+      "headOid": "6aa36c1c00cd84f1749bf983ca282d533ba77266",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5AIlA": {
+      "repository": "Ash-b07/deepseek-harness-vision-bridge",
+      "headOid": "5e3097900254d2e0848a1e978907934ea71b3af7",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5ITmw": {
+      "repository": "AshModeling/dsh-light-theater",
+      "headOid": "4311ecf224d98b2c20950cfe9a566fe27c64a33f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4XQ8g": {
+      "repository": "ashuai/dsh-ui-wrapper",
+      "headOid": "4e665f727721863bc0025110211b63e56eac1756",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4b9cQ": {
+      "repository": "Astra-Ursae-Majoris/Deepseek-Harness-Local-UI",
+      "headOid": "746193bc5addc582f89503dd241bbccf108ab605",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "Astra-Ursae-Majoris/Deepseek-Harness-Local-UI",
+        "reason": "package-limit-exceeded",
+        "candidates": []
+      }
+    },
+    "R_kgDOT4Ywlw": {
+      "repository": "Asukaleo-aa/dsh-openscience",
+      "headOid": "cf5c001114593bbc3c5e58a83102d8650f9ab3d3",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDORhQEdw": {
+      "repository": "AtlasCloudAI/atlas-cloud-skills",
+      "headOid": "9691a4e43c8d7a5ad62d0c17a3141d727c0d0b8e",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOSb9HNw": {
+      "repository": "AtlasCloudAI/cli",
+      "headOid": "62be1561e5e1da1757341092faf3c37b40408999",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDORf8rLw": {
+      "repository": "AtlasCloudAI/mcp-server",
+      "headOid": "381db7dbc5b2ba2829b210e0304872b62b7fed0f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4Z74g": {
+      "repository": "AtropinolTT/dsh-guide-dog",
+      "headOid": "b35278c17d374fcd0b6f71a7c9c6a4202ac3ec37",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4LO0g": {
+      "repository": "Auran-Lu/dsh-client-ui-monitor",
+      "headOid": "825a095c26cc3123f8ea5d74ff8656079483569c",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3_fhQ": {
+      "repository": "AuraxM/dsh-plugin-confirm-check",
+      "headOid": "2a68c08afef48a30e4366b113beaf201eb916c84",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4Mkqw": {
+      "repository": "AuraxM/dsh-plugin-doc-present",
+      "headOid": "4da8646414aeb0200588cb51db84c351f41451ac",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4Vsow": {
+      "repository": "AuraxM/dsh-plugin-ui-turnav",
+      "headOid": "fd3a6381f63146cb430f9bca542f196a89f7fda4",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5KEjA": {
+      "repository": "aust24lzy/dsh-plugin-hub",
+      "headOid": "43f50eac634c7fac5cde0e436cf062f95b02efe5",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5K5Aw": {
+      "repository": "avaritiachaos/dsh-plugin-mcp",
+      "headOid": "4412244462b2cd05e2a28440250b36dbe21769bd",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5Jj6A": {
+      "repository": "avaritiachaos/dsh-plugin-memory",
+      "headOid": "56f65581a5ebbe2f6a3e70650ac057c99503f366",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5Kzuw": {
+      "repository": "avaritiachaos/dsh-plugin-smart-patch",
+      "headOid": "176c4227ed73c47daf401836fa49d6e9131b668a",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5KqwA": {
+      "repository": "avaritiachaos/dsh-plugin-windows",
+      "headOid": "405f47a12a85316c3c28930d06dfb941683fbcef",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOTsEk4g": {
+      "repository": "Awesome-AI-Pedia/Awesome-AI-Pedia",
+      "headOid": "87c415069326832948bfb91d0679d383b6c7848e",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3ajCQ": {
+      "repository": "awesome-dsh-plugin/awesome-dsh-plugin",
+      "headOid": "6b7d1ab2a7a36f4c25a9b683bbd3ce1bdbac64f9",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5lbTA": {
+      "repository": "ayahunter/dsh-trail",
+      "headOid": "65a662f283d0138396b8a44c9293d3f4f29dac7f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": {
+        "repository": "ayahunter/dsh-trail",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "packages/bundle",
+            "packageName": "dsh-trail-bundle",
+            "status": "repository-mismatch"
+          }
+        ]
+      }
+    },
+    "R_kgDOT6AT-w": {
+      "repository": "Ayato233/dsh-agent-manage",
+      "headOid": "db86df425eb9b7ef4520e685f64d1cabd9920eff",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT5-HcQ": {
+      "repository": "aybrt/workbuddy-dsh-plugin",
+      "headOid": "189eb26c05dad77bb63b8a33672b7481d74b8289",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOT3fHYw": {
       "repository": "ayuanwong/deepseek-harness-ux",
       "headOid": "e106de3719b0f636ce723ea981ca1b2ff7d51fbf",
@@ -204,6 +1603,76 @@
         "reason": "package-limit-exceeded",
         "candidates": []
       }
+    },
+    "R_kgDOTp2YdQ": {
+      "repository": "baaai123/solo-memory",
+      "headOid": "9d96836b4c3ea68cbc27c178e113ee59015eaaf6",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3-D8Q": {
+      "repository": "Babulubobo/dsh-codex-oauth",
+      "headOid": "edf4abacac05b0a82ea546dc960b06271ad03704",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4PCBg": {
+      "repository": "baiduzero/miqimiaomiaowu",
+      "headOid": "487b62b86bf61303938aaac254716e19048525bd",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6Mz9w": {
+      "repository": "baikangwang/deepseek-harness-desktop",
+      "headOid": "fb8e1985b6520fd92f2e67cf58d08150d5178285",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT4m-yg": {
+      "repository": "baimaomaomao556/eagleeye-mcp",
+      "headOid": "c10f0cb891a17923cd5b7b2dd712ba577c853c31",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6qLiQ": {
+      "repository": "Baisbt/dsh-api-balance",
+      "headOid": "391167b4ec5c9c18b64a44ff2e52859ea97d2adf",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOTzs9WQ": {
+      "repository": "baixinghao/intent-gate",
+      "headOid": "e75876e887222f0ef40e31a8b4b3962f3ac1508f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT3_0ag": {
+      "repository": "baiyun200/dsh-dashboard",
+      "headOid": "9becc80aa147a585115f57b8986227be09767455",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6ROwQ": {
+      "repository": "baizhichen-web/dsh-nendo-brainstorm",
+      "headOid": "2a7c54c1614c95ef502ba26eb759abdba1483e93",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
+    "R_kgDOT6RTDA": {
+      "repository": "baizhichen-web/dsh-workspace-auditor",
+      "headOid": "3e88a4ece152c62893262daac503d0e58e3a7ef9",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
     },
     "R_kgDOT4KNkw": {
       "repository": "BenHuHuan/dhs-tuicode",
@@ -240,11 +1709,11 @@
     },
     "R_kgDOT5D-Og": {
       "repository": "Blank-not-black/dsh-Remote",
-      "headOid": "b8bd2ce97b8a33e218f35f2c8e3dbcc1dad0988a",
+      "headOid": "56c614f77f1744b8c61e65695524fbb3dd353baf",
       "packageJson": {
         "name": "dsh-remote-plugin",
         "description": "DSH Remote 官方 bundle 插件：DSH 左侧原生边栏入口 + 右侧抽屉内嵌管理控制台；内置网关随 DSH 自动启停(systemd 独立单元)，抽屉直显令牌与设备监控；网关提供 /fs/* 文件传输端点(列表/断点下载/上传)，配合 Android App 远程操控会话/审批/提问/goal 与文件互传(多服务器测速切换、聊天记录离线缓存)。",
-        "version": "0.5.7",
+        "version": "0.5.8",
         "dsh": {
           "bundle": {
             "patch": true
@@ -274,11 +1743,11 @@
     },
     "R_kgDORgNP5g": {
       "repository": "btspoony/mstar-harness",
-      "headOid": "7fde7abe6577e24109c6d91055230b003794e910",
+      "headOid": "ca6adbc16352beb5614f0244301714b6c23f63ec",
       "packageJson": {
         "name": "@mstar-harness/dsh",
         "description": "Morning Star harness dsh (DeepSeek Harness) cordis function plugin — in-process engine gates (status/dispatch/lease) with hard refusal channels.",
-        "version": "2.3.0",
+        "version": "2.4.1",
         "dsh": {
           "bundle": {
             "patch": true
@@ -286,6 +1755,13 @@
         }
       },
       "packagePath": "packages/dsh",
+      "review": null
+    },
+    "R_kgDOT7JfZg": {
+      "repository": "CarlMarkswx/dsh-imagen",
+      "headOid": "c937faf6c10709227f8ec95f33ea585ab51b6443",
+      "packageJson": null,
+      "packagePath": null,
       "review": null
     },
     "R_kgDOThF-bA": {
@@ -331,7 +1807,7 @@
     },
     "R_kgDOT3kI2w": {
       "repository": "cherrchen/deepseek-harness-electron",
-      "headOid": "58a2845ce14880a95f636f9a99ea7a26d00def88",
+      "headOid": "0f324da754ef312f6f2c74398fb2e5048e230ee1",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -379,7 +1855,7 @@
     },
     "R_kgDOTxpPoA": {
       "repository": "cosyncing/cosyncing",
-      "headOid": "4ca4d1195c902f6e68e306e12122ccce150ad73d",
+      "headOid": "cd56bd2a9d7078fd555ff2e2f14ace6dad1e33e0",
       "packageJson": null,
       "packagePath": null,
       "review": null
@@ -408,7 +1884,7 @@
     },
     "R_kgDOT5PBPw": {
       "repository": "daboge-beach/dsh-skin-studio",
-      "headOid": "026121b19dcc14ddeb1e3d8427488782f8dcb823",
+      "headOid": "e21739c75d83ba0250d1c26878484e7c72d48487",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -452,7 +1928,7 @@
     },
     "R_kgDOT3f3kg": {
       "repository": "dsh-pub/dsh-pub",
-      "headOid": "4f879c6900f5b22b380961ff270cb2b80a3dc6d4",
+      "headOid": "e6ed26ac7cff3add89a2b6c4d0623d48d409f5e7",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -485,14 +1961,29 @@
     },
     "R_kgDOT4JQqw": {
       "repository": "FlipFlopszzz/dsh-studio",
-      "headOid": "827471fcc90c96ebe6a1fbd6e459b061e785cbaa",
+      "headOid": "7f3f3a636c7622dd028aefec6e2d5993ec1ccf32",
       "packageJson": null,
       "packagePath": null,
-      "review": null
+      "review": {
+        "repository": "FlipFlopszzz/dsh-studio",
+        "reason": "no-verified-package",
+        "candidates": [
+          {
+            "packagePath": "plugins/permission",
+            "packageName": "@dsh-studio/plugins-permission",
+            "status": "unpublished"
+          },
+          {
+            "packagePath": "plugins/rewind",
+            "packageName": "@dsh-studio/plugins-rewind",
+            "status": "unpublished"
+          }
+        ]
+      }
     },
     "R_kgDOT46iSw": {
       "repository": "fufankeji/deepseek-harness-studio",
-      "headOid": "5a7ea50f1cfe91559bbd14323a4c91d046dba044",
+      "headOid": "4a6d67fb1a27a096f795078b261db6947158882a",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -660,11 +2151,11 @@
     },
     "R_kgDOT3Qokw": {
       "repository": "icodesign/orbis",
-      "headOid": "267a2c5cdb08bc18f0bf5a3dcd2d8cf14dab1056",
+      "headOid": "a46d409d742a0a0061efaca5d8bb472e71815071",
       "packageJson": {
         "name": "@orbisapp/remote-dsh",
         "description": "Orbis remote plugin for DeepSeek Harness",
-        "version": "0.2.2",
+        "version": "0.2.3",
         "dsh": {
           "bundle": {
             "patch": true
@@ -676,7 +2167,7 @@
     },
     "R_kgDOT4DZ-g": {
       "repository": "imsai-sh/awesome-deepseek-harness-plugins",
-      "headOid": "87cc549aa4fae53dea5d8a76318136b67f3815f9",
+      "headOid": "26d10ddae03e77dd33108fd8756b558e144bb47e",
       "packageJson": {
         "name": "dsh1024",
         "description": "The 1024 Store for DeepSeek Harness: in-app plugin market and tracked installer CLI.",
@@ -703,10 +2194,11 @@
     },
     "R_kgDOQ82QrQ": {
       "repository": "isomoes/ikanban",
-      "headOid": "719986a63fc72896d69e39ea5094861dffa9280c",
+      "headOid": "65ef3fd5c299a62335a4181e57859ec01fe4ac55",
       "packageJson": {
         "name": "@isomoes/dsh-ikanban",
-        "version": "0.4.6",
+        "description": "Keyboard-oriented iKanban web application bundle for DeepSeek Harness",
+        "version": "0.4.8",
         "dsh": {
           "bundle": {
             "patch": true
@@ -751,14 +2243,14 @@
     },
     "R_kgDOT37MQA": {
       "repository": "kazecreator/dsh-plugins",
-      "headOid": "ea545e3578dadb7746c24daae938fa12a96f938b",
+      "headOid": "6617ae10e260d94eeff222b94f3012e95b9e2d21",
       "packageJson": null,
       "packagePath": null,
       "review": null
     },
     "R_kgDOT4fM6A": {
       "repository": "KeepLost/harniverse",
-      "headOid": "795f93ba8409686add70978d86b56a4e9b6caae0",
+      "headOid": "51ca45d0dc362a772509a4cf7e8d8ce3e648ab14",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -810,7 +2302,7 @@
     },
     "R_kgDOT57GcA": {
       "repository": "lmzhen/dsh-evolution",
-      "headOid": "b89f4c8a13e617a928744cdc7d828d17b61015bb",
+      "headOid": "142ec98b3e571ae5371e32fa995d61552165f041",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -877,6 +2369,13 @@
       "packagePath": null,
       "review": null
     },
+    "R_kgDOTaKD4A": {
+      "repository": "MemTensor/memmy-agent",
+      "headOid": "ef630bc75d42a02d1f80f50029c95111d74e223f",
+      "packageJson": null,
+      "packagePath": null,
+      "review": null
+    },
     "R_kgDOT47nsg": {
       "repository": "miracle-ai-studio/deepseek-harness-desktop",
       "headOid": "99f022c02541cd8b32925e529b6d07e6b799bcb0",
@@ -907,7 +2406,7 @@
     },
     "R_kgDOSOgY8g": {
       "repository": "nexu-io/open-design",
-      "headOid": "c144c80eab6eb9ed7f20e483caa9870abff34707",
+      "headOid": "262c1f8f00f15b574e1393a5b34fae8116322bd0",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -959,10 +2458,11 @@
     },
     "R_kgDOT3mJhA": {
       "repository": "openma-ai/deepseek-harness-tui",
-      "headOid": "90ce0e86d798399eb79c817b10465ff91aaacce8",
+      "headOid": "fd1add2a94e6185e998bf10f867c1cdead051bd0",
       "packageJson": {
         "name": "@openma/deepseek-harness-tui",
-        "version": "0.2.1",
+        "description": "Terminal-native ACP client UI; Cordis client tree, any ACP agent",
+        "version": "0.2.2-beta.2",
         "dsh": {
           "bundle": {
             "patch": true
@@ -981,11 +2481,11 @@
     },
     "R_kgDORq5Qhg": {
       "repository": "orziz/odai",
-      "headOid": "62e68d8bbdf621ba26dca1db3e1a4adbe26e7451",
+      "headOid": "6e229dc00c91f6aacbb652341934d06acef41833",
       "packageJson": {
         "name": "odai-dsh-plugin",
         "description": "Profile-wide odai governance and routing bundle for DeepSeek Harness.",
-        "version": "0.0.10",
+        "version": "0.1.1",
         "dsh": {
           "bundle": {
             "patch": true
@@ -1028,7 +2528,7 @@
     },
     "R_kgDOT4d-vw": {
       "repository": "PHoenixs57/deepseek-aix",
-      "headOid": "3027445743b33383a503c9ba63ec91fbe323d4c6",
+      "headOid": "64c7aaa9400887a9d92ac408882464d3d1b873e2",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -1065,6 +2565,22 @@
         ]
       }
     },
+    "R_kgDOT4fIFg": {
+      "repository": "puji4810/dsh-study",
+      "headOid": "b0492593130f34ca72ebf944f01bc25cbdca2dab",
+      "packageJson": {
+        "name": "@puji4810/dsh-study",
+        "description": "Workspace-scoped StudyOS learning tools and Web panel for DeepSeek Harness",
+        "version": "0.1.4",
+        "dsh": {
+          "bundle": {
+            "patch": true
+          }
+        }
+      },
+      "packagePath": "packages/dsh-study",
+      "review": null
+    },
     "R_kgDOT4fM4Q": {
       "repository": "qidiai/dsh-contrib-topology",
       "headOid": "9cbb5077ad052b09a28a34df22489419e805a516",
@@ -1098,7 +2614,7 @@
     },
     "R_kgDOT6BuCg": {
       "repository": "Rewmington/deskwhale-harness",
-      "headOid": "260090eb3487b99ac1c9491976b55dc45af92856",
+      "headOid": "9b37b202ef07503d7ffdbfbdee9f381b8a1f0a8c",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -1160,7 +2676,7 @@
     },
     "R_kgDOT359UQ": {
       "repository": "soolaugust/deepseek-harness-cli",
-      "headOid": "6b4b4271b37292bdf361a1c21645d2fe36d27f69",
+      "headOid": "8b8edad5a81621b30f2b60ae65c3e5b6b1570282",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -1203,7 +2719,7 @@
     },
     "R_kgDOT5V-xQ": {
       "repository": "stvlynn/dsh.fish",
-      "headOid": "79766e34fd035484913763cf254d1b1b3ef1baa3",
+      "headOid": "9fac2a6c68a401489c0ad125596faa63dee4d357",
       "packageJson": null,
       "packagePath": null,
       "review": {
@@ -1236,7 +2752,7 @@
     },
     "R_kgDOT6R5UQ": {
       "repository": "temotee2103/dsh-overdrive",
-      "headOid": "526dd41a3ea70315ffd5db1fa27e9fe9d8b743a0",
+      "headOid": "6824b2548c74964d6f61474be58b832eb970caa1",
       "packageJson": {
         "name": "@dsh-overdrive/gateway-core",
         "description": "dsh-overdrive: DeepSeek Harness plugin — multi-platform chat bridge core (trajectory / approval / multi-agent)",
@@ -1472,11 +2988,11 @@
     },
     "R_kgDOTyhPAQ": {
       "repository": "xlight/deepseek-visionary",
-      "headOid": "9174409ba590d71660966eb0bedf0023fae5d35f",
+      "headOid": "f7a52ac826cb37f9f78e9815b15ee932fbd48667",
       "packageJson": {
         "name": "@xlight-oss/visionary-dsh",
         "description": "DeepSeek Visionary native plugin for DeepSeek Harness: deepseek_vision / status / login / logout native tools plus the text-model image bridge, all backed by the visionary-server CLI (DeepSeek web vision model, no API key).",
-        "version": "0.6.1",
+        "version": "0.7.0",
         "dsh": {
           "bundle": {
             "patch": true
@@ -1488,7 +3004,7 @@
     },
     "R_kgDOT4gL3A": {
       "repository": "XMoon/dsh-pi-tui",
-      "headOid": "194f1ad15e415fdb67771180d12a2a58f5865417",
+      "headOid": "fa73d6191fa8e756563335fbe6719c4488591972",
       "packageJson": {
         "name": "@xmoon76/dsh-pi-tui",
         "description": "The dsh-pi-tui bundle: a TUI surface for DeepSeek Harness profiles (dsh --profile pi-tui)",
@@ -1570,7 +3086,7 @@
     },
     "R_kgDOT3zODg": {
       "repository": "ZASENJC/dsh-plugins-store",
-      "headOid": "039d82da4a7448b11ac001b3a4aaa4fb9c4f245a",
+      "headOid": "c2977b0dde8cb39b238fdb723a8ee56555ee002c",
       "packageJson": {
         "name": "dsh-plugins-store",
         "description": "Native DSH browser integration for the DSH Plugin Store",
@@ -1625,9 +3141,10 @@
     },
     "R_kgDORnX0QA": {
       "repository": "zhaoolee/notes",
-      "headOid": "4d35c8542ea07582856b71c5ceb14cb3e24e2275",
+      "headOid": "c0ab9d3c48a65ae3ecb2b374af2323f168ec4ddc",
       "packageJson": {
         "name": "@zhaoolee/dsh-notes",
+        "description": "DeepSeek Harness 插件：把用户对话导出为锤子便签（通过便签服务 API 写入云端工作区）。",
         "version": "0.1.2",
         "dsh": {
           "bundle": {
@@ -1774,7 +3291,7 @@
     },
     "R_kgDOT18q2Q": {
       "repository": "zhu1090093659/dsh-web-ui",
-      "headOid": "8569c266fa236bf65ae9c9acbe7dc1a4c40bc62c",
+      "headOid": "92655dbefeaf08cb60429f4b487c33137889a3f7",
       "packageJson": {
         "name": "@linxin666/dsh-web-ui-all",
         "description": "DSH Web UI 全家桶聚合插件：一键安装全部功能插件（task-board / git-graph / pet / remote-web-ui / live-stats / web-ui-settings / skin-center / community-plugins / compat shim）+ 皮肤全家桶（dsh-skins，皮肤资产内置）。compat 桥接层已并入本包（src/client），无需独立 compat npm 包。",
