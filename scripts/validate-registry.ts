@@ -14,6 +14,7 @@ import type {
   VerificationStatus,
   WorkspaceCandidateRegistry,
   WorkspaceCandidateStatus,
+  WorkspaceInspectionCache,
   WorkspaceReviewReason,
 } from './lib/registry.ts'
 import type { RegistryOverrides } from './lib/registry.ts'
@@ -32,6 +33,13 @@ assert(registry.schemaVersion === 1, 'registry.schemaVersion must be 1')
 assert(!Number.isNaN(Date.parse(registry.generatedAt)), 'registry.generatedAt must be an ISO timestamp')
 assert(Array.isArray(registry.plugins), 'registry.plugins must be an array')
 assert(registry.stats.included === registry.plugins.length, 'stats.included does not match plugin count')
+assert(Number.isInteger(registry.source.reportedTotal), 'source.reportedTotal must be an integer')
+assert(Number.isInteger(registry.source.discoveredTotal), 'source.discoveredTotal must be an integer')
+assert(Number.isInteger(registry.source.slices), 'source.slices must be an integer')
+assert(
+  Number.isInteger(registry.source.graphqlRequests) && registry.source.graphqlRequests <= 700,
+  'source.graphqlRequests must be an integer no greater than 700',
+)
 
 const ids = new Set<string>()
 const allowedKinds = new Set<PluginKind>(['plugin', 'bundle', 'skin', 'client', 'application', 'collection', 'resource', 'unknown'])
@@ -94,7 +102,8 @@ const candidateRegistry = JSON.parse(
   await readFile(join(root, 'registry/candidates.json'), 'utf8'),
 ) as WorkspaceCandidateRegistry
 assert(candidateRegistry.schemaVersion === 1, 'candidates.schemaVersion must be 1')
-assert(candidateRegistry.generatedAt === registry.generatedAt, 'candidate and plugin registries were not generated together')
+assert(!Number.isNaN(Date.parse(candidateRegistry.generatedAt)), 'candidates.generatedAt must be an ISO timestamp')
+assert(Array.isArray(candidateRegistry.pending), 'candidates.pending must be an array')
 
 const allowedReviewReasons = new Set<WorkspaceReviewReason>([
   'multiple-verified-packages',
@@ -140,6 +149,39 @@ for (const [index, review] of candidateRegistry.reviews.entries()) {
   if (review.reason === 'no-verified-package') {
     assert(verifiedCount === 0, `${label}: no-package review contains a verified package`)
   }
+}
+
+const pendingRepositories = new Set<string>()
+for (const repository of candidateRegistry.pending ?? []) {
+  assert(/^[^/]+\/[^/]+$/.test(repository), `pending workspace repository is invalid: ${repository}`)
+  assert(!pendingRepositories.has(repository), `duplicate pending workspace repository: ${repository}`)
+  assert(!reviewedRepositories.has(repository), `workspace repository is both pending and reviewed: ${repository}`)
+  pendingRepositories.add(repository)
+}
+
+const inspectionCache = JSON.parse(
+  await readFile(join(root, 'registry/inspection-cache.json'), 'utf8'),
+) as WorkspaceInspectionCache
+assert(inspectionCache.schemaVersion === 1, 'inspection-cache.schemaVersion must be 1')
+const cachedRepositories = new Set<string>()
+for (const [nodeId, entry] of Object.entries(inspectionCache.entries)) {
+  const label = `inspection-cache.entries[${nodeId}]`
+  assert(nodeId.length > 0, `${label}: empty node id`)
+  assert(/^[^/]+\/[^/]+$/.test(entry.repository), `${label}: invalid repository`)
+  assert(!cachedRepositories.has(entry.repository), `${label}: duplicate repository`)
+  cachedRepositories.add(entry.repository)
+  assert(typeof entry.headOid === 'string' && entry.headOid.length > 0, `${label}: invalid HEAD oid`)
+  if (entry.packagePath !== null) {
+    try {
+      packageJsonContentPath(entry.packagePath)
+    } catch (error) {
+      assert(false, `${label}: ${(error as Error).message}`)
+    }
+  }
+  assert(
+    (entry.packageJson === null) === (entry.packagePath === null),
+    `${label}: cached package and path disagree`,
+  )
 }
 
 const overrides = JSON.parse(

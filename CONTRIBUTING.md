@@ -19,6 +19,12 @@ legacy, placeholder, archived, and otherwise unverified repositories are not
 published. A detected manifest is still not proof of runtime compatibility or
 security.
 
+Discovery is not popularity-gated. The updater partitions topic search by
+repository creation time until every query is small enough to fetch in one
+request, then deduplicates by GitHub repository node ID. Stars are used only to
+order the generated catalog. A root Bundle normally appears within the next
+12-hour refresh.
+
 ## Correct metadata
 
 Use `registry/overrides.json` for facts that cannot be derived reliably from
@@ -44,6 +50,11 @@ automatically only when exactly one package:
 Truncated trees, oversized workspaces, unpublished packages, repository
 mismatches, and repositories with multiple verified packages are not guessed.
 They are written to `registry/candidates.json` for review.
+
+Workspace tree inspection is rate-limited and resumable. Results are cached in
+`registry/inspection-cache.json` by default-branch HEAD, and repositories that
+do not fit in the current run's API budget remain visible in the `pending`
+queue. Root Bundle admission is not delayed by that queue.
 
 For a repository with multiple valid packages, set `packagePath` to the intended
 package directory relative to the repository root. The same npm checks apply to

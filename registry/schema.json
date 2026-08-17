@@ -9,12 +9,15 @@
     "generatedAt": { "type": "string", "format": "date-time" },
     "source": {
       "type": "object",
-      "required": ["provider", "query", "url", "reportedTotal"],
+      "required": ["provider", "query", "url", "reportedTotal", "discoveredTotal", "slices", "graphqlRequests"],
       "properties": {
         "provider": { "const": "github" },
         "query": { "type": "string" },
         "url": { "type": "string", "format": "uri" },
-        "reportedTotal": { "type": "integer", "minimum": 0 }
+        "reportedTotal": { "type": "integer", "minimum": 0 },
+        "discoveredTotal": { "type": "integer", "minimum": 0 },
+        "slices": { "type": "integer", "minimum": 0 },
+        "graphqlRequests": { "type": "integer", "minimum": 0, "maximum": 700 }
       },
       "additionalProperties": false
     },

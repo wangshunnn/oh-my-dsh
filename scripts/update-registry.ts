@@ -1,6 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { discoverRepositories } from './lib/discovery.ts'
+import type { DiscoveredRepository } from './lib/discovery.ts'
 import {
   REGISTRY_SCHEMA_VERSION,
   DISCOVERY_QUERY,
@@ -29,7 +31,6 @@ import {
 import type {
   GitHubContentResponse,
   GitHubRepository,
-  GitHubSearchResponse,
   GitHubTreeResponse,
   NpmPackageMetadata,
   PackageJson,
@@ -38,6 +39,8 @@ import type {
   RegistryOverrides,
   RegistryPlugin,
   WorkspaceCandidateRegistry,
+  WorkspaceInspectionCache,
+  WorkspaceInspectionCacheEntry,
   WorkspacePackageCandidate,
   WorkspaceReview,
 } from './lib/registry.ts'
@@ -45,55 +48,62 @@ import type {
 const root = fileURLToPath(new URL('..', import.meta.url))
 const token = getGitHubToken()
 const scanTimestamp = new Date().toISOString()
+const workspaceRequestLimit = Number(process.env.WORKSPACE_GITHUB_REQUEST_LIMIT ?? 500)
 
-if (!token) {
-  process.stderr.write('warning: no GitHub token found; unauthenticated rate limits may interrupt discovery\n')
+if (!Number.isInteger(workspaceRequestLimit) || workspaceRequestLimit < 1 || workspaceRequestLimit > 700) {
+  throw new Error('WORKSPACE_GITHUB_REQUEST_LIMIT must be an integer between 1 and 700')
 }
 
 const overrides = JSON.parse(
   await readFile(join(root, 'registry/overrides.json'), 'utf8'),
 ) as RegistryOverrides
 
-async function discoverRepositories(): Promise<{
-  repositories: GitHubRepository[]
-  reportedTotal: number
-}> {
-  const repositories: GitHubRepository[] = []
-  let reportedTotal = 0
-  for (let page = 1; page <= 10; page += 1) {
-    const parameters = new URLSearchParams({
-      q: DISCOVERY_QUERY,
-      per_page: '100',
-      page: String(page),
-      sort: 'stars',
-      order: 'desc',
-    })
-    const response = await githubRequest<GitHubSearchResponse>(`/search/repositories?${parameters}`, token)
-    if (!response) throw new Error('GitHub repository search unexpectedly returned 404')
-    reportedTotal = response.total_count
-    repositories.push(...response.items)
-    if (repositories.length >= Math.min(reportedTotal, 1000) || response.items.length === 0) break
+async function readJsonIfPresent<T>(path: string): Promise<T | null> {
+  try {
+    return JSON.parse(await readFile(path, 'utf8')) as T
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null
+    throw error
   }
-  const uniqueRepositories = [...new Map(
-    repositories.map(repository => [repository.full_name, repository]),
-  ).values()]
-  return { repositories: uniqueRepositories, reportedTotal }
 }
+
+const previousRegistry = await readJsonIfPresent<PluginRegistry>(join(root, 'registry/plugins.json'))
+const previousCandidateRegistry = await readJsonIfPresent<WorkspaceCandidateRegistry>(
+  join(root, 'registry/candidates.json'),
+)
+const previousWorkspaceCache = await readJsonIfPresent<WorkspaceInspectionCache>(
+  join(root, 'registry/inspection-cache.json'),
+) ?? { schemaVersion: 1, entries: {} }
+
+class WorkspaceBudgetExceeded extends Error {}
+
+class WorkspaceRequestBudget {
+  used = 0
+
+  constructor(readonly limit: number) {}
+
+  async request<T>(path: string): Promise<T | null> {
+    if (this.used >= this.limit) throw new WorkspaceBudgetExceeded('Workspace GitHub request budget exhausted')
+    this.used += 1
+    return await githubRequest<T>(path, token)
+  }
+}
+
+const workspaceBudget = new WorkspaceRequestBudget(workspaceRequestLimit)
 
 function excluded(repository: GitHubRepository): boolean {
   return overrides.owners?.[repository.owner.login]?.exclude === true
     || overrides.repositories?.[repository.full_name]?.exclude === true
 }
 
-async function readPackageJson(
+async function readWorkspacePackageJson(
   repository: GitHubRepository,
-  packagePath?: string,
+  packagePath: string,
 ): Promise<PackageJson | null> {
   const ref = encodeURIComponent(repository.default_branch)
   const contentPath = packageJsonContentPath(packagePath)
-  const content = await githubRequest<GitHubContentResponse>(
+  const content = await workspaceBudget.request<GitHubContentResponse>(
     `/repos/${repository.full_name}/contents/${contentPath}?ref=${ref}`,
-    token,
   )
   return decodePackageJson(content)
 }
@@ -101,6 +111,7 @@ async function readPackageJson(
 async function readNpmMetadata(packageName: string): Promise<NpmPackageMetadata | null> {
   const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(packageName)}`, {
     headers: { Accept: 'application/json', 'User-Agent': 'oh-my-dsh-registry' },
+    signal: AbortSignal.timeout(30_000),
   })
   if (response.status === 404) return null
   if (!response.ok) {
@@ -118,9 +129,8 @@ async function inspectWorkspace(
   review?: WorkspaceReview
 }> {
   const ref = encodeURIComponent(repository.default_branch)
-  const tree = await githubRequest<GitHubTreeResponse>(
+  const tree = await workspaceBudget.request<GitHubTreeResponse>(
     `/repos/${repository.full_name}/git/trees/${ref}?recursive=1`,
-    token,
   )
   if (!tree) return { packageJson: null }
 
@@ -138,7 +148,7 @@ async function inspectWorkspace(
 
   const manifests = await mapWithConcurrency(packageScan.paths, 4, async packagePath => ({
     packagePath,
-    packageJson: await readPackageJson(repository, packagePath),
+    packageJson: await readWorkspacePackageJson(repository, packagePath),
   }))
   const bundleManifests = manifests.filter(({ packageJson }) => detectManifest(packageJson) === 'dsh.bundle')
   if (bundleManifests.length === 0) return { packageJson: null }
@@ -176,35 +186,188 @@ async function inspectWorkspace(
   }
 }
 
-async function inspect(repository: GitHubRepository): Promise<{
+async function inspectConfiguredWorkspace(
+  repository: GitHubRepository,
+  packagePath: string,
+): Promise<{ packageJson: PackageJson; packagePath: string }> {
+  const packageJson = await readWorkspacePackageJson(repository, packagePath)
+  if (detectManifest(packageJson) !== 'dsh.bundle') {
+    throw new Error(`${repository.full_name}: configured workspace package has no current dsh.bundle manifest`)
+  }
+  const metadata = isPublicPackageManifest(packageJson)
+    ? await readNpmMetadata(packageJson.name)
+    : null
+  const status = verifyWorkspacePackage(repository.full_name, packageJson, metadata)
+  if (status !== 'verified') {
+    throw new Error(`${repository.full_name}: configured workspace package failed npm verification (${status})`)
+  }
+  return { packageJson: packageJson!, packagePath }
+}
+
+function compactWorkspacePackage(packageJson: PackageJson | null): PackageJson | null {
+  if (!packageJson || detectManifest(packageJson) !== 'dsh.bundle') return null
+  return {
+    ...(typeof packageJson.name === 'string' ? { name: packageJson.name } : {}),
+    ...(typeof packageJson.description === 'string' ? { description: packageJson.description } : {}),
+    ...(typeof packageJson.version === 'string' ? { version: packageJson.version } : {}),
+    ...(typeof packageJson.private === 'boolean' ? { private: packageJson.private } : {}),
+    dsh: { bundle: { patch: true } },
+  }
+}
+
+function seedFromPreviousPlugin(
+  discovered: DiscoveredRepository,
+  previous: RegistryPlugin | undefined,
+): WorkspaceInspectionCacheEntry | null {
+  const repository = discovered.repository
+  if (
+    !previous
+    || previous.verification.method !== 'workspace-package-manifest'
+    || previous.repositoryState.pushedAt !== repository.pushed_at
+    || previous.package.manifest !== 'dsh.bundle'
+    || !previous.package.path
+    || !repository.head_oid
+  ) return null
+
+  return {
+    repository: repository.full_name,
+    headOid: repository.head_oid,
+    packageJson: {
+      ...(previous.package.name ? { name: previous.package.name } : {}),
+      ...(previous.package.version ? { version: previous.package.version } : {}),
+      ...(previous.package.private !== null ? { private: previous.package.private } : {}),
+      dsh: { bundle: { patch: true } },
+    },
+    packagePath: previous.package.path,
+    review: null,
+  }
+}
+
+function workspacePriority(
+  discovered: DiscoveredRepository,
+  previous: RegistryPlugin | undefined,
+  reviewedRepositories: Set<string>,
+  pendingRepositories: Set<string>,
+): number {
+  const repository = discovered.repository
+  if (overrides.repositories?.[repository.full_name]?.packagePath) return 0
+  if (previous?.verification.method === 'workspace-package-manifest') return 1
+  if (discovered.rootPackageJson?.workspaces !== undefined || discovered.rootPackageJson?.pnpm !== undefined) return 2
+  if (reviewedRepositories.has(repository.full_name)) return 3
+  if (pendingRepositories.has(repository.full_name)) return 4
+  return 5
+}
+
+const discovery = await discoverRepositories(
+  token,
+  scanTimestamp,
+  undefined,
+  message => process.stdout.write(`${message}\n`),
+)
+const candidates = discovery.repositories.filter(({ repository }) => !excluded(repository))
+process.stdout.write(
+  `Discovered ${discovery.discoveredTotal} of ${discovery.reportedTotal} repositories across ${discovery.sliceCount} complete time slices (${discovery.graphqlRequests} GraphQL requests).\n`,
+)
+
+const previousPluginsById = new Map(previousRegistry?.plugins.map(plugin => [plugin.id, plugin]) ?? [])
+const reviewedRepositories = new Set(previousCandidateRegistry?.reviews.map(review => review.repository) ?? [])
+const pendingRepositories = new Set(previousCandidateRegistry?.pending ?? [])
+const workspaceEntries = new Map<string, WorkspaceInspectionCacheEntry>()
+const workspaceQueue: DiscoveredRepository[] = []
+
+for (const discovered of candidates) {
+  const repository = discovered.repository
+  const override = overrides.repositories?.[repository.full_name] ?? {}
+  const rootBundle = detectManifest(discovered.rootPackageJson) === 'dsh.bundle'
+  if (
+    repository.archived
+    || repository.size === 0
+    || !repository.head_oid
+    || (rootBundle && override.packagePath === undefined)
+  ) continue
+
+  const cached = previousWorkspaceCache.entries[repository.node_id]
+  if (cached?.headOid === repository.head_oid) {
+    workspaceEntries.set(repository.node_id, { ...cached, repository: repository.full_name })
+    continue
+  }
+  const seeded = seedFromPreviousPlugin(discovered, previousPluginsById.get(repository.full_name))
+  if (seeded) {
+    workspaceEntries.set(repository.node_id, seeded)
+    continue
+  }
+  workspaceQueue.push(discovered)
+}
+
+workspaceQueue.sort((a, b) => {
+  const priority = workspacePriority(
+    a,
+    previousPluginsById.get(a.repository.full_name),
+    reviewedRepositories,
+    pendingRepositories,
+  ) - workspacePriority(
+    b,
+    previousPluginsById.get(b.repository.full_name),
+    reviewedRepositories,
+    pendingRepositories,
+  )
+  return priority || a.repository.full_name.localeCompare(b.repository.full_name)
+})
+process.stdout.write(
+  `Workspace inspection: ${workspaceEntries.size} cached or seeded, ${workspaceQueue.length} queued, ${workspaceRequestLimit} REST requests available.\n`,
+)
+
+const pending: string[] = []
+for (let index = 0; index < workspaceQueue.length; index += 1) {
+  const discovered = workspaceQueue[index]
+  const repository = discovered.repository
+  const packagePath = overrides.repositories?.[repository.full_name]?.packagePath
+  try {
+    const result = packagePath
+      ? await inspectConfiguredWorkspace(repository, packagePath)
+      : await inspectWorkspace(repository)
+    workspaceEntries.set(repository.node_id, {
+      repository: repository.full_name,
+      headOid: repository.head_oid!,
+      packageJson: compactWorkspacePackage(result.packageJson),
+      packagePath: result.packagePath ?? null,
+      review: 'review' in result ? result.review ?? null : null,
+    })
+    if ((index + 1) % 50 === 0) {
+      process.stdout.write(
+        `Workspace inspection: ${index + 1}/${workspaceQueue.length} candidates processed, ${workspaceBudget.used}/${workspaceBudget.limit} REST requests used.\n`,
+      )
+    }
+  } catch (error) {
+    if (!(error instanceof WorkspaceBudgetExceeded)) throw error
+    pending.push(...workspaceQueue.slice(index).map(item => item.repository.full_name))
+    break
+  }
+}
+
+const workspaceCache: WorkspaceInspectionCache = {
+  schemaVersion: 1,
+  entries: Object.fromEntries(
+    [...workspaceEntries.entries()].sort(([, a], [, b]) => a.repository.localeCompare(b.repository)),
+  ),
+}
+
+function inspect(discovered: DiscoveredRepository): {
   plugin: RegistryPlugin
   review?: WorkspaceReview
-}> {
+} {
+  const repository = discovered.repository
   const override = overrides.repositories?.[repository.full_name] ?? {}
-  let packageJson: PackageJson | null = null
+  const workspace = workspaceEntries.get(repository.node_id)
+  let packageJson = discovered.rootPackageJson
   let packagePath: string | undefined
-  let review: WorkspaceReview | undefined
-  if (!repository.archived && repository.size > 0) {
-    packagePath = override.packagePath
-    packageJson = await readPackageJson(repository, packagePath)
 
-    if (packagePath !== undefined) {
-      if (detectManifest(packageJson) !== 'dsh.bundle') {
-        throw new Error(`${repository.full_name}: configured workspace package has no current dsh.bundle manifest`)
-      }
-      const metadata = isPublicPackageManifest(packageJson)
-        ? await readNpmMetadata(packageJson.name)
-        : null
-      const status = verifyWorkspacePackage(repository.full_name, packageJson, metadata)
-      if (status !== 'verified') {
-        throw new Error(`${repository.full_name}: configured workspace package failed npm verification (${status})`)
-      }
-    } else if (packagePath === undefined && detectManifest(packageJson) !== 'dsh.bundle') {
-      const workspace = await inspectWorkspace(repository)
-      packageJson = workspace.packageJson ?? packageJson
-      packagePath = workspace.packagePath
-      review = workspace.review
-    }
+  if (override.packagePath !== undefined) {
+    packageJson = workspace?.packageJson ?? null
+    packagePath = workspace?.packagePath ?? undefined
+  } else if (workspace?.packageJson) {
+    packageJson = workspace.packageJson
+    packagePath = workspace.packagePath ?? undefined
   }
 
   const manifest = detectManifest(packageJson)
@@ -273,25 +436,30 @@ async function inspect(repository: GitHubRepository): Promise<{
       },
     } : {}),
   }
-  return { plugin, review }
+  return { plugin, review: workspace?.review ?? undefined }
 }
 
-const { repositories: discovered, reportedTotal } = await discoverRepositories()
-const candidates = discovered.filter(repository => !excluded(repository))
-process.stdout.write(`Discovered ${reportedTotal} repositories; inspecting ${candidates.length} canonical candidates...\n`)
-
-const inspected = await mapWithConcurrency(candidates, 8, inspect)
+const inspected = candidates.map(inspect)
 const plugins = inspected
   .map(result => result.plugin)
   .filter(plugin => plugin.verification.status === 'manifest-detected')
 plugins.sort((a, b) => b.metrics.stars - a.metrics.stars || a.id.localeCompare(b.id))
 
-const candidateRegistry: WorkspaceCandidateRegistry = {
-  schemaVersion: 1,
-  generatedAt: scanTimestamp,
-  reviews: inspected
-    .flatMap(result => result.review ? [result.review] : [])
-    .sort((a, b) => a.repository.localeCompare(b.repository)),
+function pluginWithoutCheckedAt(plugin: RegistryPlugin): RegistryPlugin {
+  return {
+    ...plugin,
+    verification: { ...plugin.verification, checkedAt: '' },
+  }
+}
+
+for (const plugin of plugins) {
+  const previous = previousPluginsById.get(plugin.id)
+  if (
+    previous
+    && JSON.stringify(pluginWithoutCheckedAt(previous)) === JSON.stringify(pluginWithoutCheckedAt(plugin))
+  ) {
+    plugin.verification.checkedAt = previous.verification.checkedAt
+  }
 }
 
 const registry: PluginRegistry = {
@@ -301,7 +469,10 @@ const registry: PluginRegistry = {
     provider: 'github',
     query: DISCOVERY_QUERY,
     url: 'https://github.com/topics/dsh-plugin',
-    reportedTotal,
+    reportedTotal: discovery.reportedTotal,
+    discoveredTotal: discovery.discoveredTotal,
+    slices: discovery.sliceCount,
+    graphqlRequests: discovery.graphqlRequests,
   },
   stats: {
     included: plugins.length,
@@ -309,6 +480,40 @@ const registry: PluginRegistry = {
     byStatus: countBy(plugins.map(plugin => ({ status: plugin.verification.status })), 'status'),
   },
   plugins,
+}
+
+const candidateRegistry: WorkspaceCandidateRegistry = {
+  schemaVersion: 1,
+  generatedAt: scanTimestamp,
+  pending: [...new Set(pending)].sort(),
+  reviews: inspected
+    .flatMap(result => result.review ? [result.review] : [])
+    .sort((a, b) => a.repository.localeCompare(b.repository)),
+}
+
+function registryWithoutTimestamps(value: PluginRegistry): PluginRegistry {
+  return {
+    ...value,
+    generatedAt: '',
+    plugins: value.plugins.map(pluginWithoutCheckedAt),
+  }
+}
+
+function candidatesWithoutTimestamp(value: WorkspaceCandidateRegistry): WorkspaceCandidateRegistry {
+  return { ...value, generatedAt: '' }
+}
+
+const registryChanged = !previousRegistry
+  || JSON.stringify(registryWithoutTimestamps(previousRegistry)) !== JSON.stringify(registryWithoutTimestamps(registry))
+const candidatesChanged = !previousCandidateRegistry
+  || JSON.stringify(candidatesWithoutTimestamp({
+    ...previousCandidateRegistry,
+    pending: previousCandidateRegistry.pending ?? [],
+  })) !== JSON.stringify(candidatesWithoutTimestamp(candidateRegistry))
+
+if (!registryChanged && previousRegistry) registry.generatedAt = previousRegistry.generatedAt
+if (!candidatesChanged && previousCandidateRegistry) {
+  candidateRegistry.generatedAt = previousCandidateRegistry.generatedAt
 }
 
 const collectionFiles: PluginCollection[] = (await Promise.all([
@@ -349,6 +554,7 @@ await Promise.all([
 await Promise.all([
   writeFile(join(root, 'registry/plugins.json'), `${JSON.stringify(registry, null, 2)}\n`),
   writeFile(join(root, 'registry/candidates.json'), `${JSON.stringify(candidateRegistry, null, 2)}\n`),
+  writeFile(join(root, 'registry/inspection-cache.json'), `${JSON.stringify(workspaceCache, null, 2)}\n`),
   writeFile(join(root, 'docs/catalog.md'), buildCatalog(registry)),
   writeFile(join(root, 'docs/collections.md'), collectionMarkdown(collectionFiles, registry)),
   writeFile(join(root, 'README.md'), renderedReadme),
@@ -356,5 +562,5 @@ await Promise.all([
 ])
 
 process.stdout.write(
-  `Wrote ${plugins.length} entries (${registry.stats.byStatus['manifest-detected'] ?? 0} current bundle manifests detected) and ${candidateRegistry.reviews.length} workspace reviews.\n`,
+  `Wrote ${plugins.length} plugin entries, ${candidateRegistry.reviews.length} workspace reviews, and ${candidateRegistry.pending.length} pending workspace inspections (${workspaceBudget.used}/${workspaceBudget.limit} REST requests).\n`,
 )

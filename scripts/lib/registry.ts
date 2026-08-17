@@ -17,6 +17,8 @@ export interface PackageJson {
   version?: string
   private?: boolean
   files?: string[]
+  workspaces?: unknown
+  pnpm?: unknown
   dsh?: {
     bundle?: {
       patch?: unknown
@@ -35,6 +37,7 @@ export interface ClassificationRepository {
 }
 
 export interface GitHubRepository extends ClassificationRepository {
+  node_id: string
   full_name: string
   owner: {
     login: string
@@ -50,8 +53,9 @@ export interface GitHubRepository extends ClassificationRepository {
   open_issues_count: number
   default_branch: string
   created_at: string
-  pushed_at: string
+  pushed_at: string | null
   updated_at: string
+  head_oid: string | null
 }
 
 export interface GitHubSearchResponse {
@@ -95,7 +99,21 @@ export interface WorkspaceReview {
 export interface WorkspaceCandidateRegistry {
   schemaVersion: number
   generatedAt: string
+  pending: string[]
   reviews: WorkspaceReview[]
+}
+
+export interface WorkspaceInspectionCacheEntry {
+  repository: string
+  headOid: string
+  packageJson: PackageJson | null
+  packagePath: string | null
+  review: WorkspaceReview | null
+}
+
+export interface WorkspaceInspectionCache {
+  schemaVersion: number
+  entries: Record<string, WorkspaceInspectionCacheEntry>
 }
 
 export interface RepositoryOverride {
@@ -138,7 +156,7 @@ export interface RegistryPlugin {
     empty: boolean
     defaultBranch: string
     createdAt: string
-    pushedAt: string
+    pushedAt: string | null
     updatedAt: string
   }
   package: {
@@ -176,6 +194,9 @@ export interface PluginRegistry {
     query: string
     url: string
     reportedTotal: number
+    discoveredTotal: number
+    slices: number
+    graphqlRequests: number
   }
   stats: {
     included: number
@@ -427,22 +448,89 @@ export function getGitHubToken(): string {
   return result.status === 0 ? result.stdout.trim() : ''
 }
 
+const GITHUB_API_HEADERS = {
+  Accept: 'application/vnd.github+json',
+  'User-Agent': 'oh-my-dsh-registry',
+  'X-GitHub-Api-Version': '2022-11-28',
+}
+
+function retryDelay(response: Response | null, attempt: number): number {
+  const retryAfter = Number(response?.headers.get('retry-after'))
+  if (Number.isFinite(retryAfter) && retryAfter > 0) return Math.min(retryAfter * 1000, 60_000)
+  return Math.min(1000 * 2 ** attempt, 15_000)
+}
+
+async function githubFetch(
+  url: string,
+  token: string,
+  init: RequestInit = {},
+  attempts = 4,
+): Promise<Response> {
+  let lastError: unknown
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    let response: Response | null = null
+    try {
+      response = await fetch(url, {
+        ...init,
+        headers: {
+          ...GITHUB_API_HEADERS,
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          ...init.headers,
+        },
+        signal: AbortSignal.timeout(60_000),
+      })
+    } catch (error) {
+      lastError = error
+      if (attempt === attempts - 1) throw error
+      await new Promise(resolve => setTimeout(resolve, retryDelay(null, attempt)))
+      continue
+    }
+
+    if (response.ok || response.status === 404) return response
+
+    const detail = (await response.text()).slice(0, 500)
+    const retryable = [429, 502, 503, 504].includes(response.status)
+      || (response.status === 403 && (
+        response.headers.has('retry-after')
+        || /secondary rate limit|temporarily blocked/i.test(detail)
+      ))
+    const responseError = new Error(`GitHub API ${response.status} for ${url}: ${detail}`)
+    if (!retryable || attempt === attempts - 1) {
+      throw responseError
+    }
+    lastError = responseError
+    await new Promise(resolve => setTimeout(resolve, retryDelay(response, attempt)))
+  }
+  throw lastError
+}
+
 export async function githubRequest<T>(path: string, token: string): Promise<T | null> {
-  const response = await fetch(`https://api.github.com${path}`, {
-    headers: {
-      Accept: 'application/vnd.github+json',
-      'User-Agent': 'oh-my-dsh-registry',
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-  })
+  const response = await githubFetch(`https://api.github.com${path}`, token)
 
   if (response.status === 404) return null
-  if (!response.ok) {
-    const detail = (await response.text()).slice(0, 500)
-    throw new Error(`GitHub API ${response.status} for ${path}: ${detail}`)
-  }
   return await response.json() as T
+}
+
+export async function githubGraphqlRequest<T>(
+  query: string,
+  variables: Record<string, unknown>,
+  token: string,
+): Promise<T> {
+  const response = await githubFetch('https://api.github.com/graphql', token, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, variables }),
+  })
+  const payload = await response.json() as {
+    data?: T
+    errors?: Array<{ message?: string }>
+  }
+  if (!payload.data || payload.errors?.length) {
+    const detail = payload.errors?.map(error => error.message ?? 'unknown GraphQL error').join('; ')
+      ?? 'missing GraphQL data'
+    throw new Error(`GitHub GraphQL request failed: ${detail}`)
+  }
+  return payload.data
 }
 
 export function decodePackageJson(contentResponse: GitHubContentResponse | null): PackageJson | null {
@@ -452,6 +540,18 @@ export function decodePackageJson(contentResponse: GitHubContentResponse | null)
   try {
     const source = Buffer.from(contentResponse.content, 'base64').toString('utf8')
     return JSON.parse(source) as PackageJson
+  } catch {
+    return null
+  }
+}
+
+export function decodePackageJsonText(source: string | null | undefined): PackageJson | null {
+  if (!source) return null
+  try {
+    const value = JSON.parse(source) as unknown
+    return value !== null && typeof value === 'object' && !Array.isArray(value)
+      ? value as PackageJson
+      : null
   } catch {
     return null
   }
@@ -516,6 +616,9 @@ export function buildCatalog(registry: PluginRegistry): string {
     '',
     '## Snapshot',
     '',
+    `- Discovered repositories: **${registry.source.discoveredTotal}**`,
+    `- Complete discovery slices: **${registry.source.slices}**`,
+    `- GraphQL discovery requests: **${registry.source.graphqlRequests}**`,
     `- Included repositories: **${registry.stats.included}**`,
     ...Object.entries(registry.stats.byStatus).map(([status, count]) => `- ${status}: **${count}**`),
     '',
