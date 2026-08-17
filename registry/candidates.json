@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-16T16:44:21.405Z",
+  "generatedAt": "2026-08-17T01:57:41.004Z",
   "reviews": [
     {
       "repository": "147228/dsh-xiaoyao-skins",
@@ -116,6 +116,17 @@
       "candidates": []
     },
     {
+      "repository": "CanglongCl/dsh-web-review",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/dsh-web-review",
+          "packageName": "@canglongcl/dsh-web-review",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
       "repository": "CAPTAIN1275/dsh-ui-web",
       "reason": "multiple-verified-packages",
       "candidates": [
@@ -142,11 +153,6 @@
         {
           "packagePath": "packages/dsh-pet",
           "packageName": "@captain1275/dsh-pet",
-          "status": "verified"
-        },
-        {
-          "packagePath": "packages/dsh-remote-web-ui",
-          "packageName": "@captain1275/dsh-remote-web-ui",
           "status": "verified"
         },
         {
@@ -319,17 +325,6 @@
       ]
     },
     {
-      "repository": "chokwinlee/deepseek-harness-desktop",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "test/fixtures/sample-plugin",
-          "packageName": "dsh-desktop-fixture-plugin",
-          "status": "invalid-manifest"
-        }
-      ]
-    },
-    {
       "repository": "crafter-station/petdex",
       "reason": "no-verified-package",
       "candidates": [
@@ -345,19 +340,9 @@
       "reason": "no-verified-package",
       "candidates": [
         {
-          "packagePath": "dsh-plugins/dsh-annotation-patched",
-          "packageName": "@omdsh-dev/dsh-annotation",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "dsh-plugins/dsh-memory",
-          "packageName": "dsh-memory",
+          "packagePath": "dsh-plugins/dsh-layered-memory",
+          "packageName": "dsh-layered-memory",
           "status": "repository-mismatch"
-        },
-        {
-          "packagePath": "dsh-plugins/dsh-mode-boost",
-          "packageName": "@dsh-external/dsh-mode-boost",
-          "status": "unpublished"
         },
         {
           "packagePath": "dsh-plugins/dsh-ocr1-memory",
@@ -368,11 +353,6 @@
           "packagePath": "dsh-plugins/dsh-side-panel-patched",
           "packageName": "@dsh-external/dsh-side-panel",
           "status": "unpublished"
-        },
-        {
-          "packagePath": "dsh-plugins/dsh-super-injector",
-          "packageName": "@dsh-external/dsh-super-injector",
-          "status": "invalid-manifest"
         },
         {
           "packagePath": "dsh-plugins/dsh-vision-skill",
@@ -477,7 +457,7 @@
         {
           "packagePath": "plugins/dsh-slides",
           "packageName": "dsh-slides",
-          "status": "unpublished"
+          "status": "repository-mismatch"
         },
         {
           "packagePath": "plugins/dsh-viz",
@@ -551,9 +531,25 @@
       ]
     },
     {
+      "repository": "inthepond/ff-toolkit",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "integrations/deepseek-harness",
+          "packageName": "dsh-ffkit",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "JustGenius-s/DSH-Plugs",
       "reason": "no-verified-package",
       "candidates": [
+        {
+          "packagePath": "plugins/dash-codex",
+          "packageName": "@just-genius/dash-codex",
+          "status": "unpublished"
+        },
         {
           "packagePath": "plugins/dsh-desktop-update",
           "packageName": "@just-genius/dsh-desktop-update",
@@ -572,11 +568,6 @@
         {
           "packagePath": "plugins/dsh-wechat-chat",
           "packageName": "@just-genius/dsh-wechat-chat",
-          "status": "unpublished"
-        },
-        {
-          "packagePath": "plugins/session-navigator",
-          "packageName": "@just-genius/dsh-session-navigator",
           "status": "unpublished"
         }
       ]
@@ -1370,6 +1361,17 @@
         {
           "packagePath": "examples/hello-plugin",
           "packageName": "dsh-hello-plugin",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "ZJU-REAL/Polaris",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "integrations/deepseek-harness",
+          "packageName": "@polaris-ai/deepseek-harness-plugin",
           "status": "unpublished"
         }
       ]
