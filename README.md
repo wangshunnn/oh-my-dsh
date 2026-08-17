@@ -19,7 +19,7 @@
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## 插件目录
 
-**收录 685 个检测到当前 Bundle 清单的项目**
+**收录 3960 个检测到当前 Bundle 清单的项目**
 
 | 入口 | 适合你在找什么 |
 | --- | --- |
@@ -42,20 +42,20 @@
 
 | 插件 | 简介 | Stars | License |
 | --- | --- | ---: | --- |
-| [tt-a1i/archify](https://github.com/tt-a1i/archify) | Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and… | 13398 | MIT |
-| [anywhere-labs/deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) | 为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案 | 9263 | MIT |
-| [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | Plugin and skin collection for DeepSeek Harness (DSH) Web UI - task board, git graph, r… | 3504 | Apache-2.0 |
-| [strukto-ai/mirage](https://github.com/strukto-ai/mirage) | The World's First Unified Virtual Filesystem For AI Agents | 3474 | Apache-2.0 |
-| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 2412 | MIT |
-| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理页面 | 1664 | MIT |
-| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | DSH 官方公众号收录的 TUI 补位插件：Claude Code 风，鲸鱼顶栏/实时状态/流式思考/双击 Esc 回滚/上下文进度+TPS。npm 一键装。 DSH off… | 1572 | MIT |
-| [agentrq/agentrq](https://github.com/agentrq/agentrq) | AgentRQ: Human-in-loop realtime conversational task manager for AI Agents. Self-hosted!… | 1073 | Apache-2.0 |
-| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1028 | MIT |
-| [ccch1mneyyy/working-activity](https://github.com/ccch1mneyyy/working-activity) | Lively Working-line extension for pi CLI and DSH | 646 | MIT |
-| [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | Open-source CMA-compatible agent runtime for any model, with MCP tools, sandboxed sessi… | 606 | Apache-2.0 |
-| [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) | The plugin market inside DeepSeek Harness — browse, search, one-click install · DSH 可视化… | 592 | MIT |
+| [tt-a1i/archify](https://github.com/tt-a1i/archify) | Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and… | 13630 | MIT |
+| [anywhere-labs/deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) | 为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。 | 10543 | MIT |
+| [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | Plugin and skin collection for DeepSeek Harness (DSH) Web UI - task board, git graph, r… | 3804 | Apache-2.0 |
+| [strukto-ai/mirage](https://github.com/strukto-ai/mirage) | The World's First Unified Virtual Filesystem For AI Agents | 3487 | Apache-2.0 |
+| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 2594 | MIT |
+| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理页面 | 1814 | MIT |
+| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | DSH 官方公众号收录的 TUI 补位插件：Claude Code 风，鲸鱼顶栏/实时状态/流式思考/双击 Esc 回滚/上下文进度+TPS。npm 一键装。 DSH off… | 1710 | MIT |
+| [agentrq/agentrq](https://github.com/agentrq/agentrq) | AgentRQ: Human-in-loop realtime conversational task manager for AI Agents. Self-hosted!… | 1075 | Apache-2.0 |
+| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1033 | MIT |
+| [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) | The plugin market inside DeepSeek Harness — browse, search, one-click install · DSH 可视化… | 725 | MIT |
+| [ccch1mneyyy/working-activity](https://github.com/ccch1mneyyy/working-activity) | Lively Working-line extension for pi CLI and DSH | 648 | MIT |
+| [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | Open-source CMA-compatible agent runtime for any model, with MCP tools, sandboxed sessi… | 611 | Apache-2.0 |
 
-[**查看全部 685 个当前 Bundle 插件 →**](./docs/catalog.md)
+[**查看全部 3960 个当前 Bundle 插件 →**](./docs/catalog.md)
 <!-- GENERATED:PLUGIN-INDEX:END -->
 
 ## 为什么需要 oh-my-dsh？
@@ -100,11 +100,12 @@ npx @deepseek-ai/dsh plugin --profile web add @scope/package
 ## 数据与维护
 
 - [`registry/plugins.json`](./registry/plugins.json)：当前 Bundle 的机器可读 Registry。
-- [`registry/candidates.json`](./registry/candidates.json)：需要人工判断的 monorepo workspace 候选。
+- [`registry/candidates.json`](./registry/candidates.json)：待检查及需要人工判断的 monorepo workspace 候选。
+- [`registry/inspection-cache.json`](./registry/inspection-cache.json)：按默认分支 HEAD 复用的 workspace 结构检查结果。
 - [`docs/catalog.md`](./docs/catalog.md)：自动生成的可安装插件目录。
 - [`collections/`](./collections)：人工策划的场景化精选。
 - [`registry/overrides.json`](./registry/overrides.json)：分类修正、镜像去重与说明。
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每 8 小时自动刷新。
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每 12 小时自动刷新。
 
 本地刷新需要 Node.js 20+。请先安装依赖，并建议提供 GitHub Token：
 
@@ -114,7 +115,7 @@ GITHUB_TOKEN=... npm run update
 npm run check
 ```
 
-更新脚本会自动生成中英文 README 首页索引、完整目录、公共 Registry 和 workspace 审核队列；校验器会阻止重复仓库、失效精选链接、过期 README 和缺少证据的安装命令进入主分支。
+更新脚本按仓库创建时间递归切分 GitHub topic 搜索，每个时间片一次完整读取，不以 Stars 决定发现资格。根清单随 GraphQL 发现批量读取；workspace 使用 HEAD 缓存和单次请求预算渐进检查。脚本会生成中英文 README 首页索引、完整目录、公共 Registry 和 workspace 审核队列；校验器会阻止截断发现、重复仓库、失效精选链接、过期 README 和缺少证据的安装命令进入主分支。
 
 ## 收录与贡献
 
@@ -125,7 +126,7 @@ npm run check
 - [x] GitHub 全量发现与 canonical repository 去重
 - [x] 当前 Bundle 清单准入与误标仓库过滤
 - [x] 首页索引、全量目录与机器可读 Registry
-- [x] 每 8 小时自动刷新和一致性校验
+- [x] 每 12 小时自动刷新和一致性校验
 - [ ] 针对准确 DSH revision 的构建兼容矩阵
 - [ ] 权限与安装脚本风险信号
 - [ ] 可组合、可复现的 Starter Packs

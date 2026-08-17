@@ -19,7 +19,7 @@
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## Plugin directory
 
-**685 projects with a current Bundle manifest detected**
+**3960 projects with a current Bundle manifest detected**
 
 | Entry point | Best for |
 | --- | --- |
@@ -42,20 +42,20 @@
 
 | Plugin | Description | Stars | License |
 | --- | --- | ---: | --- |
-| [tt-a1i/archify](https://github.com/tt-a1i/archify) | Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and… | 13398 | MIT |
-| [anywhere-labs/deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) | 为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案 | 9263 | MIT |
-| [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | Plugin and skin collection for DeepSeek Harness (DSH) Web UI - task board, git graph, r… | 3504 | Apache-2.0 |
-| [strukto-ai/mirage](https://github.com/strukto-ai/mirage) | The World's First Unified Virtual Filesystem For AI Agents | 3474 | Apache-2.0 |
-| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 2412 | MIT |
-| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理页面 | 1664 | MIT |
-| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | DSH 官方公众号收录的 TUI 补位插件：Claude Code 风，鲸鱼顶栏/实时状态/流式思考/双击 Esc 回滚/上下文进度+TPS。npm 一键装。 DSH off… | 1572 | MIT |
-| [agentrq/agentrq](https://github.com/agentrq/agentrq) | AgentRQ: Human-in-loop realtime conversational task manager for AI Agents. Self-hosted!… | 1073 | Apache-2.0 |
-| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1028 | MIT |
-| [ccch1mneyyy/working-activity](https://github.com/ccch1mneyyy/working-activity) | Lively Working-line extension for pi CLI and DSH | 646 | MIT |
-| [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | Open-source CMA-compatible agent runtime for any model, with MCP tools, sandboxed sessi… | 606 | Apache-2.0 |
-| [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) | The plugin market inside DeepSeek Harness — browse, search, one-click install · DSH 可视化… | 592 | MIT |
+| [tt-a1i/archify](https://github.com/tt-a1i/archify) | Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and… | 13630 | MIT |
+| [anywhere-labs/deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) | 为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。 | 10543 | MIT |
+| [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | Plugin and skin collection for DeepSeek Harness (DSH) Web UI - task board, git graph, r… | 3804 | Apache-2.0 |
+| [strukto-ai/mirage](https://github.com/strukto-ai/mirage) | The World's First Unified Virtual Filesystem For AI Agents | 3487 | Apache-2.0 |
+| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 2594 | MIT |
+| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理页面 | 1814 | MIT |
+| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | DSH 官方公众号收录的 TUI 补位插件：Claude Code 风，鲸鱼顶栏/实时状态/流式思考/双击 Esc 回滚/上下文进度+TPS。npm 一键装。 DSH off… | 1710 | MIT |
+| [agentrq/agentrq](https://github.com/agentrq/agentrq) | AgentRQ: Human-in-loop realtime conversational task manager for AI Agents. Self-hosted!… | 1075 | Apache-2.0 |
+| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1033 | MIT |
+| [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) | The plugin market inside DeepSeek Harness — browse, search, one-click install · DSH 可视化… | 725 | MIT |
+| [ccch1mneyyy/working-activity](https://github.com/ccch1mneyyy/working-activity) | Lively Working-line extension for pi CLI and DSH | 648 | MIT |
+| [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | Open-source CMA-compatible agent runtime for any model, with MCP tools, sandboxed sessi… | 611 | Apache-2.0 |
 
-[**View all 685 current Bundle plugins →**](./docs/catalog.md)
+[**View all 3960 current Bundle plugins →**](./docs/catalog.md)
 <!-- GENERATED:PLUGIN-INDEX:END -->
 
 ## Why oh-my-dsh?
@@ -99,11 +99,12 @@ We will not use “verified compatible” until automated builds or runtime test
 ## Data and maintenance
 
 - [`registry/plugins.json`](./registry/plugins.json): the machine-readable current Bundle registry.
-- [`registry/candidates.json`](./registry/candidates.json): monorepo workspace candidates that require review.
+- [`registry/candidates.json`](./registry/candidates.json): monorepo workspaces pending inspection or review.
+- [`registry/inspection-cache.json`](./registry/inspection-cache.json): workspace inspection results reused by default-branch HEAD.
 - [`docs/catalog.md`](./docs/catalog.md): the generated installable plugin catalog.
 - [`collections/`](./collections): manually curated, use-case-based collections.
 - [`registry/overrides.json`](./registry/overrides.json): category corrections, mirror deduplication, and notes.
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): the refresh workflow that runs every 8 hours.
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): the refresh workflow that runs every 12 hours.
 
 Local refreshes require Node.js 20+. Install dependencies and, preferably, provide a GitHub token:
 
@@ -113,7 +114,7 @@ GITHUB_TOKEN=... npm run update
 npm run check
 ```
 
-The updater regenerates both README indexes, the full catalog, the public registry, and the workspace review queue. Validation prevents duplicate repositories, broken collection references, stale README sections, and install commands without sufficient evidence from reaching the default branch.
+The updater recursively partitions GitHub topic search by repository creation time and fetches every time slice completely; Stars never determine discovery eligibility. Root manifests are read in the GraphQL discovery batch, while workspaces use a HEAD-keyed cache and a per-run request budget. The updater regenerates both README indexes, the full catalog, the public registry, and the workspace review queue. Validation prevents truncated discovery, duplicate repositories, broken collection references, stale README sections, and install commands without sufficient evidence from reaching the default branch.
 
 ## Inclusion and contributions
 
@@ -124,7 +125,7 @@ Plugin authors must add the `dsh-plugin` topic to the canonical public repositor
 - [x] GitHub-wide discovery and canonical repository deduplication
 - [x] Current Bundle admission and false-positive filtering
 - [x] Homepage indexes, full catalog, and machine-readable registry
-- [x] Refresh every 8 hours with consistency validation
+- [x] Refresh every 12 hours with consistency validation
 - [ ] Build compatibility matrix tied to exact DSH revisions
 - [ ] Permission and installation-script risk signals
 - [ ] Composable and reproducible Starter Packs
