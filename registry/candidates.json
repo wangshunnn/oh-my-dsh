@@ -1,64 +1,38 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-18T03:11:08.959Z",
+  "generatedAt": "2026-08-18T14:54:49.893Z",
   "pending": [
-    "0326/dsh-plugin-market",
-    "1HelloMan1/dsh-usage-dashboard-plus",
-    "6HOLLIS/dsh-session-manager",
-    "ARFCON/dsh-hub-DSH",
-    "AdamPlatin123/awesome-dsh-plugins",
-    "AlexisDevos/dsh-remote-vps",
-    "AlliotTech/deepseek-harness-docker",
-    "AlloyPlane/gitguard",
-    "AlloyPlane/kic-ai-cn",
-    "Andiii208/dsh-remote",
-    "Anil-matcha/awesome-dsh-plugin",
-    "Anionex/agent-vision-toolkit",
-    "AnkoCD/dsh-server-deployment",
-    "Ariestar/sivtr",
-    "AtlasCloudAI/atlas-cloud-skills",
-    "AtlasCloudAI/mcp-server",
-    "Awesome-AI-Pedia/Awesome-AI-Pedia",
-    "BAIKAI23333/dsh-skills-manager",
-    "BB-84C/deepseek-harness-mobile-solution",
-    "CH4ACKO3/dsh-webui-studio",
-    "CHplus0/dsh-learning-mode",
-    "CJackHwang/Succinix",
-    "CSlawyer1985/dsh-desktop",
-    "ChaoYuZhang001/dsh-gate",
-    "ChisaAlter/Deepseek-Harness-Desktop",
-    "Chocomintopia/dsh-jetbrains-plugin",
-    "ChuanTianML/dsh-island",
-    "Chungor/owlx-mcp",
-    "Civitasv/dsh-plugin-colorscheme",
-    "Civitasv/dsh-plugin-diff-review",
-    "Civitasv/dsh-plugin-open-editor",
-    "ClaireXi99/dsh-data-insight",
-    "ClancyLiao/dsh-plugins",
-    "Cloudstill/dsh-research-plugins",
-    "Cnkore007/dsh-Desktop-Client",
-    "CnsMaple/dsh-client-ui-skill-fuzzy",
-    "CoaseEdge/AgentNavi",
-    "Codingendless/dsh-liang-rheostat",
-    "Columbina-Sublunar/dsh-plugin-zh-cn",
-    "ConradLu2740/pa-dsh",
-    "Corundum-Ling/dsh-desktop",
-    "CraZY222123/dsh-ocr-plugin",
-    "Crayonnan/DeepSeek-harness-Extension",
-    "Crayonnan/dsh-math-modeling-skills-Gatecraft-",
-    "Cryonnan/GateCraft-math-modeling-skills",
-    "Culeot/dsh-agent-memory",
-    "Culeot/dsh-batch-pipeline",
-    "Culeot/dsh-weixin-bridge",
-    "CyanoOrg/dsh-norm-spec",
-    "CyberryRe/lx_music-for-dsh",
+    "0xsline/awesome-deepseek-harness",
+    "123caiji/dsh-memory-toolkit",
+    "19217057226/whale-pet",
+    "21hbguo/dsh-agent-board",
+    "21hbguo/dsh-feishu-bridge-plugin",
+    "21hbguo/dsh-session-batch-manager",
+    "2275803244-cpu/dsh-model-switcher",
+    "2275803244-cpu/dsh-session-search",
+    "666489/dsh-nature-papers",
+    "863683348/dsh-plugin-quality-hub",
+    "ADAning/dsh-pixel-skin",
+    "ANOKO1122/dsh-harness-control",
+    "Aampidy/mcmp-1",
+    "Ackow/dsh-desktop",
+    "Ackow/dshdesktop-client",
+    "Alice-P197/dsh-skills",
+    "Angelyeye/dsh-cost-tracker",
+    "Army1900/dsh-cordis-emotion-engine",
+    "ArmyWas/dsh-plugin-reducer",
+    "ArvinQi/dsh-mcp",
+    "AshModeling/dsh-light-theater",
+    "AtlasCloudAI/cli",
+    "AuraxM/dsh-plugin-ui-turnav",
+    "BinLe1988/gamify-edu",
+    "Binaryinject/dsh-tray",
+    "ChenLaoshiYF/dsh-mcpguard",
+    "ChenYiming-aaa/dsh-account-stats",
     "DDDFXYqiming/Agent_Extensions",
     "DDDPG/dsh-plugins",
     "DKthreeFR/ATRI-Theme-DSH",
     "DXF1024/dsh-plugin-desktop-shortcut",
-    "DamonKoy/dsh-plugins",
-    "DarkskyX15/dsh-client-ui-m3-theme",
-    "Darren-Tang/dsh-provenance",
     "Dasooul03/dsh-plugin-deepseek-pricing",
     "DeeJ6126/whale-girl-desktop",
     "Deklan-Deng/Dcode",
@@ -72,13 +46,14 @@
     "Dominic789654/awesome-deepseek-harness",
     "Dpf555/dsh-workbench",
     "Dragonwinner/chromex-browser",
-    "DreamRift/dsh-web-search-pool",
     "DshMarketPlace/dsh-plugin-radar",
     "DshMarketPlace/dshmarketplace",
     "DshMarketPlace/dshmarketplace-cli",
     "DshMarketPlace/dshmarketplace-py",
     "DuJunxi1993/dsh-swiftUI",
     "DuckLing-IO/dsh-desktop",
+    "EDMOK/claude-vision-mcp",
+    "EIGHTfs/dsh-git-rescue",
     "EZ118/dsh-ppt-composer",
     "Earnest02522/dsh-archive-manager",
     "Easyhoov/deepseek-harness-desktop-windows",
@@ -103,11 +78,9 @@
     "FUSU123fusu/dsh-profile-port",
     "FairyScript/dsh-arbitrary-host",
     "Fantasality/dsh-better-price",
-    "Fantasality/dsh-origin-plugin",
     "FantasticCode2019/computer-control-plugin",
     "FantasyStarry/dsh-token-stats",
     "FeatherHunter/dsh-mattpocock-skills-deck",
-    "FeatherHunter/dsh-opencode-palette",
     "Fectivnfy112357/crossplug",
     "Fengze233/dsh-vscode",
     "Fiennes4590/dsh-token-usage-calendar",
@@ -123,6 +96,8 @@
     "FuLuTang/dsh-search-hub",
     "FuRongJun-1999/CommonTrustProtocol",
     "FunctionHookTJU/dsh-custom-wallpaper",
+    "Funnyvalentine00/dsh-github-push",
+    "Funnyvalentine00/dsh-session-continue",
     "GCWing/BitFun",
     "GHYHC/dsh-starter",
     "GIStudio/SpatialHarness",
@@ -145,6 +120,7 @@
     "GrayCodeTeam/graycode-for-dsh",
     "GreatV/oardsh",
     "Greenhand-monster/dsh-deliberation-presets",
+    "GuTianshuo/qianghua-wenjian-xiezuo",
     "GuangminJu/mellos-mapping",
     "GuanxuJi/dsh-llm-mimo",
     "GuoMonth/dsh-multi-tenant",
@@ -184,18 +160,21 @@
     "Hopcos/Draw-A-Fortune",
     "Hope-Phenom/dsh-desktop-tray",
     "Horizon215/dsh-plugins",
+    "Huajijunbilibili/dsh-localrag",
     "HuanLinOTO/dsh-plugin-pet-rs",
     "HuckOps/dsh-prometheus-plugin",
     "Hyna-hla/dsh-remote",
     "Hyperionjust/Primordial-soup-",
     "IMHaoyan/deepseek-harness-launcher",
     "Inference1/clarify-intent-and-establish-shared-understanding",
+    "InfinitePersistence/dsh-serial-console",
     "InkWord01/DeepSeekHarness----Desktop",
     "InklingYoshi584/dsh-tool-hashline",
     "Inlispwrad/DSH-BalanceHUD",
     "IvanWu2015/dsh-connect",
     "Iwctwbh/dsh-dynamic-toolbox",
     "JACKDELAY/deepseek-auto-start",
+    "JD962/dsh-model-reasoning-intensity",
     "JD962/dsh-subagent-pro",
     "JIAChenyu525/dsh-explore",
     "JOJO666888888/prompt-polish",
@@ -243,7 +222,6 @@
     "Karuisawa-Mrs/dsh-plugins",
     "KeLearns/dsh-update-checker",
     "KhalilHsu/dsh-plugins",
-    "KhalilYamber/dsh-envoy",
     "KhanZou/Deepseek-Harness-as-Desktop",
     "KiWi233333/dsh-creator",
     "KingVergil/ds-football-agent",
@@ -258,6 +236,7 @@
     "L-mimimi/SnapShot",
     "L-mimimi/WinPin",
     "L-xx1/dsh-win-fable-report",
+    "LBurny/deepseek-harness-desktop",
     "LINNoot/dsh-co-pet",
     "LJH-snow/dsh-tool-github",
     "LJH-snow/dsh-tool-gitlab",
@@ -272,6 +251,7 @@
     "LaplaceYoung/dsh-wexin",
     "LarryE135/WSL-for-DSH",
     "Leawind/dsh-minecraft-dev",
+    "Lee-Si-Yoon/dsh-llm-friendli",
     "LeeKai233/dsh-whale-picks",
     "Leeaoyin/dr-agent-skills",
     "Lehmaning/dsh-randomuuid-polyfill",
@@ -282,6 +262,7 @@
     "Leslie2-11/dsh-minimal-fix",
     "Li3NGa/DHS-multi-agent-plugin",
     "Liangebra/dsh-smart-compact",
+    "Lichen455/band-notify",
     "LilycleHeart/liuli-theme",
     "Limenitisarthemisbacking315/deepseek-harness-desktop-Install",
     "Lindong-K/doc-watermark",
@@ -294,6 +275,7 @@
     "LiuJunheng/DeepSeekHarnessGreen",
     "Lixiaoyiao/deepseek-harness-action",
     "Lixxx1/dsh-vscode",
+    "Liyuk/dsh-skin-chatlab",
     "LodyAI/acp-extension-dsh",
     "Loner1024/deepseek-harness-sdk-rs",
     "LongFuXiaoFeng/dsh-task-reminder",
@@ -315,6 +297,7 @@
     "MAXeaglet/dsh-plugin-manager",
     "MCFSO/mcp-admin",
     "MDAwMg/dsh-user-prompt",
+    "MFWTW/Auto_Load_Our_Plugin",
     "MHfire/dsh-im-bridge",
     "MIOYULIN/dsh-client-ui-mobile-mono",
     "MJ-Chang/dsh-vscode",
@@ -324,12 +307,14 @@
     "MakkiShizu/dsh-blackhole",
     "Mappedinfo/dsh-tool-vision-read",
     "MarSuero/deepseek-chat-obsidian",
+    "MarioZZJ/cc-notify-hooks",
     "Mark-SmallCharlie/dsh-screen-roach",
     "MashedPotato817/dsh-git-plugin",
     "MashedPotato817/dsh-tool-browser",
     "MashedPotato817/dsh-tui",
     "MerlinShieh/deepseek-herness-desktop",
     "MetaVibeCoding/metavibe_dsh",
+    "MeteorNOX/DeepSeek-Balance-Whale-Widget",
     "MetheusNull/dsh-passive-memory",
     "MichengAI/deepseek-harness-desktop",
     "MichengAI/deepseek-harness-website",
@@ -338,6 +323,7 @@
     "MicroSpotlight/openharness-plugins",
     "MiloMMIN/dsh-agent-board",
     "Minara-AI/minara-skills",
+    "Mingbing-get/dsh-plugins",
     "Mingbing-get/holdRein",
     "Misaki14987/dsh-theme-taffy",
     "Miyazawai/dsh-client-pricing",
@@ -359,14 +345,18 @@
     "Momojie-S/deepseek-harness-101",
     "MoneShadow/DeepSeek-Harness-linux-",
     "Monokuna-Hugo/dsh-kaoyan-english",
+    "MonshinYu/dsh-bun-compat-patch",
     "MonshinYu/dsh-desktop",
     "Motuo24/dsh-thinking-slider",
+    "Moveharder/dsh_plugins",
     "MrMu666/DSH-Launcher",
     "MrMu666/dsh-app",
     "MrXCQ/yasuo-desktop-pet",
     "Mrzhailiming/deepseek-pet",
+    "MurrayJoe/dsh-urge-risk-light",
     "N0zoM1z0/th08",
     "N0zoM1z0/vocaloid-mcp",
+    "NB4747/dsh-session-sync",
     "NEXTINDIE/DeepSeek-Harness-for-VS-Code",
     "NIyueeE/dsh-container",
     "NLeRWantFly/dsh-HoldThatBigBlueFatFish",
@@ -376,6 +366,7 @@
     "Nana7mi0721/anima-prompt-caption",
     "Nana7mi0721/anima-prompt-naturalang",
     "Nanawwa/dsh-vision-proxy",
+    "Nannannan233/dsh-better-model-picker",
     "Neplich/dsh_plugin",
     "Neumannzc/dsh-archive-manager",
     "Nexus-Aethra/DSHBox",
@@ -396,6 +387,7 @@
     "Outblock/dsh-headless-resumable",
     "Overraingit/dsh-session-cost",
     "PEClound/dsh-harness-memory",
+    "PICNO/dsh-file-mention",
     "PM-Shawn/Abu-Cowork",
     "Paloma966/dsh-ff",
     "Paloma966/dsh-kaiju",
@@ -410,12 +402,14 @@
     "PicGo/PicGo-Core",
     "Piccolo123/url-manager",
     "Piccolo123/url-manager-mcp",
+    "PixelGeek325/DSH-High-Contrast-Theme",
     "Platohykj/dsh-vsc",
     "Plocr/dsh-desktop",
     "Pluszzz/dsh-desktop-launcher",
     "Poepon/dsh-image-generation-responses",
     "Propheta114/dsh-icon-manager",
     "PuLuShen/DSH-end-notify",
+    "Punky971210/dsh-punky-swarm",
     "Q00/ouroboros",
     "Q993/spacesearch-plugin",
     "Q993/token-balance-plugin",
@@ -424,6 +418,7 @@
     "QQQW114/dsh-model-proxy",
     "QQQW114/dsh-safe",
     "QiJi-2001/dsh-casual-conversation",
+    "Qidianyan/doneos-packs",
     "Qidianyan/dsh-dev",
     "Qidianyan/dshctl",
     "Qintsg/dsh-safe-delete",
@@ -436,6 +431,7 @@
     "RayYeung1989/dsh-memory-tencentdb",
     "RayYeung1989/dsh-plugin-development",
     "Raymond-Leung7/dsh-md2pdf",
+    "ReachForStar/dsh-client-ui-polish",
     "ReachGa0/dsh-desktop",
     "RepInS-01/math-agent",
     "RexCoding-Yu/dsh-project-manager",
@@ -473,6 +469,7 @@
     "ShawnSiao/dsh-agent-eval",
     "ShawnSiao/dsh-credentials-keychain",
     "Shelaghfahrenheit482/dsh-mini",
+    "SheltonLiu-N/nano-cordis",
     "SherlockGougou/dsh-plugins-fix",
     "Shiyao-Huang/awesome-deepseek-harness-plugin",
     "ShuiHan268/dsh-qwen-mm-plugins",
@@ -482,8 +479,10 @@
     "Sikao-Engine/KimiX",
     "SiliconPsycheLabs/PSA-core",
     "Simidas/dsh-compat",
+    "SimonMedy/DSH-Mobile",
     "SipengXie2024/dsh-code-review",
     "SisyphusSQ/dsh-plugins",
+    "SkillNerds/xskill",
     "SkyM31/dsh-FreeBackground",
     "Skylake0216/DSH-for-VSCode",
     "SlAltum/dsh-godot",
@@ -501,8 +500,10 @@
     "SparkWeiyang/DeepseekHarness-AndroidClient",
     "Sparrived/DSH-Deeptop",
     "Spirit4471/multimodal-bridge",
+    "StarCried/dsh-inochi2d-pet",
     "StarPivotNet/dsh-plugin-catalog",
     "StarPivotNet/dsh-plugins-public",
+    "Starry0214/dsh-memory",
     "StarsHarryZhu/simple-dock",
     "Stellight/dsh-deepseek-balance",
     "SuTang-vain/dsh-self-harness-tools",
@@ -536,13 +537,15 @@
     "TerricSH/dsh-app-launcher",
     "TerricSH/dsh-desktop",
     "TerricSH/dsh-notify",
+    "Thanksgiver233/deepseek-harness-win-desktop",
+    "Thanksgiver233/dsh-mobile",
     "TheChengXi/intent-flow",
     "TheChengXi/opendsh",
-    "Thedeergod666/dsh-musage",
     "TiChuXiXi/dsh-command-md",
     "TianYa-DAO/dsh-wallpaper-engine",
     "TiankunDai/dsh-vision-LMstudio",
     "Tieboyh/dsh-session-search",
+    "Tiee7/EzDSH",
     "Tiger3807861189/DeepSeek-V4-J-Space-Capability-Realization-Report",
     "Tiger3807861189/J-Space-Cognition-Suite-V3.6",
     "Tlyer233/dsh-vscode-review",
@@ -596,6 +599,7 @@
     "Wang-Lin-Chang/dsh-story",
     "Wangxian111/convertible-bond-intel",
     "WardLu/shadow-vision",
+    "Weaxs/stock-analysis-plugin",
     "WeilaiSun/dsh-hindsight-memory",
     "WeirdSky924/agent-handoff-skill",
     "WhaleHarness/WhaleHarness",
@@ -615,13 +619,18 @@
     "XiaoXi04-01/dsh-workstation-launcher",
     "Xiaooooo434680/dsh-tool-tdd",
     "Xiaopeng212321414321413231/critical-skillgovern",
+    "XieRW/dsh-beauty-skins",
     "Xieweikang123/dsh-vision-bridge",
     "Xizhi1024/deepseek-harness-dsh-for-vscode",
     "Xrainsmile/DSH-Plugin-Doctor",
     "Xuxchloris/deepseek-harness-sdr-plugin",
     "YJLZSL/dsh-furrhaven-toolbox",
     "YMRYMR/deepseek-peak",
+    "YUCONG-28/dsh-skills-plugins",
+    "YUXI-Dev/dsh-motion-plugin",
     "YYTbit/awesome-dsh-bridges",
+    "Yan-Zero/dsh-std",
+    "YangAtC/dsh-filetree",
     "YangAtC/dsh-theme",
     "YangCazz/CazzPatent",
     "YaoApp/yao",
@@ -663,86 +672,30 @@
     "Zomcxj/dsh-desktop",
     "Zoramoris/Amoris-agent",
     "Zyy1997/dsh-sound-notify",
-    "aaronlei/dsh-width-tiers",
-    "agi-fans/oh-my-dsh",
-    "ai-thinkshare/dsh-workbench",
-    "ajhcs/Codex-Co-Engineer",
-    "alllllllllli/Living-Dream-DSH",
-    "alybg/dsh-angelina-pet",
-    "april-jk/dsh-mobile-suite",
-    "aust24lzy/dsh-plugin-hub",
-    "awesome-dsh-plugin/awesome-dsh-plugin",
-    "chen731215-dev/dsh-tavern",
-    "chengganping-ship-it/dsh-tool-codereview",
-    "chengyuanjie455-cmd/writing-full-workflow",
-    "chenxinj08-lgtm/deepseek-harness-desktop",
-    "chenyinrusi/dsh-engineering-skills",
-    "chenyinrusi/dsh-kanban-mcp",
-    "chenyinrusi/dsh-repo-health",
-    "chenzhaoxuan0/dsh-tray",
-    "chenzhiyong1994/dsh-cost-guard",
-    "chokwinlee/deepseek-harness-desktop",
-    "chou109/dsh-archives",
-    "chou109/dsh-msgrail",
-    "chou109/dsh-strength-meter",
-    "chou109/dsh-toolkit",
-    "chou109/dsh-vision-bridge",
-    "chou109/dsh-workspace-launcher",
-    "chshcbz/dsh-plugin-safety-toolkit",
-    "chuspeeism/dashi-taskboard",
-    "chuyue-1/deepseek-harness-gamepad-cursor",
-    "chyra-moon/deepseek-harness-desktop",
-    "ciceroyang/dsh-doctor",
-    "ciceroyang/dsh-plugin-starter",
-    "ciceroyang/dsh-trajectory",
-    "cjz-wr/agent-engineering-workflow",
-    "clearkurt/dsh-win-terminal-inspector",
-    "climpea/daily-news-digest",
-    "cmmnhm/DeepSeek-Harness-Desktop",
-    "cnskycn/deepseek-harness-desktop",
-    "cnskycn/dev-workbench",
-    "cnskycn/pview-panel",
-    "cnskycn/reveal-file",
-    "cnskycn/shuimo-skin",
-    "cnzgray/dsh-plugins",
-    "code-gal/dsh-ng",
-    "codelogickeep/deepseek-harness-plugin",
-    "coderPerseus/dsh-hub",
-    "codetime-dev/dsh-codetime",
-    "codezha/dsh-double-shift-file-search",
-    "cofy-x/axern",
-    "cogine-ai/marketplace",
-    "colorfuller/dsh-app",
-    "coolbat/awesome-dsh-plugins",
-    "cooljser/dsh-plugin-portal",
-    "coppynight/dsh-doctor",
-    "cpj-dev/dsh-plugin-cc",
-    "crabossss/dsh-desktop-pet",
-    "cradler-ai/dsh-plugin",
-    "crafter-station/petdex",
-    "cransmathenia666-hash/dsh-Sight",
-    "cransmathenia666-hash/dsh-message-finder",
-    "cransmathenia666-hash/dsh-skill-mcp-stats",
-    "crayonlu/dsh-web-search-firecrawl",
-    "crayonlu/dsh-web-search-tavily",
-    "crystalWinter666/dsh-header-status",
-    "csiroqa/dsh-plugin-usage-report",
-    "csthinker/deepseek-harness-desktop",
-    "cucen066/dsh-file-ref",
-    "curtiseng/cordis-course",
-    "cuteG41cute/dsh-api",
-    "cuteG41cute/dsh-desktop",
-    "cuteG41cute/dsh-time-stamp",
-    "cuttlefish520/dsh-token-meter",
-    "cxlg66you-bot/dsh-token-billing",
-    "cyzlmh/dsh-cyber-sec",
-    "cyzlmh/dsh-pi-adapter",
-    "czzzlq/deepseek-harness-background",
-    "czzzlq/deepseek-harness-desktop",
-    "daifuyang/dsh-plugin",
-    "darker2016/WorkbuddySkillGroups4DSH",
-    "darker2016/dsh-feedetail",
-    "darker2016/dsh-filexplore",
+    "alexchenzl/dsh-plugin-directory",
+    "ali-meoo/meoo-cli",
+    "alibaba/anolisa",
+    "arch3rPro/dsh-skills",
+    "baikangwang/dsh-ide-ui",
+    "baobaolaodie/dsh-tui-vscode",
+    "beancookie/awesome-dsh-plugin",
+    "beijingwahw/dsh-computer-use-plugin",
+    "billLiao/awesome-dsh-plugin",
+    "blyatman996/Deepseek-Harness-GlassTTY",
+    "broody-cascarillabark100/DeepSeek-Harness-Desktop",
+    "bruc3van/awesome-dsh-plugin",
+    "bruc3van/dsh-desktop",
+    "c-ling/dsh-plugin-goldboard",
+    "cckyros/goal-acceptance",
+    "chen-12-03/dsh-tailnet-mobile",
+    "chengxiaosheng/dsh-desktop",
+    "chenkai2/dsh-daemon",
+    "cindyguyuehu123/oh-story-dsh",
+    "civaapple-alt/mini-dsh",
+    "civaapple-alt/pi-dsh",
+    "codeh007/mtmdsh",
+    "curtiseng/spatiotemporal",
+    "dabaicai001/star-deepseek-harness-desktop",
     "dataizu/dsh-whale-aqua-theme",
     "davidgereb/dsh-lib-context-injection",
     "davidgereb/dsh-plugin-better-mobile-ui",
@@ -755,6 +708,7 @@
     "dd598/dsh-plugin-auto-install",
     "dddzzz123-dz/codex-dsh-bridge",
     "dddzzz123-dz/dsh-voice-input-plugin",
+    "ddggkkcc/dsh-brainwave",
     "ddll8023/dsh-desktop",
     "derek2035/dsh-social",
     "detpecca/DSH-Wiki",
@@ -765,9 +719,11 @@
     "dfzjb/deskpet-bridge",
     "dhj-l/dsh-client-ui-question-history",
     "dhj-l/dsh-git-review",
+    "diamondfsd/deepseek-harness-desktop",
     "diguike/book-deepseek-harness",
     "dingge001/dsh-redact",
     "dingkaihu63/dsh-robotic-harness",
+    "dingminhua/dsh-subagent-default-model",
     "djasdh/interest-memory",
     "dmsobtl/dsh-agent-eval",
     "dmsobtl/dsh-cost-optimizer",
@@ -783,11 +739,13 @@
     "dmsobtl/dsh-tool-market-data",
     "dmsobtl/star-harness",
     "dmz2922990/dsh-mcp-list",
+    "dmz2922990/dsh-ssh",
     "doebkblcya/dsh-vision-bridge",
     "dongsheng123132/awesome-dsh-plugins",
     "dorisaimpatient855/awesome-dsh-plugin",
     "douzhenyu/oh-my-deepseek",
     "dove-a/dsh-plugin-registry",
+    "dphmoblie/deepseek-harness-android",
     "dqsjqian/Aria",
     "dqsjqian/AriaAgent",
     "dqsjqian/agent-guild",
@@ -807,6 +765,7 @@
     "dshiq04/dsh-deepseek-balance",
     "dshiq04/dsh-notify",
     "dshplugin-app/deepseek-harness-plugins",
+    "dshworks/plugins",
     "dwefwevfe/dsh-jarvis-pet",
     "dzwalker/dsh-files-tab",
     "echo804/dsh-billing-balance",
@@ -840,6 +799,7 @@
     "feicaiclub/deepseek-harness-whitepaper",
     "feiyang-dev/DeepSeek-Harness-Desktop",
     "felixzhang-glitch/dsh-token-usage",
+    "fellow99/deepseek-harness-desktop",
     "fengling375/dsh-nyan-context-progress",
     "ferstar/dsh-tool-ocr",
     "festoney8/deepseek-harness-GUI",
@@ -878,13 +838,15 @@
     "geminiai19811-jpg/dsh-desktop",
     "geml-spec/geml",
     "gezi6603-rgb/tavern-launcher",
+    "ggggggggggz/dsh-config",
     "ghbhiee/dsh-auth-gateway",
     "ghost616/module_agent_deepseek",
     "ginuim/multi-screen-wireframe",
     "git-hub-cloud/workled",
     "gityuanbao/DSH-Plugins",
-    "gkgy/dsh-plugin-laile-didi",
+    "gkgy/dsh-plugin-laile-laodi",
     "gmryuuko/dsh-gui",
+    "goatbroai/dsh-plugin-scaffold",
     "godcreator02/dsh-mechanics-lab",
     "godpanzz/dsh-usage",
     "grasir-ctrl/dsh-deepeye-setup",
@@ -906,6 +868,7 @@
     "hZsFN/dsh-qq-bot",
     "hackerFish/dsh-lab",
     "hadan8977/dsh-remote",
+    "hahaha-taotao/dsh-browser-launcher",
     "hairyf/deepseek-harness-desktop",
     "hajimilvdou/dsh-store-server",
     "hanelalo/browser-bridge",
@@ -935,7 +898,6 @@
     "henryZhouLikeStudy/dsh-lattice-transports",
     "hetu-altas/hetu-hammurabi",
     "hezi2020/dsh-plugin-wiki",
-    "hg1048596-pixel/dsh-recall-unread",
     "hialuoy/deepseek-harness-desktop",
     "hige6/imgpost",
     "hikariming/dshfind",
@@ -960,10 +922,12 @@
     "huanxi-drxx/dsh-client-ui-mobile",
     "huaqian695-sudo/wechat-bot",
     "huawolf/news-agent",
+    "huchunlinnk/deepseek-desktop",
     "humblebanana/open-record-replay",
     "humditty/dsh-quality",
     "huntdier/dsh-open-plugins",
     "hupoliuguang/dsh-web-start",
+    "huyang218/dsh-desktop",
     "hx876298682-tech/deepseek-harness-desktop",
     "hxwi1/dsh-desktop-window",
     "hxyz486/dsh-archived-conversations",
@@ -982,6 +946,7 @@
     "iloveyanjialin1314/matlab-assistant",
     "ilps2/avis-dsh-plugin",
     "imlishiyuan/deepseek-harness-zh-cn",
+    "imlishiyuan/keep-reminder",
     "imsai-sh/zhuzhiliao",
     "imtheolin/ai-keyboard",
     "inmny/dsh-subagent-effort",
@@ -989,10 +954,10 @@
     "inthepond/ff-toolkit",
     "intpfx/OpenFX",
     "irisnb/dsh-credentials-keyring",
+    "ismoss/dsh-harness-zh-l10n",
     "isolat-3k/dsh-kanban",
     "istarwyh/harbor-self-evolving",
     "itmoqing/DeepSeek-Harness-Skill",
-    "itr-del/dsh-cue-bank",
     "iuikj/dsh-desktop",
     "ivorytower1026/dsh-im-bot",
     "jLeon-account/dsh-client-usage",
@@ -1014,6 +979,7 @@
     "jesspig/deepseek-harness-desktop",
     "jhonden/my-dsh-plugins",
     "jiangrz77/DSHLauncher",
+    "jianxx/dsh-cc-plugins",
     "jiaqinzhang123/peon-voice",
     "jiawood2006/ai-project-advisor",
     "jiawood2006/construction-project-management",
@@ -1060,7 +1026,6 @@
     "junhongchashui/dsh-plugin-web-access",
     "junhongchashui/dsh-vision-relay",
     "juntaoding/Flowboard",
-    "justinhuangai/deepagent",
     "jyd1230/dsh-approval-chime",
     "kaiarvin/dsh-show-diff",
     "kaijia323/create-dsh-plugin",
@@ -1078,8 +1043,6 @@
     "kelai141/dsh-mobile-apk",
     "kelai141/dsh-shell-termux",
     "kelai141/local-git-4-llm",
-    "kelemiao/dsh-animation-optimization",
-    "kelemiao/dsh-api",
     "kenzone/dsh-anysearch",
     "keshing/balance-display",
     "kestiny18/dsh-plugins",
@@ -1098,10 +1061,10 @@
     "kokubunshu/DSH-mobile-sync",
     "kol-mm/dsh-config-migrate",
     "kol-mm/dsh-work-rest-timer",
-    "kolawong/dsh-plugin-auth-webserver",
     "kouyichi/dsh-plugins",
     "krimvp/dsh-airlock",
     "krimvp/dsh-otel",
+    "kriskwok/dsh-ios-app",
     "krudiy/wecom-bridge",
     "ktziy/dsh-Yuuka-qqbot",
     "kuailexiaozixin/fasthtml-desktop",
@@ -1113,6 +1076,7 @@
     "kvuvuv/ecg-research-skill",
     "kxh4892636/pi-deepseek-anchor",
     "kyorakuyk/dsh-desktop",
+    "lan0o0/Session-Cost-Alert",
     "lanshuye123/DSH-Terminal",
     "laoshi1991/dsh-shortcuts",
     "laosji/clamicro",
@@ -1123,8 +1087,8 @@
     "lcgash/dsh-cli-mode",
     "lcthe/dsh-timeline-rail",
     "ldchaowin/dsh-toolbox",
+    "leaforbook/dsh-mcp-lazy",
     "lecutu/dsh-slide-reflex",
-    "lemonorangeapple/dsh-effort-switcher",
     "lencx/Minke",
     "lengdanran/dsh-claude-plugin-loader",
     "lgYanami/dph-unarchive-sessions",
@@ -1153,7 +1117,6 @@
     "lihuu/dsh-plugins",
     "lijian-ui/dsh-desktop",
     "like-study1/Oh-My-DSH",
-    "limccn/deepseek-vl-support",
     "limulin778-web/dsh-translator",
     "linkage18/donecheck",
     "linktao159357/dsh-plugin-local-vision",
@@ -1171,19 +1134,20 @@
     "liuyun847/dsh-host-compliance-check",
     "liuyun847/dsh-host-plugin-registry",
     "liyupi/dsh-kun-like-pet",
+    "lizhouai/dsh-provider-quota",
     "ljnljn2005/dsh-octopus-launch",
     "ljnljn2005/dsh-wecom-notify",
     "ljsysfurryACE/AgentFrame-v3",
     "ljsysfurryACE/dsh-plugin-story",
     "llyyhh0487/desk-harness",
-    "lndyzwdxhs/dsh-plugin-scaffold",
     "lo2589/deepseek-harness-provider",
     "logebyones/dsh-api-router-notes",
     "loki888666/dsh-mihome",
     "lonelymoon87/dsh-vscode",
+    "longlongdragons/roleplay-plugin",
     "longyu065/dsh-desktop",
-    "longyu065/dsh-theme-ti",
     "lordqyxz/dsh-ark-quota",
+    "louisecxqiu-glitch/html-doc-center",
     "lovaxi/4d4y-browser",
     "love0d000721/dsh-file-upload",
     "lovejavacore/dsh-minecraft-pet",
@@ -1197,6 +1161,7 @@
     "luokai-demo/dsh-plugins",
     "lusipad/RocketX",
     "lwmxiaobei/dsh-plugins",
+    "ma-pony/deepspider",
     "majiayu000/dsh-plugin-registry",
     "maple110011/dsh-obsidian-math",
     "maque2333/dsh-profile-manager",
@@ -1222,12 +1187,13 @@
     "mecoren/deepseek-harness-launcher",
     "meifeisite/plugin-manager",
     "meliodascz89/deepseek-harness-plugins",
+    "memorax-ai/dsh-webui-studio",
     "memorylake-ai/memorylake-harness",
     "menghuanshiguang/dsh-mobileshare",
     "mengyaoi/dsh-mcp-pack",
     "messageer/dsh-notif-plugin",
-    "michael-han-il/dsh-llm-finish-reason-tolerance",
     "mikeyoubeach/dsh-minimal-v3",
+    "mindscale-noah/MindMemOS",
     "mingger77/research-skills",
     "minorsnownight/dsh-launcher",
     "misterbig5222-oss/dsh-highlighter",
@@ -1251,13 +1217,16 @@
     "mos-7/dsh-desktop",
     "moton16/dsh-vision-mcp",
     "mouliangyu/dsh-plugins",
-    "mouse33333/dsh-quota-monitor",
+    "mouyase/dsh-hashline",
+    "mouyase/dsh-jina",
     "moxingovo/dsh-web-panel",
     "moxisuki/dsh-lan",
     "moyuer233/dsh-deepseek-monitor",
     "mrbbbaixue/dsh-desktop",
     "mrk-king/dsh-plugin-market",
+    "mrpulor-gh/nuphus-mcp",
     "mwbimh/dsh-atelier",
+    "mywl6/dsh-task-reminder",
     "name-loading/dsh-vscode",
     "nanbujiwanfeng/deepseek-harness-translation",
     "necigit/Coral-Memory",
@@ -1271,9 +1240,8 @@
     "nightBrise/Oh-My-DSH",
     "nightwhale-dev/nightwhale",
     "nihaozyj7/dsh-desktop",
-    "niiang/dsh-kimino-theme",
     "ningbainb/deepseek-harness-desktop",
-    "nirvanaslash/dsh-artifact-preview",
+    "nlqh7/dsh-beautify",
     "nlqh7/dsh-vision-router",
     "nnbw-liu/deepseek-ai-dsh-llm-local",
     "noname-iii/dsh-leisure-games",
@@ -1283,8 +1251,8 @@
     "npc-dao/dsh-pet",
     "ns-zzj/dsh-hos-scrcpy",
     "nutshellai-tech/mobius",
+    "nvnoa57-star/dsh-compaction-slider",
     "nyantused-cpun/folio",
-    "nyantused-cpun/gewu-tools",
     "nzl153/dsh-preflight",
     "o-Sakurajimamai-o/dsh-desktop",
     "oa1mgo/dshplugin",
@@ -1352,6 +1320,7 @@
     "peterwangze/software-project-governance",
     "ph4310822/dsh-x402-wallet",
     "phil616/dsh-plugin-market",
+    "philmingdao/dsh-meter",
     "phoenixlucky/business-data-analyst-skill",
     "phoenixlucky/chrome-mcp-bridge-2026-skill",
     "phoenixlucky/family-lovers-skill",
@@ -1369,7 +1338,6 @@
     "plaask/fdtd-mcp",
     "po-et/dsh-session-rescue",
     "poiuyjie/dsh-md-preview",
-    "poiuyjie/dsh-vision-opencode",
     "possible055/agentshim",
     "pridesong/orchestration-skill",
     "princepainter/dsh-gpu-cleanup",
@@ -1395,9 +1363,11 @@
     "qiuqiukof-oss/hesi-dsh-plugins",
     "qiuyongjin/dsh-plugin-development",
     "qldth/dsh-minimal-pro",
+    "qmy777/dsh-ui-models-reasoning",
     "qomob/dsh",
     "qschen86/dsh-extensions",
     "querit-ai/querit-plugins",
+    "qw457812/dotfiles",
     "qwased/DSH-deleted-and-history-button",
     "qwased/dsh-subagent-model-selector",
     "qwased/dsh-web-search-duckduckgo",
@@ -1425,7 +1395,7 @@
     "remybroun/infographic",
     "renat3u/dsh-paseo",
     "renat3u/tonghuashun-webui",
-    "reshuibuduo/TMCRA-Agent-Memory",
+    "reshuibuduo/tmcra-memory",
     "reyesyang/dsh-plugin-file-drop",
     "richards878/dsh-mobUI",
     "riesbri/dsh-tui",
@@ -1437,6 +1407,7 @@
     "rogerhorsley/dsh_for_mac",
     "rongzi5/dsh-whale-pet",
     "ropz12138/dsh-ui-background",
+    "rotifer-protocol/rotifer-playground",
     "rpvvn/EasyDSH",
     "rrrrrredy/agent-memory-system",
     "rrrrrredy/beforedone",
@@ -1457,6 +1428,7 @@
     "sandbaseai/sandbase-skills",
     "sb1733831438-maker/DSH-closerAI",
     "schhaohao/dsh-file-explorer",
+    "scodypanda/dsh-sentinel",
     "sdoygb/conjugate-spectral-geometry",
     "seainml/dsh-token-slim",
     "sealfly/dsh-reasonix-desktop",
@@ -1476,8 +1448,10 @@
     "shine-yu-student/dsh-calm",
     "shinelon/eyes-for-deepseek",
     "shiningsprk-arch/dsh-context-viewer",
+    "shinjiyu/holdem",
     "showlibia/dsh-plugin-installer",
     "shuaixiangzi/dsh-mojian",
+    "shuigege2025-dev/cloud-smoke-widget",
     "shuimo07/xiaoliuren",
     "shynloc/acks-dsh-plugins",
     "sikwoxy/dsh-tool-reqpipe",
@@ -1502,7 +1476,6 @@
     "songoao25/dsh-auto-compact",
     "songoao25/dsh-bottom-info-bar",
     "songoao25/dsh-contract-drafting-agent",
-    "songoao25/dsh-song-memory",
     "songyang0603/ds-spec-loop",
     "songyang0603/dsh-codex",
     "sopaco/terrain",
@@ -1518,8 +1491,11 @@
     "ssipbss/dsh-savepoint",
     "star-chase/dsh-web-launcher",
     "statem-li/dsh-browser",
+    "statem-li/webui",
+    "stevysmith/stacktree-dsh",
     "studyzy/dsh-suggest-prompt",
     "suanlayu666/suanlayu-dsh-plugins",
+    "sublatesublate-design/deepseek-whale-pet",
     "sufan721/dsh-evolution",
     "sunshine-lang/dsh-plugins",
     "sunzeJAVA/dsh-session-importer",
@@ -1549,6 +1525,7 @@
     "tianmingwangluo/xiaoliuren-skill",
     "tiefeiyu/dsh-see-image",
     "timwhitez/dsh-self-evolving",
+    "tingly-dev/tingly-box",
     "tinnyxx/dsh-xiaoxinxin-skin",
     "titanwings/colleague-skill",
     "titxue/dsh-desktop",
@@ -1566,16 +1543,21 @@
     "tuterx/dsh-desktop",
     "tvrpdfe/dsh-chat-manager",
     "twanonymous/agent-dispatch-cli",
+    "tyche66/DSH-money-view",
     "tyouter/dsh-remote-access",
     "uAcharGG/dsh-manager",
     "uckkk/dsh-skin-pack",
+    "uigdwunm/dsh-ui-suite",
     "ukinch605/awesome-dsh-hub",
     "uluckystar/dsh-client-ui-side-tasks",
+    "umicorn07/dsh-subagent-agy",
     "umicorn07/dsh-web-search-qwen",
     "unSdark/deepseek-harness-windows-launcher",
+    "unStone/dsh-xray",
     "unclecode/toolshrink",
     "unknowbug/RE-Framework",
     "unknowbug/anchorlaw",
+    "usertianziyang/DSH-Plugin-Hub",
     "v587d/dsh-multimodal-skill",
     "vcxmug/dsh-enhance",
     "vexpaer/ContextGate",
@@ -1596,6 +1578,7 @@
     "wLj924/solidworks-wlj-dsh",
     "walkinglabs/awesome-deepseek-harness-plugins",
     "walkinglabs/learn-harness-engineering",
+    "wang-junjian/spritely",
     "wangguan1995/hypermesh-mcp",
     "wanghehe123/dsh-Friend",
     "wangjacks/dsh-hanami-theme",
@@ -1635,6 +1618,7 @@
     "weopenfire-git/dsh-market-quote",
     "weopenfire-git/hme-plugin",
     "wess09/DeepSeekHarnessDesktop",
+    "wgd753/awesome-dsh-plugin",
     "white0dew/awesome-dsh-plugins",
     "whiteguo233/OpenBiliClaw",
     "whiteguo233/dsh-cc-connect",
@@ -1649,7 +1633,7 @@
     "william-jin-cmu/dsh-artifact",
     "william-jin-cmu/dsh-gal",
     "william-jin-cmu/dsh-vision",
-    "windfind-02/jingbao-pet",
+    "windfind-02/jingbao-voice-pet",
     "windyslime/DeepSee",
     "wingsky-1/dsh-plugin-hub",
     "wink-run/dsh-plugin-store",
@@ -1663,7 +1647,6 @@
     "wormggmm/dsh-booster",
     "wowayou/mydsh",
     "wozoulesky/dsh-obsidian",
-    "wpc0323/deepseek-web-import",
     "wssfk12138/dsh-wechat-notify",
     "wsxwj123/dsh-plugins",
     "wsz987/dsh-channels",
@@ -1674,7 +1657,6 @@
     "wuwuzhige-sudo/dsh-terminal-panel",
     "wuxiaoji/Dsh_Desktop",
     "wuxingyuyouxing/DeepSeek-Harness-Manager",
-    "wuyan19/dsh-plugin-zquota",
     "wuyuzi-luo/dsh-desktop",
     "wuzehao888/dsh-plugin-message-nav",
     "wuzhong962-alt/dsh-matrix-theme",
@@ -1689,10 +1671,10 @@
     "x118111/prompt-optimizer",
     "xDylanLong/dsh-snapmarketing",
     "xccpddym/dsh-bubble-nav",
-    "xiaheng1/dsh-turn-nav",
     "xiajiajun516/dsh-settings-organizer",
     "xiangpc/wemeet-openapi",
     "xiangshangya/deepseek-harness-desktop",
+    "xiangyun0519/dsh-trace-narrator",
     "xianyu-ya/dsh-imgpt",
     "xianyu-ya/dsh-plugin-overview",
     "xiaobright/dsh-anchored-standard",
@@ -1704,6 +1686,8 @@
     "xiaoheizi1212/dsh-cookie-bridge",
     "xiaohj233/dsh-compat-shims",
     "xiaohj233/dsh-magic-context",
+    "xiaohou521/fusion-moa",
+    "xiaoliang2/dsh-compact-after-task",
     "xiaomao66666/dsh-deepview",
     "xiaowei2025cqu23phy/dsh-desktop",
     "xiaoxingdelabi1/dsh-command-check-update",
@@ -1718,9 +1702,9 @@
     "xibaoxuan/dsh-voice-interaction",
     "xiincs/deepseek-harness-desktop",
     "xing-shuyin/ds-web-ui",
+    "xingyingyuzhui/dsh-claw-suite",
     "xinkeZhou-byte/dsh-context-ring",
     "xinkeZhou-byte/dsh-usage-stats-dashboard",
-    "xinman100/dsh-opencode-go-usage-plus",
     "xinmo114514/dsh-usage-widget",
     "xiuxxx0/deepseek-harness-desktop",
     "xiyue718/dsh-ui-archive-manager",
@@ -1746,6 +1730,7 @@
     "xxiaoxiong/dsh-ci",
     "xxxxxdger/DSH-launcher",
     "xxxxxs-ssdd/arknits-background-plugin",
+    "xxxyz/DeepSeekHarness-MCP-Manager",
     "xyTom/coding-tools-mcp",
     "xyidong/deepseek-usage-info-check",
     "xylt369/dsh-browser",
@@ -1764,6 +1749,7 @@
     "yangzhe1003/dsh-web-search-firecrawl",
     "yauntyour/DSH-for-VSC",
     "ycp424c/dsh-browser-bridge",
+    "ycp424c/dsh-deliver",
     "ydhrdh/dsh-marketplace",
     "yefei124/superpowers-workflow",
     "yehuioc/dsh-memory-pack",
@@ -1788,6 +1774,7 @@
     "youyli03/dsh-bib",
     "yu-wenchao/deepseek-harness-desktop-Install",
     "yuanzehui313/dsh-workspace-enhance",
+    "yugasun/dsh-plugins",
     "yujianjian1013/dsh-desktop",
     "yuloong07-star/dsh-prompt-system",
     "yuloong07-star/dsh-usb",
@@ -1808,6 +1795,7 @@
     "yzke/dsh-extension-ops",
     "yzlin499/dsh-yzlin499-easy-plugins",
     "yzlnew/infra-skills",
+    "yzx4036/dsh-memory-snapshot",
     "yzxoi/dsh-holos-research",
     "z15692312501/deepseek-haeness-pet",
     "z827439974/dsh-background-plugin",
@@ -1816,6 +1804,7 @@
     "zdjmrq/dsh-careful-full-access",
     "zdjmrq/dsh-intercom",
     "zdjmrq/dsh-plugin-suite",
+    "zdjmrq/dsh-rabbit-pet",
     "zdjmrq/dsh-restart-plugin",
     "zdjmrq/dsh-shell",
     "zdjmrq/dsh-text-open-source",
@@ -1832,8 +1821,10 @@
     "zhaimingyou/aisync",
     "zhan-tz/dsh-plugin-runbook",
     "zhangCzhe/dsh-slackoff",
+    "zhangyoufu-123/stylotrace",
     "zhangzheng25/dsh-minimal-desktop",
     "zhaoryder/ds-pet",
+    "zhaoxuanZzz/dsh-desktop",
     "zhaoyilun/dsh-preset-flash-director",
     "zhbcher/dsh-plugin-lark",
     "zhiyuchen1101/codewhale-dsh",
@@ -1841,6 +1832,7 @@
     "zhu168/dsh-save-money",
     "zhuiyueya/dsh-visionary",
     "zhuyan1085/mcp-deliverable",
+    "zhuyun017/dsh-her-companion",
     "ziangl59/dsh-opencode-go-meter",
     "zijun1991/dsh-vim-keymap",
     "zimodzh/dsh-plugin-dev-skills",
@@ -1982,6 +1974,32 @@
       ]
     },
     {
+      "repository": "22-ai-00/dsh-enhanced",
+      "reason": "multiple-verified-packages",
+      "candidates": [
+        {
+          "packagePath": "plugins/acp",
+          "packageName": "@dsh-enhanced/acp",
+          "status": "verified"
+        },
+        {
+          "packagePath": "plugins/coding-subscription-provider",
+          "packageName": "@dsh-enhanced/coding-subscription-provider",
+          "status": "verified"
+        },
+        {
+          "packagePath": "plugins/hello",
+          "packageName": "@dsh-enhanced/hello",
+          "status": "verified"
+        },
+        {
+          "packagePath": "plugins/traex-acp-provider",
+          "packageName": "@dsh-enhanced/traex-acp-provider",
+          "status": "verified"
+        }
+      ]
+    },
+    {
       "repository": "222wcnm/dsh-manager",
       "reason": "no-verified-package",
       "candidates": [
@@ -2042,6 +2060,17 @@
         {
           "packagePath": "packages/messaging-core",
           "packageName": "messaging-core",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "6HOLLIS/dsh-session-manager",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugin",
+          "packageName": "dsh-session-manage",
           "status": "unpublished"
         }
       ]
@@ -2232,6 +2261,17 @@
       ]
     },
     {
+      "repository": "alllllllllli/Living-Dream-DSH",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugins/dsh-paste-input",
+          "packageName": "@dsh-community/dsh-paste-input",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "AlphaGodzilla/ag-dsh-coding-plugins",
       "reason": "multiple-verified-packages",
       "candidates": [
@@ -2408,6 +2448,27 @@
           "packagePath": "packages/dsh-design-playbook",
           "packageName": "dsh-design-playbook",
           "status": "verified"
+        }
+      ]
+    },
+    {
+      "repository": "BB-84C/deepseek-harness-mobile-solution",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/dev/hello-bundle",
+          "packageName": "@bb-84c/hello-bundle",
+          "status": "invalid-manifest"
+        },
+        {
+          "packagePath": "packages/dsh-mobile-cli",
+          "packageName": "@bb-84c/dsh-mobile-cli",
+          "status": "invalid-manifest"
+        },
+        {
+          "packagePath": "packages/dsh-mobile-server",
+          "packageName": "@bb-84c/dsh-mobile-server",
+          "status": "invalid-manifest"
         }
       ]
     },
@@ -2754,23 +2815,12 @@
       ]
     },
     {
-      "repository": "CC19990113/dsh-plugin-codegraph",
-      "reason": "no-verified-package",
-      "candidates": [
-        {
-          "packagePath": "packages/bundle",
-          "packageName": "dsh-plugin-codegraph",
-          "status": "unpublished"
-        }
-      ]
-    },
-    {
       "repository": "ccch713/deepddw",
       "reason": "no-verified-package",
       "candidates": [
         {
-          "packagePath": "plugins/dsh-teams-panel",
-          "packageName": "@deepddw/dsh-teams-panel",
+          "packagePath": "plugins/ddw-teams-panel",
+          "packageName": "@deepddw/ddw-teams-panel",
           "status": "unpublished"
         }
       ]
@@ -2843,6 +2893,11 @@
           "status": "unpublished"
         },
         {
+          "packagePath": "tests/fixtures/escaped-identifiers",
+          "packageName": "dsh-plugin-fixture-escaped-identifiers",
+          "status": "unpublished"
+        },
+        {
           "packagePath": "tests/fixtures/execution-canary",
           "packageName": "dsh-plugin-fixture-canary",
           "status": "unpublished"
@@ -2865,6 +2920,11 @@
         {
           "packagePath": "tests/fixtures/patch-traversal",
           "packageName": "dsh-plugin-fixture-traversal",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "tests/fixtures/phantom-gyp",
+          "packageName": "dsh-plugin-fixture-phantom-gyp",
           "status": "unpublished"
         },
         {
@@ -2927,6 +2987,17 @@
       ]
     },
     {
+      "repository": "chenzhaoxuan0/dsh-tray",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugin",
+          "packageName": "dsh-tray-plugin",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "cherrchen/deepseek-harness-electron",
       "reason": "package-limit-exceeded",
       "candidates": []
@@ -2940,6 +3011,155 @@
       "repository": "chiyulogg-commits/deepseek-harness-zh-tw",
       "reason": "package-limit-exceeded",
       "candidates": []
+    },
+    {
+      "repository": "chokwinlee/deepseek-harness-desktop",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "test/fixtures/sample-plugin",
+          "packageName": "dsh-desktop-fixture-plugin",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
+      "repository": "chuyue-1/deepseek-harness-gamepad-cursor",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugin",
+          "packageName": "@dsh-user/gamepad-cursor",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
+      "repository": "ciceroyang/dsh-plugin-starter",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "templates",
+          "packageName": "{{PKG_NAME}}",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
+      "repository": "ClancyLiao/dsh-plugins",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "dsh-client-ui-account-usage",
+          "packageName": "dsh-client-ui-account-usage",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-client-ui-composer-optimize",
+          "packageName": "dsh-client-ui-composer-optimize",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-client-ui-github-market",
+          "packageName": "dsh-client-ui-github-market",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-client-ui-plugin-notes",
+          "packageName": "dsh-client-ui-plugin-notes",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-github-market",
+          "packageName": "dsh-github-market",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-plugin-account-usage",
+          "packageName": "dsh-plugin-account-usage",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-plugin-composer-optimize",
+          "packageName": "dsh-plugin-composer-optimize",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-plugin-inventory-notes",
+          "packageName": "dsh-plugin-inventory-notes",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "dsh-think-in-chinese",
+          "packageName": "dsh-think-in-chinese",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "Cloudstill/dsh-research-plugins",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/research/dsh-bundle-research",
+          "packageName": "@deepseek-ai/dsh-bundle-research",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "cnzgray/dsh-plugins",
+      "reason": "multiple-verified-packages",
+      "candidates": [
+        {
+          "packagePath": "packages/claude-auto-memory",
+          "packageName": "@cnzgray/dsh-claude-auto-memory",
+          "status": "verified"
+        },
+        {
+          "packagePath": "packages/claude-marketplace-bridge",
+          "packageName": "@cnzgray/dsh-claude-marketplace-bridge",
+          "status": "verified"
+        },
+        {
+          "packagePath": "packages/claude-rules-bridge",
+          "packageName": "@cnzgray/dsh-claude-rules-bridge",
+          "status": "verified"
+        }
+      ]
+    },
+    {
+      "repository": "CoaseEdge/AgentNavi",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "integrations/deepseek-harness",
+          "packageName": "dsh-agentnavi",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "Codingendless/dsh-liang-rheostat",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "dsh-liang-rheostat-server",
+          "packageName": "dsh-liang-rheostat-server",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "crafter-station/petdex",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/petdex-desktop-native/integrations/dsh",
+          "packageName": "@petdex/dsh-plugin",
+          "status": "invalid-manifest"
+        }
+      ]
     },
     {
       "repository": "crTnT/dsh-plugin-suite",
@@ -2958,6 +3178,33 @@
       ]
     },
     {
+      "repository": "csiroqa/dsh-plugin-usage-report",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugins/usage-report",
+          "packageName": "@dsh-plugin/usage-report",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
+      "repository": "cyzlmh/dsh-cyber-sec",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "bundle",
+          "packageName": "@dsh-cyber-sec/bundle",
+          "status": "invalid-manifest"
+        },
+        {
+          "packagePath": "bundle-redteam",
+          "packageName": "@dsh-cyber-sec/bundle-redteam",
+          "status": "invalid-manifest"
+        }
+      ]
+    },
+    {
       "repository": "daboge-beach/dsh-skin-studio",
       "reason": "no-verified-package",
       "candidates": [
@@ -2969,9 +3216,72 @@
       ]
     },
     {
+      "repository": "daifuyang/dsh-plugin",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "plugins/auth",
+          "packageName": "dsh-auth-plugin",
+          "status": "repository-mismatch"
+        }
+      ]
+    },
+    {
+      "repository": "DamonKoy/dsh-plugins",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/dsh-approve-for-me",
+          "packageName": "dsh-approve-for-me",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/dsh-mcp-client-v2",
+          "packageName": "dsh-mcp-client-v2",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh-memories",
+          "packageName": "dsh-memories",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh-secret-redactor",
+          "packageName": "dsh-secret-redactor",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh-system-proxy",
+          "packageName": "dsh-system-proxy",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh-usage-cost",
+          "packageName": "dsh-usage-cost",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
       "repository": "deepseeker-app/DeepSeeker",
       "reason": "package-limit-exceeded",
       "candidates": []
+    },
+    {
+      "repository": "dff652/deepseek-harness-community-plugins",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/dsh-agent-mail",
+          "packageName": "@dff652/dsh-agent-mail",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/dsh-ai-asset-hub",
+          "packageName": "@dff652/dsh-ai-asset-hub",
+          "status": "unpublished"
+        }
+      ]
     },
     {
       "repository": "dsh-pub/dsh-pub",
@@ -3054,6 +3364,62 @@
         {
           "packagePath": "plugins/vina",
           "packageName": "dsh-vina",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "huyang218/dsh-plugins",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/ainfo",
+          "packageName": "dsh-plugin-ainfo",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/aportfolio",
+          "packageName": "dsh-plugin-aportfolio",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/astock",
+          "packageName": "dsh-plugin-astock",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/astock-chart",
+          "packageName": "dsh-plugin-astock-chart",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/gateway-compat",
+          "packageName": "dsh-plugin-gateway-compat",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/shortcuts",
+          "packageName": "dsh-plugin-shortcuts",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/tool-health",
+          "packageName": "dsh-plugin-tool-health",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/tool-retry",
+          "packageName": "dsh-plugin-tool-retry",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/tool-usage",
+          "packageName": "dsh-plugin-tool-usage",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "packages/tushare",
+          "packageName": "dsh-plugin-tushare",
           "status": "unpublished"
         }
       ]
@@ -3166,6 +3532,27 @@
       "repository": "KeepLost/harniverse",
       "reason": "package-limit-exceeded",
       "candidates": []
+    },
+    {
+      "repository": "kevinchu1981/dsh-insurance-experts",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "packages/insurance-company-analyst",
+          "packageName": "@kevinsales/dsh-insurance-company-analyst",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/insurance-ops-analyst",
+          "packageName": "@kevinsales/dsh-insurance-ops-analyst",
+          "status": "repository-mismatch"
+        },
+        {
+          "packagePath": "packages/insurance-product-analyst",
+          "packageName": "@kevinsales/dsh-insurance-product-analyst",
+          "status": "repository-mismatch"
+        }
+      ]
     },
     {
       "repository": "LaplaceYoung/oh-my-dsh",
@@ -3382,6 +3769,11 @@
       ]
     },
     {
+      "repository": "VitaTsui/deepseek-harness-suite",
+      "reason": "package-limit-exceeded",
+      "candidates": []
+    },
+    {
       "repository": "whitelonng/dshcode",
       "reason": "package-limit-exceeded",
       "candidates": []
@@ -3435,6 +3827,22 @@
         {
           "packagePath": "packages/deepseek-billing",
           "packageName": "@deepseek-ai/dsh-deepseek-billing",
+          "status": "unpublished"
+        }
+      ]
+    },
+    {
+      "repository": "Xs1KVerOA/dsh-plugin",
+      "reason": "no-verified-package",
+      "candidates": [
+        {
+          "packagePath": "dsh-security",
+          "packageName": "dsh-security",
+          "status": "unpublished"
+        },
+        {
+          "packagePath": "resource-center-plugin",
+          "packageName": "dsh-resource-center",
           "status": "unpublished"
         }
       ]
