@@ -2,8 +2,17 @@ name: Update registry
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Registry scan mode
+        type: choice
+        options:
+          - incremental
+          - full
+        default: incremental
   schedule:
     - cron: "17 2,14 * * *"
+    - cron: "47 3 * * 0"
 
 permissions:
   contents: write
@@ -17,8 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -27,10 +36,11 @@ jobs:
         run: npm run update
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REGISTRY_SCAN_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '47 3 * * 0' && 'full' || 'incremental') }}
       - run: npm run check
       - name: Commit generated registry
         run: |
-          git add README.md README_EN.md registry/plugins.json registry/candidates.json registry/inspection-cache.json docs/catalog.md docs/collections.md
+          git add README.md README_EN.md registry/plugins.json docs/catalog.md docs/collections.md
           if git diff --cached --quiet; then
             echo "Registry is already current."
             exit 0

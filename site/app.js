@@ -2,25 +2,25 @@ const PAGE_SIZE = 20;
 
 const copy = {
   zh: {
-    loading: "正在读取 Registry…", autoRefresh: "每 8 小时更新",
+    loading: "正在读取 Registry…", autoRefresh: "每天两次增量更新",
     searchLabel: "搜索插件", searchPlaceholder: "搜索插件、作者、标签或功能…",
     popular: "热门", latest: "最新", curated: "精选",
     kindLabel: "类型", categoryLabel: "分类", allKinds: "全部类型", allCategories: "全部分类",
     plugins: "插件", reset: "清除筛选", listView: "列表", cardView: "卡片", emptyTitle: "没有找到匹配的插件", emptyCopy: "试试更短的关键词，或清除筛选。", loadMore: "加载更多",
-    disclaimer: "Bundle 检测仅说明结构可安装，不代表兼容性或安全审查。", statusGuide: "状态说明",
-    collectionAll: "全部精选", noDescription: "暂无简介。", copyInstall: "复制安装命令", copied: "安装命令已复制", viewRepository: "查看仓库",
+    disclaimer: "目录来自 GitHub topic；请在安装前阅读项目自己的说明与安全边界。", statusGuide: "收录说明",
+    collectionAll: "全部精选", noDescription: "暂无简介。", viewRepository: "查看仓库与安装说明",
     registryMeta: (count, date) => `${count.toLocaleString()} 个社区项目 · 更新于 ${date}`,
     resultCount: (count) => `${count.toLocaleString()} 个结果`, remaining: (count) => `剩余 ${count.toLocaleString()}`,
     loadError: "Registry 暂时无法载入，请稍后刷新。",
   },
   en: {
-    loading: "Reading the registry…", autoRefresh: "Updated every 8 hours",
+    loading: "Reading the registry…", autoRefresh: "Incremental updates twice daily",
     searchLabel: "Search plugins", searchPlaceholder: "Search plugins, authors, tags, or features…",
     popular: "Popular", latest: "Latest", curated: "Curated",
     kindLabel: "Kind", categoryLabel: "Category", allKinds: "All kinds", allCategories: "All categories",
     plugins: "Plugins", reset: "Clear filters", listView: "List", cardView: "Cards", emptyTitle: "No matching plugins", emptyCopy: "Try a shorter query or clear your filters.", loadMore: "Load more",
-    disclaimer: "Bundle detection only confirms installable structure, not compatibility or security review.", statusGuide: "Status guide",
-    collectionAll: "All curated", noDescription: "No description yet.", copyInstall: "Copy install", copied: "Install command copied", viewRepository: "View repository",
+    disclaimer: "The directory comes from a GitHub topic. Read each project's own docs and security guidance before installing.", statusGuide: "Listing policy",
+    collectionAll: "All curated", noDescription: "No description yet.", viewRepository: "Repository & install docs",
     registryMeta: (count, date) => `${count.toLocaleString()} community projects · Updated ${date}`,
     resultCount: (count) => `${count.toLocaleString()} results`, remaining: (count) => `${count.toLocaleString()} remaining`,
     loadError: "The registry could not be loaded. Please refresh shortly.",
@@ -33,8 +33,8 @@ const labels = {
     application: ["应用", "Application"], collection: ["集合", "Collection"], resource: ["资源", "Resource"], unknown: ["其他", "Other"],
   },
   status: {
-    "manifest-detected": ["Bundle detected", "Bundle detected"], "legacy-manifest-detected": ["Legacy", "Legacy"],
-    "structure-detected": ["发现结构", "Structure found"], unverified: ["未验证", "Unverified"], placeholder: ["占位仓库", "Placeholder"], archived: ["已归档", "Archived"],
+    "bundle-manifest": ["根 Bundle", "Root Bundle"], "legacy-manifest": ["旧版清单", "Legacy manifest"],
+    "dsh-structure": ["发现结构", "DSH structure"], "topic-only": ["Topic 收录", "Topic listed"],
   },
 };
 
@@ -58,7 +58,7 @@ const $ = (selector) => document.querySelector(selector);
 const elements = {
   language: $("#languageSwitch"), theme: $("#themeSwitch"), themeColor: $("#themeColorMeta"), search: $("#searchInput"), tabs: $("#viewTabs"), kind: $("#kindFilter"), category: $("#categoryFilter"),
   collectionTabs: $("#collectionTabs"), registryMeta: $("#registryMeta"), count: $("#resultsCount"), reset: $("#resetFilters"),
-  grid: $("#pluginGrid"), layoutToggle: $("#layoutToggle"), empty: $("#emptyState"), loadMore: $("#loadMoreButton"), loadMoreCount: $("#loadMoreCount"), toast: $("#toast"),
+  grid: $("#pluginGrid"), layoutToggle: $("#layoutToggle"), empty: $("#emptyState"), loadMore: $("#loadMoreButton"), loadMoreCount: $("#loadMoreCount"),
 };
 
 function t(key) { return copy[state.lang][key]; }
@@ -216,8 +216,8 @@ function createPluginCard(plugin) {
   const card = $("#pluginCardTemplate").content.firstElementChild.cloneNode(true);
   card.querySelector(".kind-badge").textContent = localLabel("kind", plugin.kind);
   const status = card.querySelector(".status-badge");
-  status.textContent = localLabel("status", plugin.verification.status);
-  status.classList.add(plugin.verification.status === "manifest-detected" ? "is-manifest" : plugin.verification.status === "legacy-manifest-detected" ? "is-legacy" : plugin.verification.status === "structure-detected" ? "is-structure" : "is-neutral");
+  status.textContent = localLabel("status", plugin.evidence.status);
+  status.classList.add(plugin.evidence.status === "bundle-manifest" ? "is-bundle" : plugin.evidence.status === "legacy-manifest" ? "is-legacy" : plugin.evidence.status === "dsh-structure" ? "is-structure" : "is-topic");
   card.querySelector(".external-link").href = plugin.url;
   card.querySelector(".plugin-owner").textContent = plugin.owner;
   const link = card.querySelector(".plugin-link"); link.href = plugin.url; link.textContent = plugin.name;
@@ -228,23 +228,9 @@ function createPluginCard(plugin) {
   card.querySelector(".plugin-license").textContent = plugin.license.spdx || "—";
   card.querySelector(".plugin-language").textContent = plugin.language || "—";
   const action = card.querySelector(".card-action");
-  if (plugin.install.available && plugin.install.command) {
-    const button = document.createElement("button"); button.type = "button"; button.className = "install-command"; button.textContent = t("copyInstall");
-    button.setAttribute("aria-label", `${t("copyInstall")}: ${plugin.install.command}`);
-    button.addEventListener("click", () => copyInstall(plugin.install.command)); action.append(button);
-  } else {
-    const repo = document.createElement("a"); repo.className = "view-repository"; repo.href = plugin.url; repo.target = "_blank"; repo.rel = "noreferrer"; repo.textContent = t("viewRepository"); action.append(repo);
-  }
+  const repo = document.createElement("a"); repo.className = "repository-guide"; repo.href = plugin.url; repo.target = "_blank"; repo.rel = "noreferrer"; repo.textContent = t("viewRepository"); action.append(repo);
   return card;
 }
-
-async function copyInstall(command) {
-  try { await navigator.clipboard.writeText(command); showToast(t("copied")); }
-  catch { showToast(command); }
-}
-
-let toastTimer;
-function showToast(message) { elements.toast.textContent = message; elements.toast.classList.add("is-visible"); clearTimeout(toastTimer); toastTimer = setTimeout(() => elements.toast.classList.remove("is-visible"), 2100); }
 function hasActiveFilters() { return Boolean(elements.search.value || state.view !== "popular" || elements.kind.value || elements.category.value); }
 function resetFilters() {
   elements.search.value = ""; state.view = "popular"; state.collection = ""; elements.kind.value = ""; elements.category.value = ""; state.visible = PAGE_SIZE; applyFilters();

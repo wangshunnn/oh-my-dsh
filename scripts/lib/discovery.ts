@@ -3,7 +3,7 @@ import {
   decodePackageJsonText,
   githubGraphqlRequest,
 } from './registry.ts'
-import type { GitHubRepository, PackageJson } from './registry.ts'
+import type { GitHubRepository, PackageJson, ScanMode } from './registry.ts'
 
 export const DISCOVERY_START_TIMESTAMP = '2008-01-01T00:00:00Z'
 export const DISCOVERY_SLICE_SIZE = 50
@@ -11,12 +11,12 @@ export const DISCOVERY_COUNT_BATCH_SIZE = 20
 export const MAX_ROOT_PACKAGE_BYTES = 512 * 1024
 export const MAX_DISCOVERY_GRAPHQL_REQUESTS = 700
 
-export interface CreationRange {
+export interface DiscoveryRange {
   startMs: number
   endMs: number
 }
 
-export interface DiscoverySlice extends CreationRange {
+export interface DiscoverySlice extends DiscoveryRange {
   count: number
 }
 
@@ -26,6 +26,9 @@ export interface DiscoveredRepository {
 }
 
 export interface DiscoveryResult {
+  mode: ScanMode
+  windowStart: string
+  windowEnd: string
   repositories: DiscoveredRepository[]
   reportedTotal: number
   discoveredTotal: number
@@ -83,6 +86,14 @@ type GraphqlRequester = <T>(
   token: string,
 ) => Promise<T>
 
+export interface DiscoveryOptions {
+  scanTimestamp: string
+  mode: ScanMode
+  since?: string
+  request?: GraphqlRequester
+  reportProgress?: (message: string) => void
+}
+
 const SLICE_QUERY = `
   query DiscoverRepositories($queryString: String!, $limit: Int!) {
     search(type: REPOSITORY, query: $queryString, first: $limit) {
@@ -106,9 +117,7 @@ const SLICE_QUERY = `
           updatedAt
           primaryLanguage { name }
           licenseInfo { spdxId }
-          repositoryTopics(first: 20) {
-            nodes { topic { name } }
-          }
+          repositoryTopics(first: 100) { nodes { topic { name } } }
           packageFile: object(expression: "HEAD:package.json") {
             ... on Blob { byteSize isBinary text }
           }
@@ -127,16 +136,18 @@ export function formatGitHubTimestamp(value: number): string {
   return new Date(toSecond(value)).toISOString().replace('.000Z', 'Z')
 }
 
-export function creationRangeQuery(range: CreationRange): string {
-  return `${DISCOVERY_QUERY} created:${formatGitHubTimestamp(range.startMs)}..${formatGitHubTimestamp(range.endMs)}`
+export function rangeQuery(range: DiscoveryRange, qualifier: 'created' | 'updated'): string {
+  return `${DISCOVERY_QUERY} ${qualifier}:${formatGitHubTimestamp(range.startMs)}..${formatGitHubTimestamp(range.endMs)}`
 }
 
-export function splitCreationRange(range: CreationRange): [CreationRange, CreationRange] {
+export function creationRangeQuery(range: DiscoveryRange): string {
+  return rangeQuery(range, 'created')
+}
+
+export function splitDiscoveryRange(range: DiscoveryRange): [DiscoveryRange, DiscoveryRange] {
   const startMs = toSecond(range.startMs)
   const endMs = toSecond(range.endMs)
-  if (startMs >= endMs) {
-    throw new Error(`Cannot split one-second discovery range ${creationRangeQuery({ startMs, endMs })}`)
-  }
+  if (startMs >= endMs) throw new Error(`Cannot split one-second discovery range ${formatGitHubTimestamp(startMs)}`)
   const midpointMs = toSecond(startMs + Math.floor((endMs - startMs) / 2))
   return [
     { startMs, endMs: midpointMs },
@@ -144,66 +155,54 @@ export function splitCreationRange(range: CreationRange): [CreationRange, Creati
   ]
 }
 
+export const splitCreationRange = splitDiscoveryRange
+
 export async function planCreationSlices(
-  range: CreationRange,
-  countRepositories: (range: CreationRange) => Promise<number>,
+  range: DiscoveryRange,
+  countRepositories: (range: DiscoveryRange) => Promise<number>,
   limit = DISCOVERY_SLICE_SIZE,
 ): Promise<{ reportedTotal: number; slices: DiscoverySlice[] }> {
   const slices: DiscoverySlice[] = []
   const reportedTotal = await countRepositories(range)
-
-  async function visit(current: CreationRange, knownCount?: number): Promise<void> {
+  async function visit(current: DiscoveryRange, knownCount?: number): Promise<void> {
     const count = knownCount ?? await countRepositories(current)
     if (count === 0) return
     if (count <= limit) {
       slices.push({ ...current, count })
       return
     }
-    const [left, right] = splitCreationRange(current)
+    const [left, right] = splitDiscoveryRange(current)
     await visit(left)
     await visit(right)
   }
-
   await visit(range, reportedTotal)
   return { reportedTotal, slices }
 }
 
 export async function planCreationSlicesBatched(
-  range: CreationRange,
-  countRepositories: (ranges: CreationRange[]) => Promise<number[]>,
+  range: DiscoveryRange,
+  countRepositories: (ranges: DiscoveryRange[]) => Promise<number[]>,
   limit = DISCOVERY_SLICE_SIZE,
   batchSize = DISCOVERY_COUNT_BATCH_SIZE,
 ): Promise<{ reportedTotal: number; slices: DiscoverySlice[] }> {
-  if (!Number.isInteger(batchSize) || batchSize < 1) {
-    throw new Error('Discovery count batch size must be a positive integer')
-  }
+  if (!Number.isInteger(batchSize) || batchSize < 1) throw new Error('Discovery count batch size must be a positive integer')
   const slices: DiscoverySlice[] = []
-  const queue: CreationRange[] = [range]
+  const queue: DiscoveryRange[] = [range]
   let reportedTotal: number | null = null
-
   while (queue.length > 0) {
     const batch = queue.splice(0, batchSize)
     const counts = await countRepositories(batch)
-    if (counts.length !== batch.length) {
-      throw new Error(`Discovery count batch returned ${counts.length} results for ${batch.length} ranges`)
-    }
+    if (counts.length !== batch.length) throw new Error(`Discovery count batch returned ${counts.length} results for ${batch.length} ranges`)
     if (reportedTotal === null) reportedTotal = counts[0]
-
     for (let index = 0; index < batch.length; index += 1) {
       const current = batch[index]
       const count = counts[index]
-      if (!Number.isInteger(count) || count < 0) {
-        throw new Error(`Invalid repository count for ${creationRangeQuery(current)}: ${count}`)
-      }
+      if (!Number.isInteger(count) || count < 0) throw new Error(`Invalid repository count: ${count}`)
       if (count === 0) continue
-      if (count <= limit) {
-        slices.push({ ...current, count })
-        continue
-      }
-      queue.push(...splitCreationRange(current))
+      if (count <= limit) slices.push({ ...current, count })
+      else queue.push(...splitDiscoveryRange(current))
     }
   }
-
   return { reportedTotal: reportedTotal ?? 0, slices }
 }
 
@@ -220,12 +219,9 @@ function countBatchQuery(size: number): string {
 function normalizeNode(node: GraphqlRepositoryNode): DiscoveredRepository {
   const [owner] = node.nameWithOwner.split('/', 1)
   const packageFile = node.packageFile
-  const rootPackageJson = packageFile
-    && !packageFile.isBinary
-    && packageFile.byteSize <= MAX_ROOT_PACKAGE_BYTES
+  const rootPackageJson = packageFile && !packageFile.isBinary && packageFile.byteSize <= MAX_ROOT_PACKAGE_BYTES
     ? decodePackageJsonText(packageFile.text)
     : null
-
   return {
     repository: {
       node_id: node.id,
@@ -234,9 +230,7 @@ function normalizeNode(node: GraphqlRepositoryNode): DiscoveredRepository {
       owner: { login: owner },
       html_url: node.url,
       description: node.description,
-      topics: node.repositoryTopics.nodes
-        .flatMap(item => item ? [item.topic.name] : [])
-        .sort(),
+      topics: node.repositoryTopics.nodes.flatMap(item => item ? [item.topic.name] : []).sort(),
       archived: node.isArchived,
       fork: node.isFork,
       size: node.diskUsage ?? 0,
@@ -255,97 +249,73 @@ function normalizeNode(node: GraphqlRepositoryNode): DiscoveredRepository {
   }
 }
 
-export async function discoverRepositories(
-  token: string,
-  scanTimestamp: string,
-  request: GraphqlRequester = githubGraphqlRequest,
-  reportProgress: (message: string) => void = () => {},
-): Promise<DiscoveryResult> {
-  if (!token) {
-    throw new Error('Complete repository discovery requires GITHUB_TOKEN or GH_TOKEN')
-  }
-  const endMs = toSecond(Date.parse(scanTimestamp))
-  const startMs = Date.parse(DISCOVERY_START_TIMESTAMP)
-  if (!Number.isFinite(endMs) || endMs < startMs) {
-    throw new Error(`Invalid discovery scan timestamp: ${scanTimestamp}`)
+export async function discoverRepositories(token: string, options: DiscoveryOptions): Promise<DiscoveryResult> {
+  if (!token) throw new Error('Repository discovery requires GITHUB_TOKEN or GH_TOKEN')
+  const request = options.request ?? githubGraphqlRequest
+  const reportProgress = options.reportProgress ?? (() => {})
+  const qualifier = options.mode === 'full' ? 'created' : 'updated'
+  const startTimestamp = options.mode === 'full' ? DISCOVERY_START_TIMESTAMP : options.since
+  if (!startTimestamp) throw new Error('Incremental discovery requires a since timestamp')
+  const startMs = toSecond(Date.parse(startTimestamp))
+  const endMs = toSecond(Date.parse(options.scanTimestamp))
+  if (!Number.isFinite(startMs) || !Number.isFinite(endMs) || endMs < startMs) {
+    throw new Error(`Invalid discovery window: ${startTimestamp}..${options.scanTimestamp}`)
   }
   const rootRange = { startMs, endMs }
   let graphqlRequests = 0
-  const checkedRequest = async <T>(
-    query: string,
-    variables: Record<string, unknown>,
-  ): Promise<T> => {
-    if (graphqlRequests >= MAX_DISCOVERY_GRAPHQL_REQUESTS) {
-      throw new Error(`Discovery exceeded its ${MAX_DISCOVERY_GRAPHQL_REQUESTS}-request GraphQL budget`)
-    }
+  const checkedRequest = async <T>(query: string, variables: Record<string, unknown>): Promise<T> => {
+    if (graphqlRequests >= MAX_DISCOVERY_GRAPHQL_REQUESTS) throw new Error(`Discovery exceeded its ${MAX_DISCOVERY_GRAPHQL_REQUESTS}-request GraphQL budget`)
     graphqlRequests += 1
     const data = await request<T>(query, variables, token)
     const remaining = (data as { rateLimit?: { remaining?: number } }).rateLimit?.remaining
-    if (remaining !== undefined && remaining < 50) {
-      throw new Error(`Discovery stopped with only ${remaining} GraphQL points remaining`)
-    }
+    if (remaining !== undefined && remaining < 50) throw new Error(`Discovery stopped with only ${remaining} GraphQL points remaining`)
     return data
   }
-  const countRepositories = async (ranges: CreationRange[]): Promise<number[]> => {
-    const variables = Object.fromEntries(
-      ranges.map((range, index) => [`query${index}`, creationRangeQuery(range)]),
-    )
+  const countRepositories = async (ranges: DiscoveryRange[]): Promise<number[]> => {
+    const variables = Object.fromEntries(ranges.map((range, index) => [`query${index}`, rangeQuery(range, qualifier)]))
     const data = await checkedRequest<BatchedCountQueryData>(countBatchQuery(ranges.length), variables)
     if (graphqlRequests === 1 || graphqlRequests % 10 === 0) {
-      reportProgress(`Discovery planning: ${graphqlRequests} GraphQL requests, ${ranges.length} ranges in latest batch.`)
+      reportProgress(`${options.mode} discovery planning: ${graphqlRequests} GraphQL requests, ${ranges.length} ranges in latest batch.`)
     }
     return ranges.map((_, index) => {
       const result = data[`search${index}`]
-      if (!result || !('repositoryCount' in result)) {
-        throw new Error(`Discovery count response is missing search${index}`)
-      }
+      if (!result || !('repositoryCount' in result)) throw new Error(`Discovery count response is missing search${index}`)
       return result.repositoryCount
     })
   }
   const plan = await planCreationSlicesBatched(rootRange, countRepositories)
-  reportProgress(
-    `Discovery planned ${plan.slices.length} complete time slices in ${graphqlRequests} GraphQL requests.`,
-  )
-  const queue: CreationRange[] = [...plan.slices]
+  reportProgress(`${options.mode} discovery planned ${plan.slices.length} complete ${qualifier} slices in ${graphqlRequests} GraphQL requests.`)
+  const queue: DiscoveryRange[] = [...plan.slices]
   const repositories: DiscoveredRepository[] = []
   let fetchedSlices = 0
-
   while (queue.length > 0) {
     const slice = queue.shift()!
     const data = await checkedRequest<SliceQueryData>(SLICE_QUERY, {
-      queryString: creationRangeQuery(slice),
+      queryString: rangeQuery(slice, qualifier),
       limit: DISCOVERY_SLICE_SIZE,
     })
     const currentCount = data.search.repositoryCount
     if (currentCount > DISCOVERY_SLICE_SIZE) {
-      const [left, right] = splitCreationRange(slice)
+      const [left, right] = splitDiscoveryRange(slice)
       queue.unshift(left, right)
       continue
     }
     const nodes = data.search.nodes.flatMap(node => node ? [node] : [])
     if (nodes.length !== currentCount) {
-      throw new Error(
-        `Incomplete discovery slice ${creationRangeQuery(slice)}: expected ${currentCount}, received ${nodes.length}`,
-      )
+      throw new Error(`Incomplete discovery slice ${rangeQuery(slice, qualifier)}: expected ${currentCount}, received ${nodes.length}`)
     }
     repositories.push(...nodes.map(normalizeNode))
     fetchedSlices += 1
     if (fetchedSlices % 20 === 0 || queue.length === 0) {
-      reportProgress(
-        `Discovery fetched ${fetchedSlices} slices and ${repositories.length} repositories; ${queue.length} slices remain.`,
-      )
+      reportProgress(`${options.mode} discovery fetched ${fetchedSlices} slices and ${repositories.length} repositories; ${queue.length} slices remain.`)
     }
   }
-
   const unique = new Map<string, DiscoveredRepository>()
-  for (const discovered of repositories) {
-    const id = discovered.repository.node_id
-    if (unique.has(id)) {
-      throw new Error(`Duplicate repository node across discovery slices: ${discovered.repository.full_name}`)
-    }
-    unique.set(id, discovered)
-  }
+  for (const discovered of repositories) unique.set(discovered.repository.node_id, discovered)
   return {
+    mode: options.mode,
+    windowStart: formatGitHubTimestamp(startMs),
+    windowEnd: formatGitHubTimestamp(endMs),
     repositories: [...unique.values()],
     reportedTotal: plan.reportedTotal,
     discoveredTotal: unique.size,

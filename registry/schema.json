@@ -5,15 +5,23 @@
   "type": "object",
   "required": ["schemaVersion", "generatedAt", "source", "stats", "plugins"],
   "properties": {
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "const": 2 },
     "generatedAt": { "type": "string", "format": "date-time" },
     "source": {
       "type": "object",
-      "required": ["provider", "query", "url", "reportedTotal", "discoveredTotal", "slices", "graphqlRequests"],
+      "required": [
+        "provider", "query", "url", "mode", "scannedAt", "lastFullScanAt",
+        "windowStart", "windowEnd", "reportedTotal", "discoveredTotal", "slices", "graphqlRequests"
+      ],
       "properties": {
         "provider": { "const": "github" },
         "query": { "type": "string" },
         "url": { "type": "string", "format": "uri" },
+        "mode": { "enum": ["full", "incremental"] },
+        "scannedAt": { "type": "string", "format": "date-time" },
+        "lastFullScanAt": { "type": "string", "format": "date-time" },
+        "windowStart": { "type": "string", "format": "date-time" },
+        "windowEnd": { "type": "string", "format": "date-time" },
         "reportedTotal": { "type": "integer", "minimum": 0 },
         "discoveredTotal": { "type": "integer", "minimum": 0 },
         "slices": { "type": "integer", "minimum": 0 },
@@ -23,11 +31,11 @@
     },
     "stats": {
       "type": "object",
-      "required": ["included", "byKind", "byStatus"],
+      "required": ["included", "byKind", "byEvidence"],
       "properties": {
         "included": { "type": "integer", "minimum": 0 },
         "byKind": { "$ref": "#/$defs/countMap" },
-        "byStatus": { "$ref": "#/$defs/countMap" }
+        "byEvidence": { "$ref": "#/$defs/countMap" }
       },
       "additionalProperties": false
     },
@@ -45,12 +53,13 @@
     "plugin": {
       "type": "object",
       "required": [
-        "id", "name", "owner", "repository", "url", "description", "kind",
-        "categories", "topics", "license", "metrics", "repositoryState",
-        "package", "verification", "install"
+        "id", "githubNodeId", "name", "owner", "repository", "url", "description",
+        "kind", "categories", "topics", "language", "license", "metrics",
+        "repositoryState", "package", "evidence"
       ],
       "properties": {
         "id": { "type": "string", "pattern": "^[^/]+/[^/]+$" },
+        "githubNodeId": { "type": "string", "minLength": 1 },
         "name": { "type": "string", "minLength": 1 },
         "owner": { "type": "string", "minLength": 1 },
         "repository": { "type": "string", "minLength": 1 },
@@ -81,31 +90,38 @@
           },
           "additionalProperties": false
         },
-        "repositoryState": { "type": "object" },
-        "package": {
+        "repositoryState": {
           "type": "object",
-          "required": ["detected", "name", "version", "private", "manifest", "path"],
+          "required": ["defaultBranch", "headOid", "createdAt", "pushedAt", "updatedAt"],
           "properties": {
-            "detected": { "type": "boolean" },
-            "name": { "type": ["string", "null"] },
-            "version": { "type": ["string", "null"] },
-            "private": { "type": ["boolean", "null"] },
-            "manifest": { "enum": ["dsh.bundle", "dshx", "dsh-structure", null] },
-            "path": { "type": ["string", "null"] }
+            "defaultBranch": { "type": "string" },
+            "headOid": { "type": ["string", "null"] },
+            "createdAt": { "type": "string", "format": "date-time" },
+            "pushedAt": { "type": ["string", "null"], "format": "date-time" },
+            "updatedAt": { "type": "string", "format": "date-time" }
           },
           "additionalProperties": false
         },
-        "verification": {
+        "package": {
           "type": "object",
-          "required": ["method"],
+          "required": ["name", "version", "private", "manifest"],
           "properties": {
-            "method": {
-              "enum": ["root-package-manifest", "workspace-package-manifest", "github-metadata"]
-            }
-          }
+            "name": { "type": ["string", "null"] },
+            "version": { "type": ["string", "null"] },
+            "private": { "type": ["boolean", "null"] },
+            "manifest": { "enum": ["dsh.bundle", "dshx", "dsh-structure", null] }
+          },
+          "additionalProperties": false
         },
-        "install": { "type": "object" },
-        "curation": { "type": "object" }
+        "evidence": {
+          "type": "object",
+          "required": ["status", "checkedAt"],
+          "properties": {
+            "status": { "enum": ["bundle-manifest", "legacy-manifest", "dsh-structure", "topic-only"] },
+            "checkedAt": { "type": "string", "format": "date-time" }
+          },
+          "additionalProperties": false
+        }
       },
       "additionalProperties": false
     }

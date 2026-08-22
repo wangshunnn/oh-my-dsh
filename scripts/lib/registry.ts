@@ -1,15 +1,12 @@
 import { spawnSync } from 'node:child_process'
 
-export const REGISTRY_SCHEMA_VERSION = 1
-export const DISCOVERY_QUERY = 'topic:dsh-plugin'
-export const MAX_WORKSPACE_PACKAGE_MANIFESTS = 64
+export const REGISTRY_SCHEMA_VERSION = 2
+export const DISCOVERY_QUERY = 'topic:dsh-plugin fork:false archived:false'
 
+export type ScanMode = 'full' | 'incremental'
 export type ManifestKind = 'dsh.bundle' | 'dshx' | 'dsh-structure'
+export type ListingEvidence = 'bundle-manifest' | 'legacy-manifest' | 'dsh-structure' | 'topic-only'
 export type PluginKind = 'plugin' | 'bundle' | 'skin' | 'client' | 'application' | 'collection' | 'resource' | 'unknown'
-export type VerificationStatus = 'manifest-detected' | 'legacy-manifest-detected' | 'structure-detected' | 'unverified' | 'placeholder' | 'archived'
-export type VerificationMethod = 'root-package-manifest' | 'workspace-package-manifest' | 'github-metadata'
-export type WorkspaceCandidateStatus = 'verified' | 'invalid-manifest' | 'unpublished' | 'repository-mismatch'
-export type WorkspaceReviewReason = 'multiple-verified-packages' | 'no-verified-package' | 'tree-truncated' | 'package-limit-exceeded'
 
 export interface PackageJson {
   name?: string
@@ -17,8 +14,6 @@ export interface PackageJson {
   version?: string
   private?: boolean
   files?: string[]
-  workspaces?: unknown
-  pnpm?: unknown
   dsh?: {
     bundle?: {
       patch?: unknown
@@ -58,80 +53,9 @@ export interface GitHubRepository extends ClassificationRepository {
   head_oid: string | null
 }
 
-export interface GitHubSearchResponse {
-  total_count: number
-  items: GitHubRepository[]
-}
-
-export interface GitHubContentResponse {
-  type: string
-  content?: string
-}
-
-export interface GitHubTreeResponse {
-  truncated: boolean
-  tree: Array<{
-    path: string
-    type: string
-  }>
-}
-
-export interface NpmPackageMetadata {
-  name?: string
-  repository?: string | {
-    url?: string
-    directory?: string
-  }
-}
-
-export interface WorkspacePackageCandidate {
-  packagePath: string
-  packageName: string | null
-  status: WorkspaceCandidateStatus
-}
-
-export interface WorkspaceReview {
-  repository: string
-  reason: WorkspaceReviewReason
-  candidates: WorkspacePackageCandidate[]
-}
-
-export interface WorkspaceCandidateRegistry {
-  schemaVersion: number
-  generatedAt: string
-  pending: string[]
-  reviews: WorkspaceReview[]
-}
-
-export interface WorkspaceInspectionCacheEntry {
-  repository: string
-  headOid: string
-  packageJson: PackageJson | null
-  packagePath: string | null
-  review: WorkspaceReview | null
-}
-
-export interface WorkspaceInspectionCache {
-  schemaVersion: number
-  entries: Record<string, WorkspaceInspectionCacheEntry>
-}
-
-export interface RepositoryOverride {
-  exclude?: boolean
-  kind?: PluginKind
-  categories?: string[]
-  packagePath?: string
-  note?: string | null
-  canonical?: boolean
-}
-
-export interface RegistryOverrides {
-  owners?: Record<string, { exclude?: boolean }>
-  repositories?: Record<string, RepositoryOverride>
-}
-
 export interface RegistryPlugin {
   id: string
+  githubNodeId: string
   name: string
   owner: string
   repository: string
@@ -151,38 +75,21 @@ export interface RegistryPlugin {
     openIssues: number
   }
   repositoryState: {
-    archived: boolean
-    fork: boolean
-    empty: boolean
     defaultBranch: string
+    headOid: string | null
     createdAt: string
     pushedAt: string | null
     updatedAt: string
   }
   package: {
-    detected: boolean
     name: string | null
     version: string | null
     private: boolean | null
     manifest: ManifestKind | null
-    path: string | null
   }
-  verification: {
-    status: VerificationStatus
+  evidence: {
+    status: ListingEvidence
     checkedAt: string
-    method: VerificationMethod
-    harnessRevision: string | null
-    runtimeTested: boolean
-  }
-  install: {
-    available: boolean
-    profile: string | null
-    source: string | null
-    command: string | null
-  }
-  curation?: {
-    note: string | null
-    canonical: boolean
   }
 }
 
@@ -190,9 +97,14 @@ export interface PluginRegistry {
   schemaVersion: number
   generatedAt: string
   source: {
-    provider: string
+    provider: 'github'
     query: string
     url: string
+    mode: ScanMode
+    scannedAt: string
+    lastFullScanAt: string
+    windowStart: string
+    windowEnd: string
     reportedTotal: number
     discoveredTotal: number
     slices: number
@@ -201,7 +113,7 @@ export interface PluginRegistry {
   stats: {
     included: number
     byKind: Record<string, number>
-    byStatus: Record<string, number>
+    byEvidence: Record<string, number>
   }
   plugins: RegistryPlugin[]
 }
@@ -245,36 +157,29 @@ function searchable(repository: ClassificationRepository, packageJson: PackageJs
 export function detectManifest(packageJson: PackageJson | null): ManifestKind | null {
   if (packageJson?.dsh?.bundle?.patch) return 'dsh.bundle'
   if (packageJson?.dshx) return 'dshx'
-  if (packageJson?.dsh || packageJson?.files?.includes?.('dsh.plugin.json')) {
-    return 'dsh-structure'
-  }
+  if (packageJson?.dsh || packageJson?.files?.includes?.('dsh.plugin.json')) return 'dsh-structure'
   return null
+}
+
+export function listingEvidence(packageJson: PackageJson | null): ListingEvidence {
+  const manifest = detectManifest(packageJson)
+  if (manifest === 'dsh.bundle') return 'bundle-manifest'
+  if (manifest === 'dshx') return 'legacy-manifest'
+  if (manifest === 'dsh-structure') return 'dsh-structure'
+  return 'topic-only'
 }
 
 export function classifyKind(
   repository: ClassificationRepository,
   packageJson: PackageJson | null,
-  override: RepositoryOverride = {},
 ): PluginKind {
-  if (override.kind) return override.kind
   const text = searchable(repository, packageJson)
   const manifest = detectManifest(packageJson)
-
-  if (!manifest && /awesome|plugin director(?:y|ies)|plugin ecosystem|leaderboard|curated list|plugin registry/i.test(text)) {
-    return 'collection'
-  }
-  if (/skin|theme|wallpaper|sticker|status label|custom css/i.test(text)) {
-    return 'skin'
-  }
-  if (/desktop|mobile client|terminal ui|\btui\b|workbench/i.test(text)) {
-    return 'client'
-  }
-  if (/template|guide|cookbook|best practices|development resource/i.test(text)) {
-    return 'resource'
-  }
-  if (/plugin collection|plugin suite|bundle/i.test(text) && !manifest) {
-    return 'bundle'
-  }
+  if (!manifest && /awesome|plugin director(?:y|ies)|plugin ecosystem|leaderboard|curated list|plugin registry/i.test(text)) return 'collection'
+  if (/skin|theme|wallpaper|sticker|status label|custom css/i.test(text)) return 'skin'
+  if (/desktop|mobile client|terminal ui|\btui\b|workbench/i.test(text)) return 'client'
+  if (/template|guide|cookbook|best practices|development resource/i.test(text)) return 'resource'
+  if (/plugin collection|plugin suite|bundle/i.test(text) && !manifest) return 'bundle'
   if (manifest || /\bplugin\b|dsh[-_]/i.test(text)) return 'plugin'
   if (/agent|application|platform/i.test(text)) return 'application'
   return 'unknown'
@@ -283,168 +188,42 @@ export function classifyKind(
 export function classifyCategories(
   repository: ClassificationRepository,
   packageJson: PackageJson | null,
-  override: RepositoryOverride = {},
 ): string[] {
-  if (override.categories) return [...new Set(override.categories)].sort()
   const text = searchable(repository, packageJson)
-  const categories = CATEGORY_RULES
-    .filter(([, pattern]) => pattern.test(text))
-    .map(([category]) => category)
-
+  const categories = CATEGORY_RULES.filter(([, pattern]) => pattern.test(text)).map(([category]) => category)
   return [...new Set(categories.length > 0 ? categories : ['other'])].sort()
 }
 
-export function verificationStatus(
-  repository: ClassificationRepository,
-  packageJson: PackageJson | null,
-): VerificationStatus {
-  if (repository.archived) return 'archived'
-  if (repository.size === 0) return 'placeholder'
-  const manifest = detectManifest(packageJson)
-  if (manifest === 'dsh.bundle') return 'manifest-detected'
-  if (manifest === 'dshx') return 'legacy-manifest-detected'
-  if (manifest === 'dsh-structure') return 'structure-detected'
-  return 'unverified'
+export function collectionRepositoryIssue(
+  requestedId: string,
+  repository: Pick<GitHubRepository, 'full_name' | 'topics' | 'archived' | 'fork' | 'size'> | null,
+): string | null {
+  if (!repository) return `${requestedId}: repository was not found`
+  if (repository.full_name !== requestedId) return `${requestedId}: repository moved or was renamed to ${repository.full_name}`
+  if (repository.archived) return `${requestedId}: repository is archived`
+  if (repository.fork) return `${requestedId}: repository is a fork`
+  if (repository.size === 0) return `${requestedId}: repository is empty`
+  if (!repository.topics?.includes('dsh-plugin')) return `${requestedId}: dsh-plugin topic is missing`
+  return null
 }
 
-export function packageJsonContentPath(packagePath?: unknown): string {
-  if (packagePath === undefined) return 'package.json'
-  if (typeof packagePath !== 'string') {
-    throw new Error('packagePath must be a string')
-  }
-
-  const segments = packagePath.split('/')
-  if (
-    packagePath.trim() !== packagePath
-    || packagePath.startsWith('/')
-    || packagePath.endsWith('/')
-    || packagePath.includes('\\')
-    || /[\u0000-\u001f\u007f]/.test(packagePath)
-    || segments.some(segment => segment === '' || segment === '.' || segment === '..')
-  ) {
-    throw new Error(`packagePath must be a normalized relative directory: ${JSON.stringify(packagePath)}`)
-  }
-
-  return [...segments, 'package.json'].map(encodeURIComponent).join('/')
-}
-
-export function verificationMethod(
-  manifest: ManifestKind | null,
-  packagePath?: string,
-): VerificationMethod {
-  if (!manifest) return 'github-metadata'
-  return packagePath === undefined ? 'root-package-manifest' : 'workspace-package-manifest'
-}
-
-const NPM_PACKAGE_NAME = /^(?:@[a-z0-9][a-z0-9._~-]*\/)?[a-z0-9][a-z0-9._~-]*$/
-
-export function isPublicPackageManifest(
-  packageJson: PackageJson | null,
-): packageJson is PackageJson & { name: string } {
-  const packageName = packageJson?.name
-  return packageJson?.private !== true
-    && typeof packageName === 'string'
-    && packageName.length <= 214
-    && NPM_PACKAGE_NAME.test(packageName)
-}
-
-export function installationSource(
-  repositoryFullName: string,
-  packageJson: PackageJson | null,
-  packagePath?: string,
-): string {
-  if (packagePath === undefined) return `github:${repositoryFullName}`
-
-  if (!isPublicPackageManifest(packageJson)) {
-    throw new Error(`${repositoryFullName}: workspace manifest must declare a valid public package.name`)
-  }
-  return packageJson.name
-}
-
-const IGNORED_WORKSPACE_SEGMENTS = new Set([
-  '.git',
-  '.yarn',
-  'node_modules',
-  'vendor',
-])
-
-export function workspacePackagePaths(
-  response: GitHubTreeResponse,
-  limit = MAX_WORKSPACE_PACKAGE_MANIFESTS,
-): { paths: string[]; reason: 'tree-truncated' | 'package-limit-exceeded' | null } {
-  if (response.truncated) return { paths: [], reason: 'tree-truncated' }
-
-  const paths = response.tree
-    .filter(entry => entry.type === 'blob' && entry.path.endsWith('/package.json'))
-    .map(entry => entry.path.slice(0, -'/package.json'.length))
-    .filter(packagePath => {
-      const segments = packagePath.split('/')
-      return !segments.some(segment => IGNORED_WORKSPACE_SEGMENTS.has(segment.toLowerCase()))
-    })
-    .sort((a, b) => a.localeCompare(b))
-
-  if (paths.length > limit) return { paths: [], reason: 'package-limit-exceeded' }
-  return { paths, reason: null }
-}
-
-export function normalizeGitHubRepository(value: unknown): string | null {
-  const repository = typeof value === 'string'
-    ? value
-    : value && typeof value === 'object' && 'url' in value
-      ? (value as { url?: unknown }).url
-      : null
-  if (typeof repository !== 'string') return null
-
-  let normalized = repository.trim()
-    .replace(/^git\+/, '')
-    .replace(/^github:/, '')
-    .replace(/^git@github\.com:/, '')
-
-  if (/^(?:https?|git|ssh):\/\//.test(normalized)) {
-    try {
-      const url = new URL(normalized)
-      if (url.hostname.toLowerCase() !== 'github.com') return null
-      normalized = url.pathname
-    } catch {
-      return null
-    }
-  }
-
-  normalized = normalized.replace(/^\/+|\/+$/g, '').replace(/\.git$/i, '')
-  return /^[^/]+\/[^/]+$/.test(normalized) ? normalized.toLowerCase() : null
-}
-
-export function verifyWorkspacePackage(
-  repositoryFullName: string,
-  packageJson: PackageJson | null,
-  metadata: NpmPackageMetadata | null,
-): WorkspaceCandidateStatus {
-  if (!isPublicPackageManifest(packageJson)) return 'invalid-manifest'
-  if (!metadata || metadata.name !== packageJson.name) return 'unpublished'
-  return normalizeGitHubRepository(metadata.repository) === repositoryFullName.toLowerCase()
-    ? 'verified'
-    : 'repository-mismatch'
-}
-
-export function selectWorkspaceCandidate<T extends { status: WorkspaceCandidateStatus }>(
-  candidates: readonly T[],
-): { selected: T | null; reason: 'multiple-verified-packages' | 'no-verified-package' | null } {
-  const verified = candidates.filter(candidate => candidate.status === 'verified')
-  if (verified.length === 1) return { selected: verified[0], reason: null }
-  return {
-    selected: null,
-    reason: verified.length > 1 ? 'multiple-verified-packages' : 'no-verified-package',
-  }
+export function mergeRegistryPlugins(
+  previous: readonly RegistryPlugin[],
+  refreshed: readonly RegistryPlugin[],
+  removedNodeIds: ReadonlySet<string>,
+  mode: ScanMode,
+): RegistryPlugin[] {
+  if (mode === 'full') return [...refreshed]
+  const merged = new Map(previous.map(plugin => [plugin.githubNodeId, plugin]))
+  for (const nodeId of removedNodeIds) merged.delete(nodeId)
+  for (const plugin of refreshed) merged.set(plugin.githubNodeId, plugin)
+  return [...merged.values()]
 }
 
 export function getGitHubToken(): string {
   const environmentToken = process.env.GITHUB_TOKEN || process.env.GH_TOKEN
   if (environmentToken) return environmentToken.trim()
-
-  const result = spawnSync('gh', ['auth', 'token'], {
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'ignore'],
-  })
+  const result = spawnSync('gh', ['auth', 'token'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] })
   return result.status === 0 ? result.stdout.trim() : ''
 }
 
@@ -457,101 +236,67 @@ const GITHUB_API_HEADERS = {
 function retryDelay(response: Response | null, attempt: number): number {
   const retryAfter = Number(response?.headers.get('retry-after'))
   if (Number.isFinite(retryAfter) && retryAfter > 0) return Math.min(retryAfter * 1000, 60_000)
-  return Math.min(1000 * 2 ** attempt, 15_000)
+  const base = Math.min(1000 * 2 ** attempt, 30_000)
+  return Math.round(base * (0.75 + Math.random() * 0.5))
 }
 
-async function githubFetch(
-  url: string,
-  token: string,
-  init: RequestInit = {},
-  attempts = 4,
-): Promise<Response> {
+async function githubFetch(url: string, token: string, init: RequestInit = {}, attempts = 5): Promise<Response> {
   let lastError: unknown
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     let response: Response | null = null
     try {
       response = await fetch(url, {
         ...init,
-        headers: {
-          ...GITHUB_API_HEADERS,
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-          ...init.headers,
-        },
+        headers: { ...GITHUB_API_HEADERS, ...(token ? { Authorization: `Bearer ${token}` } : {}), ...init.headers },
         signal: AbortSignal.timeout(60_000),
       })
     } catch (error) {
       lastError = error
       if (attempt === attempts - 1) throw error
-      await new Promise(resolve => setTimeout(resolve, retryDelay(null, attempt)))
+      const delay = retryDelay(null, attempt)
+      process.stderr.write(`warning: GitHub request failed (${String(error)}); retrying ${attempt + 2}/${attempts} in ${delay}ms\n`)
+      await new Promise(resolve => setTimeout(resolve, delay))
       continue
     }
-
     if (response.ok || response.status === 404) return response
-
     const detail = (await response.text()).slice(0, 500)
     const retryable = [429, 502, 503, 504].includes(response.status)
-      || (response.status === 403 && (
-        response.headers.has('retry-after')
-        || /secondary rate limit|temporarily blocked/i.test(detail)
-      ))
+      || (response.status === 403 && (response.headers.has('retry-after') || /secondary rate limit|temporarily blocked/i.test(detail)))
     const responseError = new Error(`GitHub API ${response.status} for ${url}: ${detail}`)
-    if (!retryable || attempt === attempts - 1) {
-      throw responseError
-    }
+    if (!retryable || attempt === attempts - 1) throw responseError
     lastError = responseError
-    await new Promise(resolve => setTimeout(resolve, retryDelay(response, attempt)))
+    const delay = retryDelay(response, attempt)
+    process.stderr.write(`warning: GitHub API ${response.status}; retrying ${attempt + 2}/${attempts} in ${delay}ms\n`)
+    await new Promise(resolve => setTimeout(resolve, delay))
   }
   throw lastError
 }
 
 export async function githubRequest<T>(path: string, token: string): Promise<T | null> {
   const response = await githubFetch(`https://api.github.com${path}`, token)
-
   if (response.status === 404) return null
   return await response.json() as T
 }
 
-export async function githubGraphqlRequest<T>(
-  query: string,
-  variables: Record<string, unknown>,
-  token: string,
-): Promise<T> {
+export async function githubGraphqlRequest<T>(query: string, variables: Record<string, unknown>, token: string): Promise<T> {
   const response = await githubFetch('https://api.github.com/graphql', token, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query, variables }),
   })
-  const payload = await response.json() as {
-    data?: T
-    errors?: Array<{ message?: string }>
-  }
+  const payload = await response.json() as { data?: T; errors?: Array<{ message?: string }> }
   if (!payload.data || payload.errors?.length) {
-    const detail = payload.errors?.map(error => error.message ?? 'unknown GraphQL error').join('; ')
-      ?? 'missing GraphQL data'
+    const detail = payload.errors?.map(error => error.message ?? 'unknown GraphQL error').join('; ') ?? 'missing GraphQL data'
     throw new Error(`GitHub GraphQL request failed: ${detail}`)
   }
   return payload.data
-}
-
-export function decodePackageJson(contentResponse: GitHubContentResponse | null): PackageJson | null {
-  if (!contentResponse || contentResponse.type !== 'file' || !contentResponse.content) {
-    return null
-  }
-  try {
-    const source = Buffer.from(contentResponse.content, 'base64').toString('utf8')
-    return JSON.parse(source) as PackageJson
-  } catch {
-    return null
-  }
 }
 
 export function decodePackageJsonText(source: string | null | undefined): PackageJson | null {
   if (!source) return null
   try {
     const value = JSON.parse(source) as unknown
-    return value !== null && typeof value === 'object' && !Array.isArray(value)
-      ? value as PackageJson
-      : null
+    return value !== null && typeof value === 'object' && !Array.isArray(value) ? value as PackageJson : null
   } catch {
     return null
   }
@@ -564,17 +309,13 @@ export function mapWithConcurrency<T, Result>(
 ): Promise<Result[]> {
   const results = new Array<Result>(items.length)
   let nextIndex = 0
-
   async function worker() {
     while (nextIndex < items.length) {
       const index = nextIndex++
       results[index] = await mapper(items[index], index)
     }
   }
-
-  return Promise.all(
-    Array.from({ length: Math.min(limit, items.length) }, () => worker()),
-  ).then(() => results)
+  return Promise.all(Array.from({ length: Math.min(limit, items.length) }, () => worker())).then(() => results)
 }
 
 export function countBy<Item, Key extends keyof Item>(items: readonly Item[], key: Key): Record<string, number> {
@@ -588,10 +329,7 @@ export function countBy<Item, Key extends keyof Item>(items: readonly Item[], ke
 }
 
 export function escapeMarkdown(value: unknown): string {
-  return String(value ?? '')
-    .replaceAll('|', '\\|')
-    .replaceAll('\n', ' ')
-    .trim()
+  return String(value ?? '').replaceAll('|', '\\|').replaceAll('\n', ' ').trim()
 }
 
 export function compactDescription(value: unknown, maximum = 88): string {
@@ -609,152 +347,114 @@ export function buildCatalog(registry: PluginRegistry): string {
     '',
     '> Generated by `npm run update`. Do not edit this file manually.',
     '>',
-    `> Source: [GitHub topic search](${registry.source.url}) · Updated: ${registry.generatedAt}`,
+    `> Source: [GitHub topic search](${registry.source.url}) · Scanned: ${registry.source.scannedAt}`,
     '',
-    'Every included project has a detected current `dsh.bundle.patch` manifest.',
-    'This is a structural installation check, not compatibility or security review.',
+    'Projects are listed because their GitHub repository uses the `dsh-plugin` topic.',
+    'Open each repository and follow its own documentation before installing anything.',
     '',
     '## Snapshot',
     '',
-    `- Discovered repositories: **${registry.source.discoveredTotal}**`,
-    `- Complete discovery slices: **${registry.source.slices}**`,
-    `- GraphQL discovery requests: **${registry.source.graphqlRequests}**`,
+    `- Scan mode: **${registry.source.mode}**`,
+    `- Repositories matched in this scan: **${registry.source.discoveredTotal}**`,
     `- Included repositories: **${registry.stats.included}**`,
-    ...Object.entries(registry.stats.byStatus).map(([status, count]) => `- ${status}: **${count}**`),
+    `- Discovery slices: **${registry.source.slices}**`,
+    `- GraphQL requests: **${registry.source.graphqlRequests}**`,
+    ...Object.entries(registry.stats.byEvidence).map(([status, count]) => `- ${status}: **${count}**`),
     '',
     '## Catalog',
     '',
-    '| Repository | Kind | Categories | Status | Stars | License | Description |',
+    '| Repository | Kind | Categories | Evidence | Stars | License | Description |',
     '| --- | --- | --- | --- | ---: | --- | --- |',
   ]
-
   for (const plugin of registry.plugins) {
-    lines.push(
-      `| [${escapeMarkdown(plugin.id)}](${plugin.url}) | ${plugin.kind} | ${plugin.categories.join(', ')} | ${plugin.verification.status} | ${plugin.metrics.stars} | ${plugin.license.spdx ?? '—'} | ${escapeMarkdown(plugin.description) || '—'} |`,
-    )
+    lines.push(`| [${escapeMarkdown(plugin.id)}](${plugin.url}) | ${plugin.kind} | ${plugin.categories.join(', ')} | ${plugin.evidence.status} | ${plugin.metrics.stars} | ${plugin.license.spdx ?? '—'} | ${escapeMarkdown(plugin.description) || '—'} |`)
   }
-
   lines.push('', '## Notes', '',
-    '- `manifest-detected` is a structural check only.',
+    '- Evidence is informational and is not compatibility or security verification.',
     '- GitHub stars are discovery metadata, not a quality or safety score.',
-    '- Prefer canonical repositories; known mirrors are excluded through overrides.',
+    '- Installation instructions come from each repository, not this directory.',
     '')
   return lines.join('\n')
 }
 
-export function buildReadmePluginIndex(
-  registry: PluginRegistry,
-  collections: PluginCollection[],
-): string {
+function collectionRows(registry: PluginRegistry, collections: PluginCollection[]): string[] {
   const byId = new Map(registry.plugins.map(plugin => [plugin.id, plugin]))
-  const currentBundles = registry.stats.byStatus['manifest-detected'] ?? 0
-  const installable = registry.plugins
-    .filter(plugin => plugin.install.available && plugin.license.status === 'detected')
-    .slice(0, 12)
+  return collections.map(collection => {
+    const links = collection.plugins
+      .map(id => byId.get(id))
+      .filter((plugin): plugin is RegistryPlugin => plugin !== undefined)
+      .map(plugin => `[${plugin.name}](${plugin.url})`)
+      .join(' · ')
+    const anchor = collection.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+    return `| **[${collection.title}](./docs/collections.md#${anchor})** | ${links} |`
+  })
+}
 
+function popularProjects(registry: PluginRegistry): RegistryPlugin[] {
+  return registry.plugins.filter(plugin => plugin.license.status === 'detected').slice(0, 12)
+}
+
+export function buildReadmePluginIndex(registry: PluginRegistry, collections: PluginCollection[]): string {
   const lines = [
     '## 插件目录',
     '',
-    `**收录 ${currentBundles} 个检测到当前 Bundle 清单的项目**`,
+    `**收录 ${registry.stats.included} 个带有 \`dsh-plugin\` topic 的 GitHub 项目**`,
     '',
     '| 入口 | 适合你在找什么 |',
     '| --- | --- |',
-    '| **[浏览全部插件 →](./docs/catalog.md)** | 按类型、分类、Stars 和许可证浏览可安装目录 |',
-    '| **[查看场景精选 →](./docs/collections.md)** | Coding、Research、Web UI 等开箱方向 |',
-    '| **[使用 JSON Registry →](./registry/plugins.json)** | 给 CLI、网站或 Agent 使用的结构化元数据和安装命令 |',
+    '| **[浏览全部项目 →](./docs/catalog.md)** | 按类型、分类、Stars 和许可证浏览目录 |',
+    '| **[查看场景精选 →](./docs/collections.md)** | Coding、Research、Web UI 等人工精选 |',
+    '| **[使用 JSON Registry →](./registry/plugins.json)** | 给网站或 Agent 使用的结构化 GitHub 元数据 |',
     '',
     '### 从这些场景开始',
     '',
     '| 场景 | 推荐项目 |',
     '| --- | --- |',
-  ]
-
-  for (const collection of collections) {
-    const links = collection.plugins
-      .map(id => byId.get(id))
-      .filter((plugin): plugin is RegistryPlugin => plugin !== undefined)
-      .map(plugin => `[${plugin.name}](${plugin.url})`)
-      .join(' · ')
-    const anchor = collection.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-    lines.push(`| **[${collection.title}](./docs/collections.md#${anchor})** | ${links} |`)
-  }
-
-  lines.push(
+    ...collectionRows(registry, collections),
     '',
-    '### 热门可安装插件',
+    '### 热门项目',
     '',
-    '> 从检测到 `dsh.bundle.patch` 且许可证明确的项目中，按 GitHub Stars 排序。',
-    '> 热度不代表兼容性或安全背书。',
+    '> 按 GitHub Stars 排序；热度不代表兼容性或安全背书。',
     '',
-    '| 插件 | 简介 | Stars | License |',
+    '| 项目 | 简介 | Stars | License |',
     '| --- | --- | ---: | --- |',
-  )
-
-  for (const plugin of installable) {
-    lines.push(
-      `| [${escapeMarkdown(plugin.id)}](${plugin.url}) | ${escapeMarkdown(compactDescription(plugin.description)) || '暂无简介'} | ${plugin.metrics.stars} | ${plugin.license.spdx ?? '—'} |`,
-    )
+  ]
+  for (const plugin of popularProjects(registry)) {
+    lines.push(`| [${escapeMarkdown(plugin.id)}](${plugin.url}) | ${escapeMarkdown(compactDescription(plugin.description)) || '暂无简介'} | ${plugin.metrics.stars} | ${plugin.license.spdx ?? '—'} |`)
   }
-
-  lines.push('', `[**查看全部 ${registry.stats.included} 个当前 Bundle 插件 →**](./docs/catalog.md)`, '')
+  lines.push('', `[**查看全部 ${registry.stats.included} 个项目 →**](./docs/catalog.md)`, '')
   return lines.join('\n')
 }
 
-export function buildEnglishReadmePluginIndex(
-  registry: PluginRegistry,
-  collections: PluginCollection[],
-): string {
-  const byId = new Map(registry.plugins.map(plugin => [plugin.id, plugin]))
-  const currentBundles = registry.stats.byStatus['manifest-detected'] ?? 0
-  const installable = registry.plugins
-    .filter(plugin => plugin.install.available && plugin.license.status === 'detected')
-    .slice(0, 12)
-
+export function buildEnglishReadmePluginIndex(registry: PluginRegistry, collections: PluginCollection[]): string {
   const lines = [
     '## Plugin directory',
     '',
-    `**${currentBundles} projects with a current Bundle manifest detected**`,
+    `**${registry.stats.included} GitHub projects using the \`dsh-plugin\` topic**`,
     '',
     '| Entry point | Best for |',
     '| --- | --- |',
-    '| **[Browse all plugins →](./docs/catalog.md)** | Explore installable entries by kind, category, Stars, and license |',
-    '| **[Explore collections →](./docs/collections.md)** | Start with curated Coding, Research, and Web UI workflows |',
-    '| **[Use the JSON registry →](./registry/plugins.json)** | Consume structured metadata and install commands from a CLI, website, or Agent |',
+    '| **[Browse all projects →](./docs/catalog.md)** | Explore by kind, category, Stars, and license |',
+    '| **[Explore collections →](./docs/collections.md)** | Start with manually curated Coding, Research, and Web UI projects |',
+    '| **[Use the JSON registry →](./registry/plugins.json)** | Consume structured GitHub metadata from a website or Agent |',
     '',
     '### Start with a use case',
     '',
     '| Collection | Recommended projects |',
     '| --- | --- |',
-  ]
-
-  for (const collection of collections) {
-    const links = collection.plugins
-      .map(id => byId.get(id))
-      .filter((plugin): plugin is RegistryPlugin => plugin !== undefined)
-      .map(plugin => `[${plugin.name}](${plugin.url})`)
-      .join(' · ')
-    const anchor = collection.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-    lines.push(`| **[${collection.title}](./docs/collections.md#${anchor})** | ${links} |`)
-  }
-
-  lines.push(
+    ...collectionRows(registry, collections),
     '',
-    '### Popular installable plugins',
+    '### Popular projects',
     '',
-    '> Ranked by GitHub Stars among projects with a detected `dsh.bundle.patch` and an explicit license.',
-    '> Popularity is not a compatibility or security endorsement.',
+    '> Ranked by GitHub Stars. Popularity is not a compatibility or security endorsement.',
     '',
-    '| Plugin | Description | Stars | License |',
+    '| Project | Description | Stars | License |',
     '| --- | --- | ---: | --- |',
-  )
-
-  for (const plugin of installable) {
-    lines.push(
-      `| [${escapeMarkdown(plugin.id)}](${plugin.url}) | ${escapeMarkdown(compactDescription(plugin.description)) || 'No description provided.'} | ${plugin.metrics.stars} | ${plugin.license.spdx ?? '—'} |`,
-    )
+  ]
+  for (const plugin of popularProjects(registry)) {
+    lines.push(`| [${escapeMarkdown(plugin.id)}](${plugin.url}) | ${escapeMarkdown(compactDescription(plugin.description)) || 'No description provided.'} | ${plugin.metrics.stars} | ${plugin.license.spdx ?? '—'} |`)
   }
-
-  lines.push('', `[**View all ${registry.stats.included} current Bundle plugins →**](./docs/catalog.md)`, '')
+  lines.push('', `[**View all ${registry.stats.included} projects →**](./docs/catalog.md)`, '')
   return lines.join('\n')
 }
 
@@ -763,9 +463,7 @@ export function replaceGeneratedSection(source: string, name: string, content: s
   const end = `<!-- GENERATED:${name}:END -->`
   const startIndex = source.indexOf(start)
   const endIndex = source.indexOf(end)
-  if (startIndex === -1 || endIndex === -1 || endIndex < startIndex) {
-    throw new Error(`Missing or invalid generated section markers for ${name}`)
-  }
+  if (startIndex === -1 || endIndex === -1 || endIndex < startIndex) throw new Error(`Missing or invalid generated section markers for ${name}`)
   return `${source.slice(0, startIndex)}${start}\n${content.trim()}\n${end}${source.slice(endIndex + end.length)}`
 }
 
@@ -775,18 +473,15 @@ export function collectionMarkdown(collections: PluginCollection[], registry: Pl
     '# Curated collections',
     '',
     '> Small, manually curated shortlists for common DSH use cases.',
-    '> Inclusion is not a compatibility or security certification.',
+    '> Open each repository and follow its own installation and security guidance.',
     '',
   ]
-
   for (const collection of collections) {
     lines.push(`## ${collection.title}`, '', collection.description, '')
     for (const id of collection.plugins) {
       const plugin = byId.get(id)
       if (!plugin) continue
-      lines.push(
-        `- [${plugin.id}](${plugin.url}) — ${plugin.description ?? 'No description provided.'} _(${plugin.verification.status})_`,
-      )
+      lines.push(`- [${plugin.id}](${plugin.url}) — ${plugin.description ?? 'No description provided.'} _(${plugin.evidence.status})_`)
     }
     lines.push('')
   }

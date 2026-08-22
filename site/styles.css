@@ -165,9 +165,10 @@ kbd { padding: 4px 7px; color: var(--faint); border: 1px solid var(--line); bord
 .card-top { min-height: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .card-badges { display: flex; align-items: center; gap: 7px; }
 .kind-badge { color: var(--muted); font-size: 0.67rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
-.status-badge { display: none; }
-.status-badge.is-manifest { color: var(--accent); border-color: rgba(58, 101, 194, .2); background: var(--accent-soft); }
+.status-badge { padding: 2px 6px; display: inline-flex; color: var(--faint); border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 0.62rem; font-weight: 650; }
+.status-badge.is-bundle { color: var(--accent); border-color: rgba(58, 101, 194, .2); background: var(--accent-soft); }
 .status-badge.is-legacy, .status-badge.is-structure { color: var(--amber); border-color: rgba(135, 93, 35, .22); background: var(--amber-soft); }
+.status-badge.is-topic { color: var(--muted); }
 .external-link { flex: 0 0 auto; color: var(--faint); font-size: 0.78rem; font-weight: 500; line-height: 1; transition: color 150ms ease; }
 .external-link:hover { color: var(--accent); }
 .card-title { margin-top: 10px; }
@@ -184,11 +185,8 @@ kbd { padding: 4px 7px; color: var(--faint); border: 1px solid var(--line); bord
 .plugin-meta dt { color: var(--faint); font-size: 0.64rem; }
 .plugin-meta dd { max-width: 82px; margin: 0; overflow: hidden; color: var(--muted); font-size: 0.68rem; text-overflow: ellipsis; white-space: nowrap; }
 .card-action { flex: 0 0 auto; }
-.install-command, .view-repository { min-height: 31px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 680; }
-.install-command { color: var(--action-fg); border: 1px solid var(--action-bg); background: var(--action-bg); }
-.install-command:hover { color: var(--action-fg); border-color: var(--action-hover); background: var(--action-hover); }
-.view-repository { color: var(--muted); border: 1px solid var(--line); background: var(--surface); }
-.view-repository:hover { color: var(--ink); border-color: var(--line-strong); }
+.repository-guide { min-height: 31px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; color: var(--action-fg); border: 1px solid var(--action-bg); border-radius: 6px; background: var(--action-bg); font-size: 0.7rem; font-weight: 680; }
+.repository-guide:hover { color: var(--action-fg); border-color: var(--action-hover); background: var(--action-hover); }
 .load-more { width: 100%; min-height: 44px; margin-top: 14px; color: var(--ink); border: 1px solid var(--line); border-radius: 7px; background: transparent; font-size: 0.74rem; font-weight: 680; }
 .load-more:hover { border-color: var(--line-strong); }
 .load-more small { margin-left: 6px; color: var(--faint); font-weight: 500; }
@@ -221,7 +219,7 @@ kbd { padding: 4px 7px; color: var(--faint); border: 1px solid var(--line); bord
 .plugin-grid.is-list .plugin-tags { display: none; }
 .plugin-grid.is-list .card-bottom { grid-area: bottom; min-width: 200px; margin: 0; padding: 0; align-items: flex-end; flex-direction: column; justify-content: center; gap: 7px; border: 0; }
 .plugin-grid.is-list .plugin-meta { justify-content: flex-end; }
-.plugin-grid.is-list .install-command, .plugin-grid.is-list .view-repository { min-width: 112px; }
+.plugin-grid.is-list .repository-guide { min-width: 148px; }
 .plugin-grid.is-list .skeleton-card { height: 94px; border: 0; border-bottom: 1px solid var(--divider); border-radius: 0; }
 
 .site-footer { width: min(1296px, calc(100% - 96px)); min-height: 96px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 30px; border-top: 1px solid var(--line); }
@@ -230,9 +228,6 @@ kbd { padding: 4px 7px; color: var(--faint); border: 1px solid var(--line); bord
 .site-footer p { margin: 0; color: var(--muted); font-size: 0.7rem; }
 .site-footer nav { display: flex; gap: 18px; color: var(--muted); font-size: 0.7rem; }
 .site-footer a:hover { color: var(--accent); }
-.toast { position: fixed; z-index: 30; right: 22px; bottom: 22px; max-width: min(420px, calc(100% - 44px)); padding: 11px 14px; overflow: hidden; color: var(--paper); border-radius: 7px; background: var(--ink); font-size: 0.72rem; text-overflow: ellipsis; white-space: nowrap; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity 160ms ease, transform 160ms ease; }
-.toast.is-visible { opacity: 1; transform: translateY(0); }
-
 @keyframes shimmer { to { background-position: -250% 0; } }
 @keyframes cursor-blink { 0%, 46% { opacity: 1; } 47%, 100% { opacity: 0; } }
 
