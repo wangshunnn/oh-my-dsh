@@ -1,19 +1,19 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-22T10:05:49.231Z",
+  "generatedAt": "2026-08-22T14:41:37.131Z",
   "source": {
     "provider": "github",
     "query": "topic:dsh-plugin fork:false archived:false",
     "url": "https://github.com/topics/dsh-plugin",
-    "mode": "full",
-    "scannedAt": "2026-08-22T10:05:49.231Z",
+    "mode": "incremental",
+    "scannedAt": "2026-08-22T14:41:37.131Z",
     "lastFullScanAt": "2026-08-22T10:05:49.231Z",
-    "windowStart": "2008-01-01T00:00:00Z",
-    "windowEnd": "2026-08-22T10:05:49Z",
-    "reportedTotal": 10491,
-    "discoveredTotal": 10491,
-    "slices": 315,
-    "graphqlRequests": 359
+    "windowStart": "2026-08-22T10:05:49Z",
+    "windowEnd": "2026-08-22T14:41:37Z",
+    "reportedTotal": 0,
+    "discoveredTotal": 0,
+    "slices": 0,
+    "graphqlRequests": 1
   },
   "stats": {
     "included": 10468,
