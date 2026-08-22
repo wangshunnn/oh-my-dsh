@@ -4,7 +4,7 @@
   "title": "Coding essentials",
   "description": "Focused quality-of-life additions for navigating files, editors, context, and local safety while coding with DSH.",
   "plugins": [
-    "omdsh-dev/dsh-at-file",
+    "FSMargoo/dsh-at-file",
     "omdsh-dev/dsh-open-in-vscode",
     "Zhenyu98/dsh-context-doctor",
     "omdsh-dev/dsh-security-audit"

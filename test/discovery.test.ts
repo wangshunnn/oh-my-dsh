@@ -6,9 +6,10 @@ import {
   formatGitHubTimestamp,
   planCreationSlices,
   planCreationSlicesBatched,
+  rangeQuery,
   splitCreationRange,
 } from '../scripts/lib/discovery.ts'
-import type { CreationRange } from '../scripts/lib/discovery.ts'
+import type { DiscoveryRange } from '../scripts/lib/discovery.ts'
 
 test('splits inclusive creation ranges without a one-second overlap or gap', () => {
   const range = {
@@ -21,7 +22,11 @@ test('splits inclusive creation ranges without a one-second overlap or gap', () 
   assert.equal(right.startMs - left.endMs, 1000)
   assert.equal(
     creationRangeQuery(left),
-    'topic:dsh-plugin created:2026-08-17T00:00:00Z..2026-08-17T00:00:02Z',
+    'topic:dsh-plugin fork:false archived:false created:2026-08-17T00:00:00Z..2026-08-17T00:00:02Z',
+  )
+  assert.equal(
+    rangeQuery(left, 'updated'),
+    'topic:dsh-plugin fork:false archived:false updated:2026-08-17T00:00:00Z..2026-08-17T00:00:02Z',
   )
 })
 
@@ -49,7 +54,7 @@ test('recursively plans complete slices below the configured result limit', asyn
 })
 
 test('batches count queries while preserving the reported total', async () => {
-  const calls: CreationRange[][] = []
+  const calls: DiscoveryRange[][] = []
   const plan = await planCreationSlicesBatched(
     { startMs: 0, endMs: 15_000 },
     async ranges => {
@@ -129,15 +134,35 @@ test('discovers low-star root bundles without using star-ranked pagination', asy
       : { search: { repositoryCount: nodes.length, nodes } }) as T
   }
 
-  const result = await discoverRepositories(
-    'test-token',
-    '2008-01-01T00:00:01Z',
+  const result = await discoverRepositories('test-token', {
+    scanTimestamp: '2008-01-01T00:00:01Z',
+    mode: 'full',
     request,
-  )
+  })
   assert.equal(result.reportedTotal, 2)
   assert.equal(result.discoveredTotal, 2)
   assert.equal(result.sliceCount, 1)
   const lowStar = result.repositories.find(item => item.repository.full_name === 'example/low-star-plugin')
   assert.equal(lowStar?.repository.stargazers_count, 0)
   assert.equal(lowStar?.rootPackageJson?.dsh?.bundle?.patch, './cordis.patch.yml')
+})
+
+test('incremental discovery searches only the updated window', async () => {
+  const queries: string[] = []
+  const request = async <T>(query: string, variables: Record<string, unknown>): Promise<T> => {
+    queries.push(...Object.values(variables).filter((value): value is string => typeof value === 'string'))
+    return (query.includes('CountRepositories')
+      ? { search0: { repositoryCount: 0 } }
+      : { search: { repositoryCount: 0, nodes: [] } }) as T
+  }
+  const result = await discoverRepositories('test-token', {
+    scanTimestamp: '2026-08-22T03:00:00Z',
+    mode: 'incremental',
+    since: '2026-08-21T15:00:00Z',
+    request,
+  })
+  assert.equal(result.mode, 'incremental')
+  assert.equal(result.graphqlRequests, 1)
+  assert.ok(queries.some(query => query.includes('updated:2026-08-21T15:00:00Z..2026-08-22T03:00:00Z')))
+  assert.ok(queries.every(query => !query.includes('created:')))
 })

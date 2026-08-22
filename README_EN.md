@@ -8,132 +8,84 @@
   <sub><a href="./README.md">简体中文</a> · English</sub>
 </p>
 
-> 🐋 A community plugin directory for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): topic discovery, Bundle-manifest admission.
+> 🐋 A community project directory for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): discover through a GitHub topic, then read the project at its source.
 
-**oh-my-dsh** only displays projects with a detected current `dsh.bundle.patch` and an unambiguous installation source. It supports root packages and npm-owned monorepo workspaces, helping you search, filter, and install DSH plugins.
+**oh-my-dsh** indexes public GitHub projects using the [`dsh-plugin`](https://github.com/topics/dsh-plugin) topic and provides search, classification, and curated collections. The directory does not generate one-click installation commands. Open the project repository and follow the maintainer's documentation before installing or granting access.
 
-**[Open the live directory](https://oh-my-dsh.vercel.app/)** · **[Browse all plugins](./docs/catalog.md)** · **[Explore collections](./docs/collections.md)** · **[Use the JSON registry](./registry/plugins.json)** · **[Submit a plugin](./CONTRIBUTING.md)**
-
-<sub>Only structurally installable current Bundles enter the public directory; inclusion is still not compatibility or security certification.</sub>
+**[Open the live directory](https://oh-my-dsh.vercel.app/)** · **[Browse all projects](./docs/catalog.md)** · **[Explore collections](./docs/collections.md)** · **[Use the JSON registry](./registry/plugins.json)** · **[Submit a project](./CONTRIBUTING.md)**
 
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## Plugin directory
 
-**7197 projects with a current Bundle manifest detected**
+**10468 GitHub projects using the `dsh-plugin` topic**
 
 | Entry point | Best for |
 | --- | --- |
-| **[Browse all plugins →](./docs/catalog.md)** | Explore installable entries by kind, category, Stars, and license |
-| **[Explore collections →](./docs/collections.md)** | Start with curated Coding, Research, and Web UI workflows |
-| **[Use the JSON registry →](./registry/plugins.json)** | Consume structured metadata and install commands from a CLI, website, or Agent |
+| **[Browse all projects →](./docs/catalog.md)** | Explore by kind, category, Stars, and license |
+| **[Explore collections →](./docs/collections.md)** | Start with manually curated Coding, Research, and Web UI projects |
+| **[Use the JSON registry →](./registry/plugins.json)** | Consume structured GitHub metadata from a website or Agent |
 
 ### Start with a use case
 
 | Collection | Recommended projects |
 | --- | --- |
 | **[Better Web UI](./docs/collections.md#better-web-ui)** | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · [dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) · [dsh-share](https://github.com/hellodigua/dsh-share) |
-| **[Coding essentials](./docs/collections.md#coding-essentials)** | [dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) · [dsh-open-in-vscode](https://github.com/omdsh-dev/dsh-open-in-vscode) · [dsh-context-doctor](https://github.com/Zhenyu98/dsh-context-doctor) · [dsh-security-audit](https://github.com/omdsh-dev/dsh-security-audit) |
+| **[Coding essentials](./docs/collections.md#coding-essentials)** | [dsh-at-file](https://github.com/FSMargoo/dsh-at-file) · [dsh-open-in-vscode](https://github.com/omdsh-dev/dsh-open-in-vscode) · [dsh-context-doctor](https://github.com/Zhenyu98/dsh-context-doctor) · [dsh-security-audit](https://github.com/omdsh-dev/dsh-security-audit) |
 | **[Research workflow](./docs/collections.md#research-workflow)** | [dsh-deep-research](https://github.com/omdsh-dev/dsh-deep-research) · [dsh-scholar](https://github.com/lzszq/dsh-scholar) |
 
-### Popular installable plugins
+### Popular projects
 
-> Ranked by GitHub Stars among projects with a detected `dsh.bundle.patch` and an explicit license.
-> Popularity is not a compatibility or security endorsement.
+> Ranked by GitHub Stars. Popularity is not a compatibility or security endorsement.
 
-| Plugin | Description | Stars | License |
+| Project | Description | Stars | License |
 | --- | --- | ---: | --- |
-| [amruthpillai/reactive-resume](https://github.com/amruthpillai/reactive-resume) | A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, cust… | 41335 | MIT |
-| [anywhere-labs/deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) | 为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。 | 16681 | MIT |
-| [tt-a1i/archify](https://github.com/tt-a1i/archify) | Agent skill for beautiful, verifiable architecture, workflow, sequence, data-flow, and… | 14754 | MIT |
-| [zhu1090093659/dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | Plugin and skin collection for DeepSeek Harness (DSH) Web UI - task board, git graph, r… | 5198 | Apache-2.0 |
-| [strukto-ai/mirage](https://github.com/strukto-ai/mirage) | The World's First Unified Virtual Filesystem For AI Agents | 3545 | Apache-2.0 |
-| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 3426 | MIT |
-| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理页面 | 2483 | MIT |
-| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | DSH 官方公众号收录的 TUI 补位插件：Claude Code 风，鲸鱼顶栏/实时状态/流式思考/双击 Esc 回滚/上下文进度+TPS。npm 一键装。 DSH off… | 2194 | MIT |
-| [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) | The plugin market inside DeepSeek Harness — browse, search, one-click install · DSH 可视化… | 1487 | MIT |
-| [alvinunreal/openpets](https://github.com/alvinunreal/openpets) | Local first, desktop companion platform with animated pets, plugin SDK and coding-agent… | 1094 | MIT |
-| [agentrq/agentrq](https://github.com/agentrq/agentrq) | AgentRQ: Human-in-loop realtime conversational task manager for AI Agents. Self-hosted!… | 1085 | Apache-2.0 |
-| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1085 | MIT |
+| [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | DeepSeek Harness: Everything is a Plugin. | 183109 | MIT |
+| [nexu-io/open-design](https://github.com/nexu-io/open-design) | 🎨 Best DeepSeek Harness Design Plugin. The open-source Claude Design alternative. 🖥️… | 90280 | Apache-2.0 |
+| [ruvnet/ruflo](https://github.com/ruvnet/ruflo) | 🌊 The original agent meta-harness. Deploy intelligent multi-player swarms, coordinate… | 68768 | MIT |
+| [amruthpillai/reactive-resume](https://github.com/amruthpillai/reactive-resume) | A one-of-a-kind resume builder that keeps your privacy in mind. Completely secure, cust… | 41488 | MIT |
+| [esengine/DeepSeek-Reasonix](https://github.com/esengine/DeepSeek-Reasonix) | DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stabi… | 35027 | MIT |
+| [volcengine/OpenViking](https://github.com/volcengine/OpenViking) | Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Ski… | 31817 | AGPL-3.0 |
+| [Molunerfinn/PicGo](https://github.com/Molunerfinn/PicGo) | :rocket: The Ultimate Image Uploader for Efficient Creators. Supports Obsidian, Typora,… | 27005 | MIT |
+| [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill) | 将冰冷的离别化为温暖的 Skill，欢迎加入数字生命1.0！Transforming cold farewells into warm skills? It's giving… | 23775 | MIT |
+| [nocobase/nocobase](https://github.com/nocobase/nocobase) | NocoBase is an open-source AI + no-code platform for building business systems fast. In… | 23755 | NOASSERTION |
+| [Tencent/WeKnora](https://github.com/Tencent/WeKnora) | Open-source LLM knowledge platform: turn raw documents into a queryable RAG, an autonom… | 20342 | NOASSERTION |
+| [Nagi-ovo/voyager](https://github.com/Nagi-ovo/voyager) | Enhancement suite for Gemini, AI Studio, Claude & ChatGPT — plus a prompt manager for a… | 19778 | GPL-3.0 |
+| [anywhere-labs/deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) | 为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。 | 17960 | MIT |
 
-[**View all 7197 current Bundle plugins →**](./docs/catalog.md)
+[**View all 10468 projects →**](./docs/catalog.md)
 <!-- GENERATED:PLUGIN-INDEX:END -->
 
-## Why oh-my-dsh?
+## Listing rules
 
-DeepSeek Harness follows an “everything is a plugin” architecture and recommends that authors add the [`dsh-plugin`](https://github.com/topics/dsh-plugin) topic. A topic makes a project discoverable, but it does not prove that the project:
+The directory automatically includes public, non-fork, non-archived, non-empty repositories using the `dsh-plugin` topic, with no manual exceptions. Root `package.json` signals and Stars are display metadata only. Listing is not compatibility verification, security certification, a maintenance rating, or official endorsement. Installation instructions come from each repository.
 
-- contains a Bundle recognized by the current DSH CLI;
-- is compatible with the latest Harness release;
-- has passed a security review; or
-- provides a clear open-source license.
+Curated collections additionally check deletion, archival, transfers, and topic changes. Ownership changes are never followed silently.
 
-The topic is therefore used only to discover candidates. A root package can pass structural admission by declaring the current `dsh.bundle.patch`. A monorepo workspace must also be published to npm with repository metadata pointing back to the discovered GitHub repository. Multiple valid workspaces and insufficient evidence go to a review queue instead of being guessed. Structural admission is still not compatibility or security certification.
+## Data and refresh strategy
 
-## Installing plugins
-
-Every public directory entry includes a suggested installation command:
-
-```sh
-npx @deepseek-ai/dsh plugin --profile web add github:owner/repository
-```
-
-Monorepo workspaces use their verified npm package name, for example:
-
-```sh
-npx @deepseek-ai/dsh plugin --profile web add @scope/package
-```
-
-> [!CAUTION]
-> `manifest-detected` only means that a `dsh.bundle.patch` declaration was found. It is not a compatibility or security certification. Review source code, licenses, installation scripts, and requested permissions before installing a third-party plugin. DeepSeek Harness is still in Developer Preview and may introduce breaking changes.
-
-## Status vocabulary
-
-| Status | Meaning |
-| --- | --- |
-| `manifest-detected` | A root or verified workspace `package.json` declares `dsh.bundle.patch`; this is a structural check only. |
-
-Legacy `dshx` formats, related structure without a current manifest, topic-only repositories, placeholders, and archived repositories do not enter the public directory.
-
-We will not use “verified compatible” until automated builds or runtime tests can record the exact DeepSeek Harness revision they tested.
-
-## Data and maintenance
-
-- [`registry/plugins.json`](./registry/plugins.json): the machine-readable current Bundle registry.
-- [`registry/candidates.json`](./registry/candidates.json): monorepo workspaces pending inspection or review.
-- [`registry/inspection-cache.json`](./registry/inspection-cache.json): workspace inspection results reused by default-branch HEAD.
-- [`docs/catalog.md`](./docs/catalog.md): the generated installable plugin catalog.
+- [`registry/plugins.json`](./registry/plugins.json): the machine-readable schema v2 GitHub project directory.
+- [`docs/catalog.md`](./docs/catalog.md): the generated full catalog.
 - [`collections/`](./collections): manually curated, use-case-based collections.
-- [`registry/overrides.json`](./registry/overrides.json): category corrections, mirror deduplication, and notes.
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): the refresh workflow that runs every 12 hours.
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): two incremental scans per day and one weekly full reconciliation.
 
-Local refreshes require Node.js 20+. Install dependencies and, preferably, provide a GitHub token:
+Routine scans use an `updated:` window and merge repositories changed since the last successful scan by stable GitHub node ID, which also handles renames. A weekly full scan removes entries that disappear after topic removal, archival, or deletion and therefore cannot appear in incremental results.
+
+Root `package.json` data and repository metadata arrive in the same GraphQL batch. The updater no longer walks workspaces or contacts the npm Registry. Full scans still partition time ranges to pass GitHub Search's 1,000-result limit; incremental scans normally need very few slices.
+
+Local updates require Node.js 20+:
 
 ```sh
 npm install
-GITHUB_TOKEN=... npm run update
+GITHUB_TOKEN=... REGISTRY_SCAN_MODE=incremental npm run update
 npm run check
 ```
 
-The updater recursively partitions GitHub topic search by repository creation time and fetches every time slice completely; Stars never determine discovery eligibility. Root manifests are read in the GraphQL discovery batch, while workspaces use a HEAD-keyed cache and a per-run request budget. The updater regenerates both README indexes, the full catalog, the public registry, and the workspace review queue. Validation prevents truncated discovery, duplicate repositories, broken collection references, stale README sections, and install commands without sufficient evidence from reaching the default branch.
+The first schema v2 generation automatically falls back to a full scan. Set `REGISTRY_SCAN_MODE=full` to request one explicitly.
 
-## Inclusion and contributions
+## Contributing
 
-Plugin authors must add the `dsh-plugin` topic to the canonical public repository and declare `dsh.bundle.patch` in either the root package or a public npm workspace. Multi-package repositories can use an override to select the aggregate package shown in the public directory. For classification corrections, collection suggestions, and verification improvements, see [CONTRIBUTING.md](./CONTRIBUTING.md). See [SECURITY.md](./SECURITY.md) for the security boundary.
-
-## Roadmap
-
-- [x] GitHub-wide discovery and canonical repository deduplication
-- [x] Current Bundle admission and false-positive filtering
-- [x] Homepage indexes, full catalog, and machine-readable registry
-- [x] Refresh every 12 hours with consistency validation
-- [ ] Build compatibility matrix tied to exact DSH revisions
-- [ ] Permission and installation-script risk signals
-- [ ] Composable and reproducible Starter Packs
+Project authors only need to publish a repository, add the `dsh-plugin` topic, and document installation, permissions, and removal in the README. See [CONTRIBUTING.md](./CONTRIBUTING.md) for collection proposals and [SECURITY.md](./SECURITY.md) for the security boundary.
 
 ## License
 
-The catalog and tooling are released under the [MIT License](./LICENSE). Indexed projects retain their respective licenses; inclusion is not republication or relicensing.
-
----
-
-If this directory helped you discover a useful plugin, please Star it and share it with more DSH users. 🐋
+The directory and tooling are released under the [MIT License](./LICENSE). Indexed projects retain their own licenses; listing is not republication, relicensing, or endorsement.

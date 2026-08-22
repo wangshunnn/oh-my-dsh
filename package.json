@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Curated and machine-readable plugin directory for DeepSeek Harness",
+  "description": "GitHub topic directory for DeepSeek Harness community projects",
   "engines": {
     "node": ">=20"
   },
