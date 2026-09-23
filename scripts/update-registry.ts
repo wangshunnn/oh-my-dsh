@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { discoverRepositories } from './lib/discovery.ts'
 import {
   REGISTRY_SCHEMA_VERSION,
+  ARCHIVED_DISCOVERY_QUERY,
   DISCOVERY_QUERY,
   buildCatalog,
   buildEnglishReadmePluginIndex,
@@ -84,6 +85,17 @@ const discovery = await discoverRepositories(token, {
   reportProgress: message => process.stdout.write(`${message}\n`),
 })
 
+// GitHub's repository search does not return archived repositories from an
+// updated-date query. Scan the small archived set by creation date instead.
+const archivedDiscovery = mode === 'incremental'
+  ? await discoverRepositories(token, {
+    scanTimestamp,
+    mode: 'full',
+    query: ARCHIVED_DISCOVERY_QUERY,
+    reportProgress: message => process.stdout.write(`archived ${message}\n`),
+  })
+  : null
+
 function eligible(repository: GitHubRepository): boolean {
   return !repository.archived
     && !repository.fork
@@ -135,6 +147,9 @@ function toPlugin(repository: GitHubRepository, packageJson: Parameters<typeof d
 
 const refreshed: RegistryPlugin[] = []
 const removedNodeIds = new Set<string>()
+for (const discovered of archivedDiscovery?.repositories ?? []) {
+  removedNodeIds.add(discovered.repository.node_id)
+}
 for (const discovered of discovery.repositories) {
   if (eligible(discovered.repository)) {
     refreshed.push(toPlugin(discovered.repository, discovered.rootPackageJson))
@@ -167,7 +182,7 @@ const registry: PluginRegistry = {
     reportedTotal: discovery.reportedTotal,
     discoveredTotal: discovery.discoveredTotal,
     slices: discovery.sliceCount,
-    graphqlRequests: discovery.graphqlRequests,
+    graphqlRequests: discovery.graphqlRequests + (archivedDiscovery?.graphqlRequests ?? 0),
   },
   stats: {
     included: plugins.length,

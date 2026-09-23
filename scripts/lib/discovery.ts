@@ -90,6 +90,7 @@ export interface DiscoveryOptions {
   scanTimestamp: string
   mode: ScanMode
   since?: string
+  query?: string
   request?: GraphqlRequester
   reportProgress?: (message: string) => void
 }
@@ -136,8 +137,8 @@ export function formatGitHubTimestamp(value: number): string {
   return new Date(toSecond(value)).toISOString().replace('.000Z', 'Z')
 }
 
-export function rangeQuery(range: DiscoveryRange, qualifier: 'created' | 'updated'): string {
-  return `${DISCOVERY_QUERY} ${qualifier}:${formatGitHubTimestamp(range.startMs)}..${formatGitHubTimestamp(range.endMs)}`
+export function rangeQuery(range: DiscoveryRange, qualifier: 'created' | 'updated', query = DISCOVERY_QUERY): string {
+  return `${query} ${qualifier}:${formatGitHubTimestamp(range.startMs)}..${formatGitHubTimestamp(range.endMs)}`
 }
 
 export function creationRangeQuery(range: DiscoveryRange): string {
@@ -272,7 +273,7 @@ export async function discoverRepositories(token: string, options: DiscoveryOpti
     return data
   }
   const countRepositories = async (ranges: DiscoveryRange[]): Promise<number[]> => {
-    const variables = Object.fromEntries(ranges.map((range, index) => [`query${index}`, rangeQuery(range, qualifier)]))
+    const variables = Object.fromEntries(ranges.map((range, index) => [`query${index}`, rangeQuery(range, qualifier, options.query)]))
     const data = await checkedRequest<BatchedCountQueryData>(countBatchQuery(ranges.length), variables)
     if (graphqlRequests === 1 || graphqlRequests % 10 === 0) {
       reportProgress(`${options.mode} discovery planning: ${graphqlRequests} GraphQL requests, ${ranges.length} ranges in latest batch.`)
@@ -291,7 +292,7 @@ export async function discoverRepositories(token: string, options: DiscoveryOpti
   while (queue.length > 0) {
     const slice = queue.shift()!
     const data = await checkedRequest<SliceQueryData>(SLICE_QUERY, {
-      queryString: rangeQuery(slice, qualifier),
+      queryString: rangeQuery(slice, qualifier, options.query),
       limit: DISCOVERY_SLICE_SIZE,
     })
     const currentCount = data.search.repositoryCount
@@ -302,7 +303,7 @@ export async function discoverRepositories(token: string, options: DiscoveryOpti
     }
     const nodes = data.search.nodes.flatMap(node => node ? [node] : [])
     if (nodes.length !== currentCount) {
-      throw new Error(`Incomplete discovery slice ${rangeQuery(slice, qualifier)}: expected ${currentCount}, received ${nodes.length}`)
+      throw new Error(`Incomplete discovery slice ${rangeQuery(slice, qualifier, options.query)}: expected ${currentCount}, received ${nodes.length}`)
     }
     repositories.push(...nodes.map(normalizeNode))
     fetchedSlices += 1

@@ -28,6 +28,10 @@ test('splits inclusive creation ranges without a one-second overlap or gap', () 
     rangeQuery(left, 'updated'),
     'topic:dsh-plugin fork:false archived:false updated:2026-08-17T00:00:00Z..2026-08-17T00:00:02Z',
   )
+  assert.equal(
+    rangeQuery(left, 'created', 'topic:dsh-plugin fork:false archived:true'),
+    'topic:dsh-plugin fork:false archived:true created:2026-08-17T00:00:00Z..2026-08-17T00:00:02Z',
+  )
 })
 
 test('recursively plans complete slices below the configured result limit', async () => {
@@ -165,4 +169,23 @@ test('incremental discovery searches only the updated window', async () => {
   assert.equal(result.graphqlRequests, 1)
   assert.ok(queries.some(query => query.includes('updated:2026-08-21T15:00:00Z..2026-08-22T03:00:00Z')))
   assert.ok(queries.every(query => !query.includes('created:')))
+})
+
+test('archived discovery searches the complete creation window', async () => {
+  const queries: string[] = []
+  const request = async <T>(query: string, variables: Record<string, unknown>): Promise<T> => {
+    queries.push(...Object.values(variables).filter((value): value is string => typeof value === 'string'))
+    return (query.includes('CountRepositories')
+      ? { search0: { repositoryCount: 0 } }
+      : { search: { repositoryCount: 0, nodes: [] } }) as T
+  }
+  await discoverRepositories('test-token', {
+    scanTimestamp: '2026-08-22T03:00:00Z',
+    mode: 'full',
+    query: 'topic:dsh-plugin fork:false archived:true',
+    request,
+  })
+  assert.deepEqual(queries, [
+    'topic:dsh-plugin fork:false archived:true created:2008-01-01T00:00:00Z..2026-08-22T03:00:00Z',
+  ])
 })
