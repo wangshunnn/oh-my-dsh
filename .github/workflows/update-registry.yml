@@ -11,7 +11,7 @@ on:
           - full
         default: incremental
   schedule:
-    - cron: "17 2,14 * * *"
+    - cron: "17 2 * * *"
     - cron: "47 3 * * 0"
 
 permissions:
