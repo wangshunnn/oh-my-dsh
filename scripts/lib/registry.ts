@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process'
 
 export const REGISTRY_SCHEMA_VERSION = 2
 export const DISCOVERY_QUERY = 'topic:dsh-plugin fork:false archived:false'
+export const ARCHIVED_DISCOVERY_QUERY = 'topic:dsh-plugin fork:false archived:true'
 
 export type ScanMode = 'full' | 'incremental'
 export type ManifestKind = 'dsh.bundle' | 'dshx' | 'dsh-structure'

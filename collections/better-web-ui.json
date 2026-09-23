@@ -5,7 +5,6 @@
   "description": "Interface candidates for navigation, focused reading, review, and conversation sharing. These are alternatives and additions, not a tested compatibility bundle.",
   "plugins": [
     "omdsh-dev/DSH-better-sidebar",
-    "dingyi222666/dsh-focus-chat",
     "hellodigua/dsh-share"
   ]
 }

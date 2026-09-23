@@ -29,7 +29,7 @@
 
 | 场景 | 推荐项目 |
 | --- | --- |
-| **[Better Web UI](./docs/collections.md#better-web-ui)** | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · [dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) · [dsh-share](https://github.com/hellodigua/dsh-share) |
+| **[Better Web UI](./docs/collections.md#better-web-ui)** | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · [dsh-share](https://github.com/hellodigua/dsh-share) |
 | **[Coding essentials](./docs/collections.md#coding-essentials)** | [dsh-at-file](https://github.com/FSMargoo/dsh-at-file) · [dsh-open-in-vscode](https://github.com/omdsh-dev/dsh-open-in-vscode) · [dsh-context-doctor](https://github.com/Zhenyu98/dsh-context-doctor) · [dsh-security-audit](https://github.com/omdsh-dev/dsh-security-audit) |
 | **[Research workflow](./docs/collections.md#research-workflow)** | [dsh-deep-research](https://github.com/omdsh-dev/dsh-deep-research) · [dsh-scholar](https://github.com/lzszq/dsh-scholar) |
 
@@ -66,9 +66,9 @@
 - [`registry/plugins.json`](./registry/plugins.json)：schema v2 的机器可读 GitHub 项目目录。
 - [`docs/catalog.md`](./docs/catalog.md)：自动生成的完整目录。
 - [`collections/`](./collections)：人工策划的场景精选。
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每天两次增量扫描、每周一次全量校验。
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每天一次增量扫描、每周一次全量校验。
 
-日常扫描使用 `updated:` 时间窗口，只拉取上次成功扫描后变化的项目，并按稳定的 GitHub node ID 合并仓库改名。每周全量扫描负责清除移除 topic、归档或删除后无法出现在增量结果中的条目。
+日常扫描使用 `updated:` 时间窗口，只拉取上次成功扫描后变化的项目，并按稳定的 GitHub node ID 合并仓库改名；同时扫描已归档项目并移除旧条目。每周全量扫描负责核对完整目录，清除移除 topic 或删除后无法出现在增量结果中的条目。
 
 根 `package.json` 与仓库元数据在同一批 GraphQL 查询中获取；不再递归扫描 workspace，也不再请求 npm Registry。完整扫描仍通过时间切片突破 GitHub Search 的 1,000 条限制，增量扫描通常只需很少的切片。
 

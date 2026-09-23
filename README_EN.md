@@ -29,7 +29,7 @@
 
 | Collection | Recommended projects |
 | --- | --- |
-| **[Better Web UI](./docs/collections.md#better-web-ui)** | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · [dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) · [dsh-share](https://github.com/hellodigua/dsh-share) |
+| **[Better Web UI](./docs/collections.md#better-web-ui)** | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · [dsh-share](https://github.com/hellodigua/dsh-share) |
 | **[Coding essentials](./docs/collections.md#coding-essentials)** | [dsh-at-file](https://github.com/FSMargoo/dsh-at-file) · [dsh-open-in-vscode](https://github.com/omdsh-dev/dsh-open-in-vscode) · [dsh-context-doctor](https://github.com/Zhenyu98/dsh-context-doctor) · [dsh-security-audit](https://github.com/omdsh-dev/dsh-security-audit) |
 | **[Research workflow](./docs/collections.md#research-workflow)** | [dsh-deep-research](https://github.com/omdsh-dev/dsh-deep-research) · [dsh-scholar](https://github.com/lzszq/dsh-scholar) |
 
@@ -66,9 +66,9 @@ Curated collections additionally check deletion, archival, transfers, and topic 
 - [`registry/plugins.json`](./registry/plugins.json): the machine-readable schema v2 GitHub project directory.
 - [`docs/catalog.md`](./docs/catalog.md): the generated full catalog.
 - [`collections/`](./collections): manually curated, use-case-based collections.
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): two incremental scans per day and one weekly full reconciliation.
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): one incremental scan per day and one weekly full reconciliation.
 
-Routine scans use an `updated:` window and merge repositories changed since the last successful scan by stable GitHub node ID, which also handles renames. A weekly full scan removes entries that disappear after topic removal, archival, or deletion and therefore cannot appear in incremental results.
+Routine scans use an `updated:` window and merge repositories changed since the last successful scan by stable GitHub node ID, which also handles renames. They also scan archived repositories and remove stale entries. A weekly full scan reconciles the complete directory, including entries that disappear after topic removal or deletion.
 
 Root `package.json` data and repository metadata arrive in the same GraphQL batch. The updater no longer walks workspaces or contacts the npm Registry. Full scans still partition time ranges to pass GitHub Search's 1,000-result limit; incremental scans normally need very few slices.
 
