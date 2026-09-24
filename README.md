@@ -17,7 +17,7 @@
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## 插件目录
 
-**收录 15388 个带有 `dsh-plugin` topic 的 GitHub 项目**
+**收录 15380 个带有 `dsh-plugin` topic 的 GitHub 项目**
 
 | 入口 | 适合你在找什么 |
 | --- | --- |
@@ -52,7 +52,7 @@
 | [Molunerfinn/PicGo](https://github.com/Molunerfinn/PicGo) | :rocket: The Ultimate Image Uploader for Efficient Creators. Supports Obsidian, Typora,… | 27225 | MIT |
 | [titanwings/distilly](https://github.com/titanwings/distilly) | Distilly — Distill how they think into reusable Skills for any Agent or Bot. Formerly C… | 24900 | MIT |
 
-[**查看全部 15388 个项目 →**](./docs/catalog.md)
+[**查看全部 15380 个项目 →**](./docs/catalog.md)
 <!-- GENERATED:PLUGIN-INDEX:END -->
 
 ## 收录规则

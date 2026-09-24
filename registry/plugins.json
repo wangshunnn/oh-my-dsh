@@ -1,35 +1,35 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-22T07:45:38.115Z",
+  "generatedAt": "2026-09-24T07:36:58.200Z",
   "source": {
     "provider": "github",
     "query": "topic:dsh-plugin fork:false archived:false",
     "url": "https://github.com/topics/dsh-plugin",
     "mode": "incremental",
-    "scannedAt": "2026-09-22T07:45:38.115Z",
+    "scannedAt": "2026-09-24T07:36:58.200Z",
     "lastFullScanAt": "2026-09-20T08:49:22.298Z",
-    "windowStart": "2026-09-21T19:32:00Z",
-    "windowEnd": "2026-09-22T07:45:38Z",
+    "windowStart": "2026-09-22T07:45:38Z",
+    "windowEnd": "2026-09-24T07:36:58Z",
     "reportedTotal": 0,
     "discoveredTotal": 0,
     "slices": 0,
-    "graphqlRequests": 1
+    "graphqlRequests": 17
   },
   "stats": {
-    "included": 15388,
+    "included": 15380,
     "byKind": {
-      "bundle": 126,
+      "bundle": 125,
       "client": 1204,
       "collection": 92,
-      "plugin": 13174,
+      "plugin": 13167,
       "resource": 152,
       "skin": 640
     },
     "byEvidence": {
-      "bundle-manifest": 11680,
+      "bundle-manifest": 11673,
       "dsh-structure": 553,
       "legacy-manifest": 6,
-      "topic-only": 3149
+      "topic-only": 3148
     }
   },
   "plugins": [
@@ -29907,53 +29907,6 @@
       }
     },
     {
-      "id": "ManoloRemiddi/augmentor-dsh-extension-plugin",
-      "githubNodeId": "R_kgDOUCmNVQ",
-      "name": "augmentor-dsh-extension-plugin",
-      "owner": "ManoloRemiddi",
-      "repository": "augmentor-dsh-extension-plugin",
-      "url": "https://github.com/ManoloRemiddi/augmentor-dsh-extension-plugin",
-      "description": "Chromium side panel and browser control for DeepSeek Harness. Includes the plugin, extension and native host.",
-      "kind": "bundle",
-      "categories": [
-        "browser",
-        "ecosystem",
-        "web-ui"
-      ],
-      "topics": [
-        "deepseek-harness",
-        "dsh-plugin",
-        "manolo-dsh-plugins"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 29,
-        "forks": 4,
-        "openIssues": 2
-      },
-      "repositoryState": {
-        "defaultBranch": "master",
-        "headOid": "cd127529f9e020fd65a4252a493cf47179fc0cb2",
-        "createdAt": "2026-08-24T11:53:11Z",
-        "pushedAt": "2026-09-10T08:17:29Z",
-        "updatedAt": "2026-09-15T12:49:42Z"
-      },
-      "package": {
-        "name": "augmentor",
-        "version": "0.1.0",
-        "private": true,
-        "manifest": null
-      },
-      "evidence": {
-        "status": "topic-only",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "Nexus-Aethra/DSHBox",
       "githubNodeId": "R_kgDOT37GDQ",
       "name": "DSHBox",
@@ -34623,51 +34576,6 @@
       "package": {
         "name": "@anweat/dsh-browser",
         "version": "0.1.14-alpha.2",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "dingyi222666/dsh-focus-chat",
-      "githubNodeId": "R_kgDOT0kRxg",
-      "name": "dsh-focus-chat",
-      "owner": "dingyi222666",
-      "repository": "dsh-focus-chat",
-      "url": "https://github.com/dingyi222666/dsh-focus-chat",
-      "description": "为 Deepseek Harness 提供新的「聚焦会话」精简会话视图，更轻松易于阅读，只关注最终产出结果。",
-      "kind": "plugin",
-      "categories": [
-        "tools",
-        "web-ui"
-      ],
-      "topics": [
-        "dsh",
-        "dsh-plugin"
-      ],
-      "language": "TypeScript",
-      "license": {
-        "spdx": null,
-        "status": "unknown"
-      },
-      "metrics": {
-        "stars": 22,
-        "forks": 1,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "84c875af2c899c7de1adc55c2f9ee659e213a7ff",
-        "createdAt": "2026-08-10T19:40:36Z",
-        "pushedAt": "2026-09-16T12:19:13Z",
-        "updatedAt": "2026-09-16T12:19:07Z"
-      },
-      "package": {
-        "name": "@dingyi222666/dsh-focus-chat",
-        "version": "0.7.20",
         "private": null,
         "manifest": "dsh.bundle"
       },
@@ -96901,51 +96809,6 @@
       }
     },
     {
-      "id": "liguobao/dsh-file-viewer",
-      "githubNodeId": "R_kgDOT9pI7A",
-      "name": "dsh-file-viewer",
-      "owner": "liguobao",
-      "repository": "dsh-file-viewer",
-      "url": "https://github.com/liguobao/dsh-file-viewer",
-      "description": "DeepSeek Harness 通用只读文件预览插件，支持图片、PDF、CSV、Markdown、JSON、YAML、源码及大文件。",
-      "kind": "plugin",
-      "categories": [
-        "data",
-        "tools",
-        "visual"
-      ],
-      "topics": [
-        "dsh-plugin"
-      ],
-      "language": "TypeScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 5,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "96a87848cb15c58c233339fb55fd9f32809b4993",
-        "createdAt": "2026-08-19T14:55:27Z",
-        "pushedAt": "2026-09-15T16:37:11Z",
-        "updatedAt": "2026-09-15T16:37:15Z"
-      },
-      "package": {
-        "name": "dsh-file-viewer",
-        "version": "0.3.7",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "Linjiangxian0203/dsh-remote-tunnel",
       "githubNodeId": "R_kgDOT5Q_Mw",
       "name": "dsh-remote-tunnel",
@@ -111953,63 +111816,6 @@
         "name": "dsh-prompt-polish",
         "version": "0.1.0",
         "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "Jovan1666/dsh-commandcode-quota",
-      "githubNodeId": "R_kgDOUeeGGA",
-      "name": "dsh-commandcode-quota",
-      "owner": "Jovan1666",
-      "repository": "dsh-commandcode-quota",
-      "url": "https://github.com/Jovan1666/dsh-commandcode-quota",
-      "description": "Command Code plan quota in your DeepSeek Harness (dsh) sidebar: 5-hour, weekly and monthly credit windows with reset countdowns. Works with Go, GOAT, Pro, Max and Provider plans.",
-      "kind": "plugin",
-      "categories": [
-        "coding",
-        "web-ui"
-      ],
-      "topics": [
-        "ai-coding-agent",
-        "cli",
-        "command-code",
-        "commandcode",
-        "credits",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "javascript",
-        "llm",
-        "plugin",
-        "quota",
-        "sidebar",
-        "usage-monitor"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 4,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "dc913aba57d1e4df4b5ed1db0c23562062811f83",
-        "createdAt": "2026-09-17T08:08:03Z",
-        "pushedAt": "2026-09-19T07:21:03Z",
-        "updatedAt": "2026-09-19T07:21:07Z"
-      },
-      "package": {
-        "name": "dsh-commandcode-quota",
-        "version": "0.1.0",
-        "private": true,
         "manifest": "dsh.bundle"
       },
       "evidence": {
@@ -398188,92 +397994,6 @@
       }
     },
     {
-      "id": "aa2246740/dsh-grok-goals",
-      "githubNodeId": "R_kgDOUHtDcg",
-      "name": "dsh-grok-goals",
-      "owner": "aa2246740",
-      "repository": "dsh-grok-goals",
-      "url": "https://github.com/aa2246740/dsh-grok-goals",
-      "description": null,
-      "kind": "plugin",
-      "categories": [
-        "other"
-      ],
-      "topics": [
-        "dsh-plugin"
-      ],
-      "language": "TypeScript",
-      "license": {
-        "spdx": null,
-        "status": "unknown"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "767de0c57ec15338f2a2353a211f3111c6925589",
-        "createdAt": "2026-08-29T03:57:00Z",
-        "pushedAt": "2026-09-15T08:18:58Z",
-        "updatedAt": "2026-09-15T08:19:02Z"
-      },
-      "package": {
-        "name": "dsh-grok-goals",
-        "version": "0.1.1",
-        "private": false,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "aa2246740/dsh-grok-plan-mode",
-      "githubNodeId": "R_kgDOT_Hk6w",
-      "name": "dsh-grok-plan-mode",
-      "owner": "aa2246740",
-      "repository": "dsh-grok-plan-mode",
-      "url": "https://github.com/aa2246740/dsh-grok-plan-mode",
-      "description": "Full Grok Build Plan Mode port for DeepSeek Harness. Replaces official DSH Plan with Grok's state machine, plan.md edit gate, enter/exit tools, and review surface.",
-      "kind": "plugin",
-      "categories": [
-        "other"
-      ],
-      "topics": [
-        "dsh-plugin"
-      ],
-      "language": "TypeScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 3
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "d2c9d1262d8dcc567de593e7bd06866b21abc14f",
-        "createdAt": "2026-08-21T00:29:47Z",
-        "pushedAt": "2026-09-15T08:25:17Z",
-        "updatedAt": "2026-09-15T08:25:20Z"
-      },
-      "package": {
-        "name": "dsh-grok-plan-mode",
-        "version": "0.1.2",
-        "private": false,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "aa2246740/dsh-image-conatiner",
       "githubNodeId": "R_kgDOT9O7tw",
       "name": "dsh-image-conatiner",
@@ -515352,49 +515072,6 @@
       }
     },
     {
-      "id": "lanyun077/dsh-project",
-      "githubNodeId": "R_kgDOT5277w",
-      "name": "dsh-project",
-      "owner": "lanyun077",
-      "repository": "dsh-project",
-      "url": "https://github.com/lanyun077/dsh-project",
-      "description": null,
-      "kind": "plugin",
-      "categories": [
-        "memory"
-      ],
-      "topics": [
-        "dsh-plugin"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "4b75a8934986cf720da4baf903b45905d4bc01ed",
-        "createdAt": "2026-08-16T08:12:32Z",
-        "pushedAt": "2026-08-16T08:14:19Z",
-        "updatedAt": "2026-09-12T00:30:56Z"
-      },
-      "package": {
-        "name": "dsh-project",
-        "version": "0.1.0",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "Lanzgale/dsh-listener",
       "githubNodeId": "R_kgDOUInZHQ",
       "name": "dsh-listener",
@@ -564517,60 +564194,6 @@
       "package": {
         "name": "dsh-plugin-upgrade-015",
         "version": "0.1.1",
-        "private": false,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "PerryLink/dsh-plugin-upgrade-016",
-      "githubNodeId": "R_kgDOUhbagA",
-      "name": "dsh-plugin-upgrade-016",
-      "owner": "PerryLink",
-      "repository": "dsh-plugin-upgrade-016",
-      "url": "https://github.com/PerryLink/dsh-plugin-upgrade-016",
-      "description": "Corridor folded into dsh-plugin-upgrade 2.0.0 (never published under this name): its 0.1.5-rc.2 -> 0.1.6-alpha.2 card and E1-E5 scanner live in that package now.",
-      "kind": "plugin",
-      "categories": [
-        "agent-orchestration",
-        "visual"
-      ],
-      "topics": [
-        "client-slots",
-        "cordis",
-        "deepseek",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "migration",
-        "plugin-upgrade",
-        "scanner",
-        "skill",
-        "version-card"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "Apache-2.0",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "49d99e99848fcb9edfa3dc3d15a7f403c9ee77f1",
-        "createdAt": "2026-09-19T14:07:51Z",
-        "pushedAt": "2026-09-19T14:25:40Z",
-        "updatedAt": "2026-09-19T15:13:05Z"
-      },
-      "package": {
-        "name": "dsh-plugin-upgrade-016",
-        "version": "0.1.0",
         "private": false,
         "manifest": "dsh.bundle"
       },
