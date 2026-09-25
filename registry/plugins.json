@@ -1,35 +1,35 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-24T07:36:58.200Z",
+  "generatedAt": "2026-09-25T07:50:16.037Z",
   "source": {
     "provider": "github",
     "query": "topic:dsh-plugin fork:false archived:false",
     "url": "https://github.com/topics/dsh-plugin",
     "mode": "incremental",
-    "scannedAt": "2026-09-24T07:36:58.200Z",
+    "scannedAt": "2026-09-25T07:50:16.037Z",
     "lastFullScanAt": "2026-09-20T08:49:22.298Z",
-    "windowStart": "2026-09-22T07:45:38Z",
-    "windowEnd": "2026-09-24T07:36:58Z",
+    "windowStart": "2026-09-24T07:36:58Z",
+    "windowEnd": "2026-09-25T07:50:16Z",
     "reportedTotal": 0,
     "discoveredTotal": 0,
     "slices": 0,
-    "graphqlRequests": 17
+    "graphqlRequests": 15
   },
   "stats": {
-    "included": 15380,
+    "included": 15375,
     "byKind": {
       "bundle": 125,
-      "client": 1204,
+      "client": 1203,
       "collection": 92,
-      "plugin": 13167,
+      "plugin": 13163,
       "resource": 152,
       "skin": 640
     },
     "byEvidence": {
-      "bundle-manifest": 11673,
+      "bundle-manifest": 11670,
       "dsh-structure": 553,
       "legacy-manifest": 6,
-      "topic-only": 3148
+      "topic-only": 3146
     }
   },
   "plugins": [
@@ -127852,54 +127852,6 @@
       },
       "package": {
         "name": "awesome-dsh-pet",
-        "version": "0.1.0",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "azazo1/dsh-fork-inbox-guard",
-      "githubNodeId": "R_kgDOUW-m3A",
-      "name": "dsh-fork-inbox-guard",
-      "owner": "azazo1",
-      "repository": "dsh-fork-inbox-guard",
-      "url": "https://github.com/azazo1/dsh-fork-inbox-guard",
-      "description": "DSH host plugin: drop the pending prompts a fork inherits, so a fork child answers the prompt you send it instead of the source session's queue.",
-      "kind": "plugin",
-      "categories": [
-        "other"
-      ],
-      "topics": [
-        "deepseek",
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "fork",
-        "session"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 3,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "51f9e20a57802a28b78f18dba23435473469b4f9",
-        "createdAt": "2026-09-11T14:22:39Z",
-        "pushedAt": "2026-09-11T14:23:31Z",
-        "updatedAt": "2026-09-16T08:47:51Z"
-      },
-      "package": {
-        "name": "dsh-fork-inbox-guard",
         "version": "0.1.0",
         "private": null,
         "manifest": "dsh.bundle"
@@ -328545,58 +328497,6 @@
       }
     },
     {
-      "id": "nzl153/dsh-preflight",
-      "githubNodeId": "R_kgDOT5arsw",
-      "name": "dsh-preflight",
-      "owner": "nzl153",
-      "repository": "dsh-preflight",
-      "url": "https://github.com/nzl153/dsh-preflight",
-      "description": "DSH 插件安装前预演冲突、出问题后读日志定位根因，并给出可直接执行的修复命令。",
-      "kind": "plugin",
-      "categories": [
-        "developer-tools"
-      ],
-      "topics": [
-        "cli",
-        "deepseek-harness",
-        "dependency-conflicts",
-        "diagnostics",
-        "dsh",
-        "dsh-plugin",
-        "nodejs",
-        "preflight",
-        "static-analysis",
-        "typescript"
-      ],
-      "language": "TypeScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 1,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "2d4bff1f4861db5cfeeb8d613ecc1ba6b95b581c",
-        "createdAt": "2026-08-15T17:18:34Z",
-        "pushedAt": "2026-08-15T19:32:53Z",
-        "updatedAt": "2026-08-16T06:55:49Z"
-      },
-      "package": {
-        "name": "dsh-preflight",
-        "version": "0.2.0",
-        "private": null,
-        "manifest": null
-      },
-      "evidence": {
-        "status": "topic-only",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "Nzssm1/dsh-strategy-deployment-review",
       "githubNodeId": "R_kgDOUFrHHw",
       "name": "dsh-strategy-deployment-review",
@@ -437567,51 +437467,6 @@
       }
     },
     {
-      "id": "danbao/dsh-desktop",
-      "githubNodeId": "R_kgDOUAy96w",
-      "name": "dsh-desktop",
-      "owner": "danbao",
-      "repository": "dsh-desktop",
-      "url": "https://github.com/danbao/dsh-desktop",
-      "description": null,
-      "kind": "client",
-      "categories": [
-        "other"
-      ],
-      "topics": [
-        "dsh",
-        "dsh-plugin",
-        "dsh-plugins"
-      ],
-      "language": "Rust",
-      "license": {
-        "spdx": null,
-        "status": "unknown"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "7d6441ce44d8bb1bb9057ccd5a37c922633b2a45",
-        "createdAt": "2026-08-22T17:12:06Z",
-        "pushedAt": "2026-09-18T06:05:42Z",
-        "updatedAt": "2026-09-18T06:05:47Z"
-      },
-      "package": {
-        "name": "dsh-desktop",
-        "version": "0.3.15",
-        "private": true,
-        "manifest": null
-      },
-      "evidence": {
-        "status": "topic-only",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "dangxinxing090-svg/dsh-plugin-brief",
       "githubNodeId": "R_kgDOUcT_7Q",
       "name": "dsh-plugin-brief",
@@ -470528,53 +470383,6 @@
       },
       "evidence": {
         "status": "dsh-structure",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "gurio-wine/dsh-fold-it-up",
-      "githubNodeId": "R_kgDOUYvNoQ",
-      "name": "dsh-fold-it-up",
-      "owner": "gurio-wine",
-      "repository": "dsh-fold-it-up",
-      "url": "https://github.com/gurio-wine/dsh-fold-it-up",
-      "description": "DeepSeek Harness Web 插件：强制折叠每一轮的工作过程，答案照常显示，历史轮次与上下文注入行一并折叠。",
-      "kind": "plugin",
-      "categories": [
-        "web-ui"
-      ],
-      "topics": [
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin",
-        "fold",
-        "web-chat"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "master",
-        "headOid": "4ec028cf3dec5f44a15597397b72ad7418aa08ab",
-        "createdAt": "2026-09-13T06:38:25Z",
-        "pushedAt": "2026-09-16T05:53:11Z",
-        "updatedAt": "2026-09-16T05:53:15Z"
-      },
-      "package": {
-        "name": "dsh-fold-it-up",
-        "version": "1.0.0",
-        "private": true,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
         "checkedAt": "2026-09-20T08:49:22.298Z"
       }
     },
@@ -702189,50 +701997,6 @@
       "package": {
         "name": "dsh-session-roots",
         "version": "0.4.4",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "Yancey2023/dsh-fold",
-      "githubNodeId": "R_kgDOT8p6tQ",
-      "name": "dsh-fold",
-      "owner": "Yancey2023",
-      "repository": "dsh-fold",
-      "url": "https://github.com/Yancey2023/dsh-fold",
-      "description": "Adds clean, flexible folding to keep content compact, organized, and easy to navigate.",
-      "kind": "plugin",
-      "categories": [
-        "tools",
-        "web-ui"
-      ],
-      "topics": [
-        "dsh-plugin"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "ae0e15bdab097d75bac6ffb90e38bb7f1cbd923c",
-        "createdAt": "2026-08-18T17:27:46Z",
-        "pushedAt": "2026-09-17T20:32:40Z",
-        "updatedAt": "2026-09-17T20:32:44Z"
-      },
-      "package": {
-        "name": "dsh-fold",
-        "version": "0.1.0",
         "private": null,
         "manifest": "dsh.bundle"
       },
