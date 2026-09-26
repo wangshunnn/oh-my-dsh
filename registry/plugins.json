@@ -1,32 +1,32 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-25T07:50:16.037Z",
+  "generatedAt": "2026-09-26T07:43:49.265Z",
   "source": {
     "provider": "github",
     "query": "topic:dsh-plugin fork:false archived:false",
     "url": "https://github.com/topics/dsh-plugin",
     "mode": "incremental",
-    "scannedAt": "2026-09-25T07:50:16.037Z",
+    "scannedAt": "2026-09-26T07:43:49.265Z",
     "lastFullScanAt": "2026-09-20T08:49:22.298Z",
-    "windowStart": "2026-09-24T07:36:58Z",
-    "windowEnd": "2026-09-25T07:50:16Z",
+    "windowStart": "2026-09-25T07:50:16Z",
+    "windowEnd": "2026-09-26T07:43:49Z",
     "reportedTotal": 0,
     "discoveredTotal": 0,
     "slices": 0,
-    "graphqlRequests": 15
+    "graphqlRequests": 19
   },
   "stats": {
-    "included": 15375,
+    "included": 15373,
     "byKind": {
       "bundle": 125,
-      "client": 1203,
+      "client": 1202,
       "collection": 92,
-      "plugin": 13163,
+      "plugin": 13162,
       "resource": 152,
       "skin": 640
     },
     "byEvidence": {
-      "bundle-manifest": 11670,
+      "bundle-manifest": 11668,
       "dsh-structure": 553,
       "legacy-manifest": 6,
       "topic-only": 3146
@@ -152945,54 +152945,6 @@
       "package": {
         "name": "dsh-tavily",
         "version": "0.3.1",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "taikaikaikai-pixel/dsh-tap",
-      "githubNodeId": "R_kgDOUQCI0A",
-      "name": "dsh-tap",
-      "owner": "taikaikaikai-pixel",
-      "repository": "dsh-tap",
-      "url": "https://github.com/taikaikaikai-pixel/dsh-tap",
-      "description": "CodeBuddy & Trae provider bundle for DeepSeek Harness (dsh): subscription-quota LLM access via loopback tap bridges — 18+ models, OAuth/API-key, usage metering. Unofficial, BYOC.",
-      "kind": "plugin",
-      "categories": [
-        "web-ui"
-      ],
-      "topics": [
-        "codebuddy",
-        "deepseek-harness",
-        "dsh-plugin",
-        "llm",
-        "oauth",
-        "reverse-engineering"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 3,
-        "forks": 0,
-        "openIssues": 1
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "469b679cf7b94c768d980de368eb4621985c4da0",
-        "createdAt": "2026-09-06T09:30:48Z",
-        "pushedAt": "2026-09-13T13:53:21Z",
-        "updatedAt": "2026-09-16T01:21:20Z"
-      },
-      "package": {
-        "name": "dsh-tap",
-        "version": "0.9.4",
         "private": null,
         "manifest": "dsh.bundle"
       },
@@ -709215,49 +709167,6 @@
       "package": {
         "name": "dsh-sidebar-file-menu",
         "version": "0.1.0",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "YuemingHub/Ming-Capability-Pack",
-      "githubNodeId": "R_kgDOT_ww-Q",
-      "name": "Ming-Capability-Pack",
-      "owner": "YuemingHub",
-      "repository": "Ming-Capability-Pack",
-      "url": "https://github.com/YuemingHub/Ming-Capability-Pack",
-      "description": "依托于deepseek harness  做真有用的插件",
-      "kind": "client",
-      "categories": [
-        "other"
-      ],
-      "topics": [
-        "dsh-plugin"
-      ],
-      "language": "TypeScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 1
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "89295078819050a0bc12e431fb6b6b9b386854bb",
-        "createdAt": "2026-08-21T14:57:26Z",
-        "pushedAt": "2026-08-24T13:30:57Z",
-        "updatedAt": "2026-08-24T13:36:37Z"
-      },
-      "package": {
-        "name": "@mingworkbench/capability-pack",
-        "version": "0.9.0",
         "private": null,
         "manifest": "dsh.bundle"
       },

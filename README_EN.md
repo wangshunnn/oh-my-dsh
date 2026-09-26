@@ -17,7 +17,7 @@
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## Plugin directory
 
-**15375 GitHub projects using the `dsh-plugin` topic**
+**15373 GitHub projects using the `dsh-plugin` topic**
 
 | Entry point | Best for |
 | --- | --- |
@@ -52,7 +52,7 @@
 | [Molunerfinn/PicGo](https://github.com/Molunerfinn/PicGo) | :rocket: The Ultimate Image Uploader for Efficient Creators. Supports Obsidian, Typora,… | 27225 | MIT |
 | [titanwings/distilly](https://github.com/titanwings/distilly) | Distilly — Distill how they think into reusable Skills for any Agent or Bot. Formerly C… | 24900 | MIT |
 
-[**View all 15375 projects →**](./docs/catalog.md)
+[**View all 15373 projects →**](./docs/catalog.md)
 <!-- GENERATED:PLUGIN-INDEX:END -->
 
 ## Listing rules
