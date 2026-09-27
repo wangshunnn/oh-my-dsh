@@ -1,35 +1,35 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-26T07:43:49.265Z",
+  "generatedAt": "2026-09-27T08:12:05.170Z",
   "source": {
     "provider": "github",
     "query": "topic:dsh-plugin fork:false archived:false",
     "url": "https://github.com/topics/dsh-plugin",
     "mode": "incremental",
-    "scannedAt": "2026-09-26T07:43:49.265Z",
+    "scannedAt": "2026-09-27T08:12:05.170Z",
     "lastFullScanAt": "2026-09-20T08:49:22.298Z",
-    "windowStart": "2026-09-25T07:50:16Z",
-    "windowEnd": "2026-09-26T07:43:49Z",
+    "windowStart": "2026-09-26T07:43:49Z",
+    "windowEnd": "2026-09-27T08:12:05Z",
     "reportedTotal": 0,
     "discoveredTotal": 0,
     "slices": 0,
     "graphqlRequests": 19
   },
   "stats": {
-    "included": 15373,
+    "included": 15368,
     "byKind": {
       "bundle": 125,
       "client": 1202,
       "collection": 92,
-      "plugin": 13162,
+      "plugin": 13157,
       "resource": 152,
       "skin": 640
     },
     "byEvidence": {
-      "bundle-manifest": 11668,
+      "bundle-manifest": 11664,
       "dsh-structure": 553,
       "legacy-manifest": 6,
-      "topic-only": 3146
+      "topic-only": 3145
     }
   },
   "plugins": [
@@ -142185,62 +142185,6 @@
       }
     },
     {
-      "id": "LoveDoLove/Project-Memory-Agent",
-      "githubNodeId": "R_kgDOUGBqKQ",
-      "name": "Project-Memory-Agent",
-      "owner": "LoveDoLove",
-      "repository": "Project-Memory-Agent",
-      "url": "https://github.com/LoveDoLove/Project-Memory-Agent",
-      "description": "Project Memory gives coding agents a single, trustworthy memory for a software repository — so they stop re-learning the same facts and stop writing conflicting \"memory\" files.",
-      "kind": "plugin",
-      "categories": [
-        "coding",
-        "memory"
-      ],
-      "topics": [
-        "agentic-ai",
-        "ai-agents",
-        "claude-code",
-        "codex",
-        "coding-agents",
-        "developer-tools",
-        "dsh-plugin",
-        "knowledge-management",
-        "llm-agents",
-        "opencode",
-        "project-memory",
-        "repository-memory",
-        "software-engineering"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 3,
-        "forks": 1,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "e2bed4702a0f56ac48feedba583aa43c7e0ecb9c",
-        "createdAt": "2026-08-27T12:58:43Z",
-        "pushedAt": "2026-09-17T07:34:41Z",
-        "updatedAt": "2026-09-17T07:34:44Z"
-      },
-      "package": {
-        "name": null,
-        "version": null,
-        "private": null,
-        "manifest": null
-      },
-      "evidence": {
-        "status": "topic-only",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "lovetree128/dsh-git-gui",
       "githubNodeId": "R_kgDOT6JkYA",
       "name": "dsh-git-gui",
@@ -167718,51 +167662,6 @@
       "package": {
         "name": "@baconbao/dsh-mermaid-image-preview",
         "version": "0.3.2",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "badai147/dsh-ocgo-usage",
-      "githubNodeId": "R_kgDOT8Q3CA",
-      "name": "dsh-ocgo-usage",
-      "owner": "badai147",
-      "repository": "dsh-ocgo-usage",
-      "url": "https://github.com/badai147/dsh-ocgo-usage",
-      "description": "在 DeepSeek Harness Web 侧边栏左下角显示 OpenCode Go 用量的插件。",
-      "kind": "plugin",
-      "categories": [
-        "web-ui"
-      ],
-      "topics": [
-        "deepseek",
-        "deepseek-harness",
-        "dsh-plugin"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 2,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "035d6c24af842222992c50ed8f64567072e86b91",
-        "createdAt": "2026-08-18T10:11:57Z",
-        "pushedAt": "2026-09-08T13:20:35Z",
-        "updatedAt": "2026-09-09T10:21:18Z"
-      },
-      "package": {
-        "name": "@badai147/dsh-ocgo-usage",
-        "version": "0.2.1",
         "private": null,
         "manifest": "dsh.bundle"
       },
@@ -242666,52 +242565,6 @@
       }
     },
     {
-      "id": "antnesswcm/dsh-shell-card-plus",
-      "githubNodeId": "R_kgDOUHkxgg",
-      "name": "dsh-shell-card-plus",
-      "owner": "antnesswcm",
-      "repository": "dsh-shell-card-plus",
-      "url": "https://github.com/antnesswcm/dsh-shell-card-plus",
-      "description": null,
-      "kind": "plugin",
-      "categories": [
-        "tools",
-        "web-ui"
-      ],
-      "topics": [
-        "cordis",
-        "deepseek-harness",
-        "dsh-plugin"
-      ],
-      "language": "TypeScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 1,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "89de799ca2785d8a624b41fbf6357fd4d9857518",
-        "createdAt": "2026-08-28T23:36:48Z",
-        "pushedAt": "2026-09-09T18:48:21Z",
-        "updatedAt": "2026-09-19T01:17:12Z"
-      },
-      "package": {
-        "name": "dsh-shell-card-plus",
-        "version": "0.3.3",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
       "id": "antonio-mastropaolo/dsh-anthropic-membership",
       "githubNodeId": "R_kgDOUcXH_g",
       "name": "dsh-anthropic-membership",
@@ -252531,53 +252384,6 @@
       "package": {
         "name": "the-binding-of-dsh",
         "version": "0.1.8",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "chai1110/dsh-ssh-remote",
-      "githubNodeId": "R_kgDOT-skSA",
-      "name": "dsh-ssh-remote",
-      "owner": "chai1110",
-      "repository": "dsh-ssh-remote",
-      "url": "https://github.com/chai1110/dsh-ssh-remote",
-      "description": "DeepSeek Harness SSH 远程工作区插件（多机并行）：同时连接多台服务器，Agent 直接查看/编辑/执行远程文件。基于 flymysql/dsh-remote (MIT) 适配 0.1.1-rc.2",
-      "kind": "plugin",
-      "categories": [
-        "social"
-      ],
-      "topics": [
-        "deepseek-harness",
-        "dsh-plugin",
-        "multi-machine",
-        "remote-workspace",
-        "ssh"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 1,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "7cd4f937945a275b56fc533e4d3d910075ea2564",
-        "createdAt": "2026-08-20T14:45:29Z",
-        "pushedAt": "2026-09-10T07:58:07Z",
-        "updatedAt": "2026-09-10T07:58:11Z"
-      },
-      "package": {
-        "name": "dsh-ssh-remote",
-        "version": "0.6.0",
         "private": null,
         "manifest": "dsh.bundle"
       },
@@ -467429,51 +467235,6 @@
       "package": {
         "name": "@goodandready/dsh-agent-loop-guard",
         "version": "0.2.12",
-        "private": null,
-        "manifest": "dsh.bundle"
-      },
-      "evidence": {
-        "status": "bundle-manifest",
-        "checkedAt": "2026-09-20T08:49:22.298Z"
-      }
-    },
-    {
-      "id": "GooDAnDReaDY/dsh-agent-orchestrator",
-      "githubNodeId": "R_kgDOUgp--A",
-      "name": "dsh-agent-orchestrator",
-      "owner": "GooDAnDReaDY",
-      "repository": "dsh-agent-orchestrator",
-      "url": "https://github.com/GooDAnDReaDY/dsh-agent-orchestrator",
-      "description": "Multi-agent task decomposition, DAG workflow orchestration, and prompt caching optimizer for DeepSeek Harness",
-      "kind": "plugin",
-      "categories": [
-        "agent-orchestration"
-      ],
-      "topics": [
-        "deepseek-harness",
-        "dsh",
-        "dsh-plugin"
-      ],
-      "language": "JavaScript",
-      "license": {
-        "spdx": "MIT",
-        "status": "detected"
-      },
-      "metrics": {
-        "stars": 0,
-        "forks": 0,
-        "openIssues": 0
-      },
-      "repositoryState": {
-        "defaultBranch": "main",
-        "headOid": "cae4c17bf337396bb26e0e770f82c4f03a9bdf56",
-        "createdAt": "2026-09-18T20:47:58Z",
-        "pushedAt": "2026-09-19T22:38:17Z",
-        "updatedAt": "2026-09-19T22:32:02Z"
-      },
-      "package": {
-        "name": "@goodandready/dsh-agent-orchestrator",
-        "version": "0.1.9",
         "private": null,
         "manifest": "dsh.bundle"
       },
