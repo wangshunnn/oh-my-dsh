@@ -280,17 +280,28 @@ export async function githubRequest<T>(path: string, token: string): Promise<T |
 }
 
 export async function githubGraphqlRequest<T>(query: string, variables: Record<string, unknown>, token: string): Promise<T> {
-  const response = await githubFetch('https://api.github.com/graphql', token, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, variables }),
-  })
-  const payload = await response.json() as { data?: T; errors?: Array<{ message?: string }> }
-  if (!payload.data || payload.errors?.length) {
+  const attempts = 5
+  for (let attempt = 0; ; attempt += 1) {
+    const response = await githubFetch('https://api.github.com/graphql', token, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, variables }),
+    })
+    const payload = await response.json() as { data?: T; errors?: Array<{ message?: string; type?: string }> }
+    if (payload.data && !payload.errors?.length) return payload.data
+
     const detail = payload.errors?.map(error => error.message ?? 'unknown GraphQL error').join('; ') ?? 'missing GraphQL data'
-    throw new Error(`GitHub GraphQL request failed: ${detail}`)
+    const error = new Error(`GitHub GraphQL request failed: ${detail}`)
+    const retryable = payload.errors?.length && payload.errors.every(item =>
+      item.type === 'INTERNAL'
+      || /something went wrong while executing your query|service unavailable|temporarily unavailable|timed? out|timeout/i.test(item.message ?? ''),
+    )
+    if (!retryable || attempt === attempts - 1) throw error
+
+    const delay = retryDelay(response, attempt)
+    process.stderr.write(`warning: ${error.message}; retrying ${attempt + 2}/${attempts} in ${delay}ms\n`)
+    await new Promise(resolve => setTimeout(resolve, delay))
   }
-  return payload.data
 }
 
 export function decodePackageJsonText(source: string | null | undefined): PackageJson | null {
