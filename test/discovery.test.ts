@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import type { TestContext } from 'node:test'
 import {
   creationRangeQuery,
   discoverRepositories,
@@ -188,4 +189,109 @@ test('archived discovery searches the complete creation window', async () => {
   assert.deepEqual(queries, [
     'topic:dsh-plugin fork:false archived:true created:2008-01-01T00:00:00Z..2026-08-22T03:00:00Z',
   ])
+})
+
+function repositoryNode(id: string) {
+  return {
+    id,
+    name: id,
+    nameWithOwner: `example/${id}`,
+    url: `https://github.com/example/${id}`,
+    description: null,
+    isArchived: false,
+    isFork: false,
+    diskUsage: 1,
+    stargazerCount: 0,
+    forkCount: 0,
+    openIssues: { totalCount: 0 },
+    defaultBranchRef: null,
+    createdAt: '2008-01-01T00:00:00Z',
+    pushedAt: null,
+    updatedAt: '2008-01-01T00:00:00Z',
+    primaryLanguage: null,
+    licenseInfo: null,
+    repositoryTopics: { nodes: [{ topic: { name: 'dsh-plugin' } }] },
+    packageFile: null,
+  }
+}
+
+function mockRetryDelays(context: TestContext): number[] {
+  const delays: number[] = []
+  context.mock.method(globalThis, 'setTimeout', (callback: () => void, delay: number) => {
+    delays.push(delay)
+    queueMicrotask(callback)
+    return {} as NodeJS.Timeout
+  })
+  return delays
+}
+
+test('retries incomplete slices using the latest count and discards the partial result', async context => {
+  const delays = mockRetryDelays(context)
+  const queries: string[] = []
+  const messages: string[] = []
+  const request = async <T>(query: string, variables: Record<string, unknown>): Promise<T> => {
+    if (query.includes('CountRepositories')) return { search0: { repositoryCount: 2 } } as T
+    queries.push(variables.queryString as string)
+    return { search: queries.length === 1
+      ? { repositoryCount: 2, nodes: [repositoryNode('partial'), null] }
+      : { repositoryCount: 1, nodes: [repositoryNode('complete')] } } as T
+  }
+  const result = await discoverRepositories('test-token', {
+    scanTimestamp: '2008-01-01T00:00:01Z',
+    mode: 'full',
+    query: 'topic:dsh-plugin fork:false archived:true',
+    request,
+    reportProgress: message => messages.push(message),
+  })
+
+  assert.deepEqual(result.repositories.map(item => item.repository.node_id), ['complete'])
+  assert.equal(result.discoveredTotal, 1)
+  assert.equal(result.sliceCount, 1)
+  assert.equal(result.graphqlRequests, 3)
+  assert.equal(queries.length, 2)
+  assert.equal(queries[1], queries[0])
+  assert.match(queries[0], /archived:true created:/)
+  assert.deepEqual(delays, [1000])
+  assert.ok(messages.some(message => /expected 2, received 1; retrying 2\/3/.test(message)))
+})
+
+test('rejects a persistently incomplete slice after three attempts', async context => {
+  const delays = mockRetryDelays(context)
+  let requests = 0
+  const request = async <T>(query: string): Promise<T> => {
+    requests += 1
+    return (query.includes('CountRepositories')
+      ? { search0: { repositoryCount: 2 } }
+      : { search: { repositoryCount: 2, nodes: [repositoryNode('partial')] } }) as T
+  }
+
+  await assert.rejects(discoverRepositories('test-token', {
+    scanTimestamp: '2008-01-01T00:00:01Z',
+    mode: 'full',
+    request,
+  }), /Incomplete discovery slice .*expected 2, received 1/)
+  assert.equal(requests, 4)
+  assert.deepEqual(delays, [1000, 2000])
+})
+
+test('splits a retried slice if its count grows beyond the result limit', async context => {
+  const delays = mockRetryDelays(context)
+  let slices = 0
+  const request = async <T>(query: string): Promise<T> => {
+    if (query.includes('CountRepositories')) return { search0: { repositoryCount: 2 } } as T
+    slices += 1
+    if (slices === 1) return { search: { repositoryCount: 2, nodes: [] } } as T
+    if (slices === 2) return { search: { repositoryCount: 51, nodes: [] } } as T
+    return { search: { repositoryCount: 1, nodes: [repositoryNode(`complete-${slices}`)] } } as T
+  }
+  const result = await discoverRepositories('test-token', {
+    scanTimestamp: '2008-01-01T00:00:03Z',
+    mode: 'full',
+    request,
+  })
+
+  assert.equal(result.discoveredTotal, 2)
+  assert.equal(result.sliceCount, 2)
+  assert.equal(result.graphqlRequests, 5)
+  assert.deepEqual(delays, [1000])
 })

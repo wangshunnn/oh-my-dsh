@@ -10,6 +10,7 @@ export const DISCOVERY_SLICE_SIZE = 50
 export const DISCOVERY_COUNT_BATCH_SIZE = 20
 export const MAX_ROOT_PACKAGE_BYTES = 512 * 1024
 export const MAX_DISCOVERY_GRAPHQL_REQUESTS = 700
+const MAX_SLICE_ATTEMPTS = 3
 
 export interface DiscoveryRange {
   startMs: number
@@ -286,11 +287,11 @@ export async function discoverRepositories(token: string, options: DiscoveryOpti
   }
   const plan = await planCreationSlicesBatched(rootRange, countRepositories)
   reportProgress(`${options.mode} discovery planned ${plan.slices.length} complete ${qualifier} slices in ${graphqlRequests} GraphQL requests.`)
-  const queue: DiscoveryRange[] = [...plan.slices]
+  const queue: Array<{ slice: DiscoveryRange; attempt: number }> = plan.slices.map(slice => ({ slice, attempt: 0 }))
   const repositories: DiscoveredRepository[] = []
   let fetchedSlices = 0
   while (queue.length > 0) {
-    const slice = queue.shift()!
+    const { slice, attempt } = queue.shift()!
     const data = await checkedRequest<SliceQueryData>(SLICE_QUERY, {
       queryString: rangeQuery(slice, qualifier, options.query),
       limit: DISCOVERY_SLICE_SIZE,
@@ -298,12 +299,18 @@ export async function discoverRepositories(token: string, options: DiscoveryOpti
     const currentCount = data.search.repositoryCount
     if (currentCount > DISCOVERY_SLICE_SIZE) {
       const [left, right] = splitDiscoveryRange(slice)
-      queue.unshift(left, right)
+      queue.unshift({ slice: left, attempt: 0 }, { slice: right, attempt: 0 })
       continue
     }
     const nodes = data.search.nodes.flatMap(node => node ? [node] : [])
     if (nodes.length !== currentCount) {
-      throw new Error(`Incomplete discovery slice ${rangeQuery(slice, qualifier, options.query)}: expected ${currentCount}, received ${nodes.length}`)
+      const detail = `Incomplete discovery slice ${rangeQuery(slice, qualifier, options.query)}: expected ${currentCount}, received ${nodes.length}`
+      if (attempt === MAX_SLICE_ATTEMPTS - 1) throw new Error(detail)
+      const delay = 1000 * 2 ** attempt
+      reportProgress(`${detail}; retrying ${attempt + 2}/${MAX_SLICE_ATTEMPTS} in ${delay}ms`)
+      await new Promise(resolve => setTimeout(resolve, delay))
+      queue.unshift({ slice, attempt: attempt + 1 })
+      continue
     }
     repositories.push(...nodes.map(normalizeNode))
     fetchedSlices += 1
