@@ -79,9 +79,14 @@
           </h1>
           <div class="registry-status">
             <p id="registryMeta" data-i18n="loading">正在读取 Registry…</p>
-            <span class="refresh-state"><i aria-hidden="true"></i><span data-i18n="autoRefresh">每天两次增量更新</span></span>
+            <span class="maintenance-state" data-i18n="maintenanceStatus">已停止维护 · 静态快照</span>
           </div>
         </div>
+
+        <aside class="maintenance-notice" aria-label="维护状态" data-i18n-aria-label="maintenanceLabel">
+          <p data-i18n="maintenanceNotice">项目于 2026-10-16 停止维护，定时更新已关闭。本站保留最后一次成功扫描的数据；项目状态、Stars 和精选内容不再更新。</p>
+          <a href="https://github.com/topics/dsh-plugin" target="_blank" rel="noreferrer" data-i18n="currentProjects">前往 GitHub 查看最新项目 ↗</a>
+        </aside>
 
         <label class="search-box" for="searchInput">
           <span aria-hidden="true">

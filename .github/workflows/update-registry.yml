@@ -10,9 +10,6 @@ on:
           - incremental
           - full
         default: incremental
-  schedule:
-    - cron: "17 2 * * *"
-    - cron: "47 3 * * 0"
 
 permissions:
   contents: write
@@ -36,7 +33,7 @@ jobs:
         run: npm run update
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REGISTRY_SCAN_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode || (github.event.schedule == '47 3 * * 0' && 'full' || 'incremental') }}
+          REGISTRY_SCAN_MODE: ${{ inputs.mode || 'incremental' }}
       - run: npm run check
       - name: Commit generated registry
         run: |

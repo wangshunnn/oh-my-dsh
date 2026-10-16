@@ -2,26 +2,32 @@ const PAGE_SIZE = 20;
 
 const copy = {
   zh: {
-    loading: "正在读取 Registry…", autoRefresh: "每天两次增量更新",
+    loading: "正在读取 Registry…", maintenanceStatus: "已停止维护 · 静态快照",
+    maintenanceLabel: "维护状态",
+    maintenanceNotice: "项目于 2026-10-16 停止维护，定时更新已关闭。本站保留最后一次成功扫描的数据；项目状态、Stars 和精选内容不再更新。",
+    currentProjects: "前往 GitHub 查看最新项目 ↗",
     searchLabel: "搜索插件", searchPlaceholder: "搜索插件、作者、标签或功能…",
     popular: "热门", latest: "最新", curated: "精选",
     kindLabel: "类型", categoryLabel: "分类", allKinds: "全部类型", allCategories: "全部分类",
     plugins: "插件", reset: "清除筛选", listView: "列表", cardView: "卡片", emptyTitle: "没有找到匹配的插件", emptyCopy: "试试更短的关键词，或清除筛选。", loadMore: "加载更多",
     disclaimer: "目录来自 GitHub topic；请在安装前阅读项目自己的说明与安全边界。", statusGuide: "收录说明",
     collectionAll: "全部精选", noDescription: "暂无简介。", viewRepository: "查看仓库与安装说明",
-    registryMeta: (count, date) => `${count.toLocaleString()} 个社区项目 · 更新于 ${date}`,
+    registryMeta: (count, date) => `${count.toLocaleString()} 个社区项目 · 快照日期 ${date}`,
     resultCount: (count) => `${count.toLocaleString()} 个结果`, remaining: (count) => `剩余 ${count.toLocaleString()}`,
     loadError: "Registry 暂时无法载入，请稍后刷新。",
   },
   en: {
-    loading: "Reading the registry…", autoRefresh: "Incremental updates twice daily",
+    loading: "Reading the registry…", maintenanceStatus: "Unmaintained · Static snapshot",
+    maintenanceLabel: "Maintenance status",
+    maintenanceNotice: "Maintenance ended on 2026-10-16. Scheduled updates are disabled. This site retains the last successful scan; repository status, Stars, and collections are no longer refreshed.",
+    currentProjects: "Find current projects on GitHub ↗",
     searchLabel: "Search plugins", searchPlaceholder: "Search plugins, authors, tags, or features…",
     popular: "Popular", latest: "Latest", curated: "Curated",
     kindLabel: "Kind", categoryLabel: "Category", allKinds: "All kinds", allCategories: "All categories",
     plugins: "Plugins", reset: "Clear filters", listView: "List", cardView: "Cards", emptyTitle: "No matching plugins", emptyCopy: "Try a shorter query or clear your filters.", loadMore: "Load more",
     disclaimer: "The directory comes from a GitHub topic. Read each project's own docs and security guidance before installing.", statusGuide: "Listing policy",
     collectionAll: "All curated", noDescription: "No description yet.", viewRepository: "Repository & install docs",
-    registryMeta: (count, date) => `${count.toLocaleString()} community projects · Updated ${date}`,
+    registryMeta: (count, date) => `${count.toLocaleString()} community projects · Snapshot ${date}`,
     resultCount: (count) => `${count.toLocaleString()} results`, remaining: (count) => `${count.toLocaleString()} remaining`,
     loadError: "The registry could not be loaded. Please refresh shortly.",
   },
@@ -91,6 +97,7 @@ function applyLanguage() {
   document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
   document.querySelectorAll("[data-i18n]").forEach((node) => { const value = t(node.dataset.i18n); if (typeof value === "string") node.textContent = value; });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => { node.placeholder = t(node.dataset.i18nPlaceholder); });
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((node) => { node.setAttribute("aria-label", t(node.dataset.i18nAriaLabel)); });
   elements.language.setAttribute("aria-label", state.lang === "zh" ? "语言" : "Language");
   elements.language.querySelectorAll("button[data-lang]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.lang === state.lang)));
   const languageTrigger = elements.language.querySelector(".preference-trigger");
@@ -120,6 +127,7 @@ function populateFilters(preserve = false) {
 function updateRegistryMeta() {
   const locale = state.lang === "zh" ? "zh-CN" : "en-US";
   const date = new Intl.DateTimeFormat(locale, {
+    year: "numeric",
     month: "short",
     day: "numeric",
   }).format(new Date(state.generatedAt));
