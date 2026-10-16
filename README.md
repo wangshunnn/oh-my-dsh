@@ -10,9 +10,11 @@
 
 > 🐋 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 社区项目目录：从 GitHub topic 发现，回到项目仓库阅读说明。
 
+> **已停止维护（2026-10-16）**：本站保留为静态历史目录，定时更新已停止。最后一次成功扫描为 **2026-10-14**，收录 16,072 个项目。项目状态、Stars 和精选内容不再更新，也不再处理新增收录或维护请求。最新项目请查看 [GitHub `dsh-plugin` topic](https://github.com/topics/dsh-plugin)；欢迎 fork 继续维护。
+
 **oh-my-dsh** 收录带有 [`dsh-plugin`](https://github.com/topics/dsh-plugin) topic 的公开 GitHub 项目，提供搜索、分类与场景精选。目录不生成一键安装命令；请进入项目仓库，按照维护者提供的文档安装和评估风险。
 
-**[打开在线目录](https://oh-my-dsh.vercel.app/)** · **[浏览全部项目](./docs/catalog.md)** · **[查看场景精选](./docs/collections.md)** · **[使用 JSON Registry](./registry/plugins.json)** · **[提交项目](./CONTRIBUTING.md)**
+**[打开静态目录](https://oh-my-dsh.vercel.app/)** · **[浏览全部项目](./docs/catalog.md)** · **[查看场景精选](./docs/collections.md)** · **[使用 JSON Registry](./registry/plugins.json)** · **[Fork 与历史收录规则](./CONTRIBUTING.md)**
 
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## 插件目录
@@ -57,18 +59,20 @@
 
 ## 收录规则
 
-目录自动收录公开、非 fork、未归档、非空且带有 `dsh-plugin` topic 的仓库，不设置人工例外。根 `package.json` 信号和 Stars 仅作为展示元数据；收录不代表兼容性、安全认证、维护质量或官方背书。安装方式以项目仓库文档为准。
+停更前，目录自动收录公开、非 fork、未归档、非空且带有 `dsh-plugin` topic 的仓库，不设置人工例外。根 `package.json` 信号和 Stars 仅作为展示元数据；收录不代表兼容性、安全认证、维护质量或官方背书。安装方式以项目仓库文档为准。
 
-人工精选 Collection 会额外检查仓库删除、归档、转移和 topic 变化，所有权变化不会被静默跟随。
+停更前，人工精选 Collection 会额外检查仓库删除、归档、转移和 topic 变化。当前快照不再核对这些变化，请以各项目仓库的当前状态为准。
 
-## 数据与更新策略
+## 数据快照与手动更新
 
 - [`registry/plugins.json`](./registry/plugins.json)：schema v2 的机器可读 GitHub 项目目录。
 - [`docs/catalog.md`](./docs/catalog.md)：自动生成的完整目录。
 - [`collections/`](./collections)：人工策划的场景精选。
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：每天一次增量扫描、每周一次全量校验。
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml)：仅保留手动触发入口，已移除每日和每周定时扫描。归档后，如需继续更新，请在 fork 中运行。
 
-日常扫描使用 `updated:` 时间窗口，只拉取上次成功扫描后变化的项目，并按稳定的 GitHub node ID 合并仓库改名；同时扫描已归档项目并移除旧条目。每周全量扫描负责核对完整目录，清除移除 topic 或删除后无法出现在增量结果中的条目。
+静态站点、JSON Registry 和生成文档保留最后一次成功扫描的数据。以下工具说明供 fork 或将来的维护者使用。
+
+增量扫描使用 `updated:` 时间窗口，只拉取上次成功扫描后变化的项目，并按稳定的 GitHub node ID 合并仓库改名；同时扫描已归档项目并移除旧条目。手动全量扫描可核对完整目录，清除移除 topic 或删除后无法出现在增量结果中的条目。
 
 根 `package.json` 与仓库元数据在同一批 GraphQL 查询中获取；不再递归扫描 workspace，也不再请求 npm Registry。完整扫描仍通过时间切片突破 GitHub Search 的 1,000 条限制，增量扫描通常只需很少的切片。
 
@@ -82,9 +86,9 @@ npm run check
 
 首次生成 schema v2 数据时会自动回退到 full scan。也可显式设置 `REGISTRY_SCAN_MODE=full`。
 
-## 贡献
+## 继续维护
 
-项目作者只需公开仓库、添加 `dsh-plugin` topic，并在 README 中写清安装、权限和卸载方式。精选建议见 [CONTRIBUTING.md](./CONTRIBUTING.md)，安全边界见 [SECURITY.md](./SECURITY.md)。
+本仓库已停止维护，不再接收新增收录、精选建议或问题修复请求。欢迎按 MIT License fork 并自行维护；开发说明见 [CONTRIBUTING.md](./CONTRIBUTING.md)，安全边界见 [SECURITY.md](./SECURITY.md)。给项目添加 `dsh-plugin` topic 仍可帮助用户在 GitHub 上发现它，但不会更新本目录快照。
 
 ## License
 

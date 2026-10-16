@@ -10,9 +10,11 @@
 
 > 🐋 A community project directory for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): discover through a GitHub topic, then read the project at its source.
 
+> **Maintenance ended on 2026-10-16.** The website remains available as a static historical directory. Scheduled updates have stopped. The last successful scan was **2026-10-14**, covering 16,072 projects. Repository status, Stars, and collections are no longer refreshed, and new listings and maintenance requests are no longer handled. Browse the [GitHub `dsh-plugin` topic](https://github.com/topics/dsh-plugin) for current projects, or fork this repository to continue maintenance.
+
 **oh-my-dsh** indexes public GitHub projects using the [`dsh-plugin`](https://github.com/topics/dsh-plugin) topic and provides search, classification, and curated collections. The directory does not generate one-click installation commands. Open the project repository and follow the maintainer's documentation before installing or granting access.
 
-**[Open the live directory](https://oh-my-dsh.vercel.app/)** · **[Browse all projects](./docs/catalog.md)** · **[Explore collections](./docs/collections.md)** · **[Use the JSON registry](./registry/plugins.json)** · **[Submit a project](./CONTRIBUTING.md)**
+**[Open the static directory](https://oh-my-dsh.vercel.app/)** · **[Browse all projects](./docs/catalog.md)** · **[Explore collections](./docs/collections.md)** · **[Use the JSON registry](./registry/plugins.json)** · **[Forking & historical listing rules](./CONTRIBUTING.md)**
 
 <!-- GENERATED:PLUGIN-INDEX:START -->
 ## Plugin directory
@@ -57,18 +59,20 @@
 
 ## Listing rules
 
-The directory automatically includes public, non-fork, non-archived, non-empty repositories using the `dsh-plugin` topic, with no manual exceptions. Root `package.json` signals and Stars are display metadata only. Listing is not compatibility verification, security certification, a maintenance rating, or official endorsement. Installation instructions come from each repository.
+Before maintenance ended, the directory automatically included public, non-fork, non-archived, non-empty repositories using the `dsh-plugin` topic, with no manual exceptions. Root `package.json` signals and Stars are display metadata only. Listing is not compatibility verification, security certification, a maintenance rating, or official endorsement. Installation instructions come from each repository.
 
-Curated collections additionally check deletion, archival, transfers, and topic changes. Ownership changes are never followed silently.
+Curated collections previously checked deletion, archival, transfers, and topic changes. These checks no longer run for the retained snapshot. Check each repository's current status before using it.
 
-## Data and refresh strategy
+## Data snapshot and manual updates
 
 - [`registry/plugins.json`](./registry/plugins.json): the machine-readable schema v2 GitHub project directory.
 - [`docs/catalog.md`](./docs/catalog.md): the generated full catalog.
 - [`collections/`](./collections): manually curated, use-case-based collections.
-- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): one incremental scan per day and one weekly full reconciliation.
+- [`.github/workflows/update-registry.yml`](./.github/workflows/update-registry.yml): manual dispatch only; daily and weekly schedules have been removed. Continue updates in a fork after archival.
 
-Routine scans use an `updated:` window and merge repositories changed since the last successful scan by stable GitHub node ID, which also handles renames. They also scan archived repositories and remove stale entries. A weekly full scan reconciles the complete directory, including entries that disappear after topic removal or deletion.
+The static website, JSON registry, and generated documentation retain the last successful scan. The following tooling notes are intended for forks or future maintainers.
+
+Incremental scans use an `updated:` window and merge repositories changed since the last successful scan by stable GitHub node ID, which also handles renames. They also scan archived repositories and remove stale entries. A manual full scan can reconcile the complete directory, including entries that disappear after topic removal or deletion.
 
 Root `package.json` data and repository metadata arrive in the same GraphQL batch. The updater no longer walks workspaces or contacts the npm Registry. Full scans still partition time ranges to pass GitHub Search's 1,000-result limit; incremental scans normally need very few slices.
 
@@ -82,9 +86,9 @@ npm run check
 
 The first schema v2 generation automatically falls back to a full scan. Set `REGISTRY_SCAN_MODE=full` to request one explicitly.
 
-## Contributing
+## Continuing maintenance
 
-Project authors only need to publish a repository, add the `dsh-plugin` topic, and document installation, permissions, and removal in the README. See [CONTRIBUTING.md](./CONTRIBUTING.md) for collection proposals and [SECURITY.md](./SECURITY.md) for the security boundary.
+This repository is no longer maintained and no longer accepts new listings, collection proposals, or maintenance requests. Fork it under the MIT License to continue development. See [CONTRIBUTING.md](./CONTRIBUTING.md) for development notes and [SECURITY.md](./SECURITY.md) for the security boundary. Adding the `dsh-plugin` topic still helps users find a project on GitHub, but does not update this directory's snapshot.
 
 ## License
 
